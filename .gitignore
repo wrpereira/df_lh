@@ -1,19 +1,11 @@
-# Ambientes Virtuais
 venv/
 env/
-
-# Arquivos do sistema
+logs/
 .DS_Store
 Thumbs.db
-
-# Logs e temporários
 *.log
 *.tmp
 *.bak
-
-# Arquivos Python
 __pycache__/
 *.py[cod]
-
-# Configurações locais
 *.env
