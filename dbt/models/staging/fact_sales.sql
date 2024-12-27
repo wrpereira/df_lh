@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 with 
     sales_order_header as ( 
         select
@@ -10,8 +12,9 @@ with
             ,subtotal
             ,taxamt
             ,freight
-        from {{ source('sales', 'salesorderheader') }}
+        from {{ source('raw_data', 'sales_salesorderheader') }}
 ),
+
 sales_order_detail as (
         select
             salesorderid
@@ -19,22 +22,25 @@ sales_order_detail as (
             ,orderqty
             ,unitprice
             ,unitpricediscount
-        from {{ source('sales', 'salesorderdetail') }}
+        from {{ source('raw_data', 'sales_salesorderdetail') }}
 ),
+
 product as (
         select
             productid
             ,name as product_name
             ,productnumber
-        from {{ source('production', 'product') }}
+        from {{ source('raw_data', 'production_product') }}
 ),
+
 store as (
         select
             businessentityid as store_id
             ,name as store_name
             ,territoryid
-        from {{ source('sales', 'store') }}
+        from {{ source('raw_data', 'sales_store') }}
 ),
+
 final_fact_sales as (
         select
             sales_order_header.salesorderid
@@ -71,5 +77,6 @@ final_fact_sales as (
             ,store.name
             ,sales_order_header.territoryid
 )
+
 select * 
 from final_fact_sales;

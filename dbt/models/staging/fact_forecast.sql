@@ -1,16 +1,18 @@
+{{ config(materialized='table') }}
+
 with 
     product as (
         select
             productid
             ,name as product_name
             ,productnumber
-        from {{ source('production', 'product') }}
+        from {{ source('raw_data', 'production_product') }}
 )
 ,store as (
     select
         businessentityid as store_id
         ,name as store_name
-    from {{ source('sales', 'store') }}
+    from {{ source('raw_data', 'sales_store') }}
 )
 ,forecast_data as (
     select
@@ -18,7 +20,8 @@ with
         ,store_id
         ,forecast_date
         ,forecast_quantity
-    from {{ source('forecast', 'product_forecast') }}
+    from {{ ref('mock_product_forecast') }}
+
 )
 ,final_fact_forecast as (
     select
@@ -43,4 +46,5 @@ with
         ,forecast_data.forecast_date
 )
 select * 
-from final_fact_forecast;
+from final_fact_forecast
+

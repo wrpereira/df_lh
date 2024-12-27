@@ -1,45 +1,56 @@
+{{ config(
+    materialized='table'
+) }}
+
 with 
-    product_inventory as (
+    product as (
         select
-            productid
-            ,locationid
-            ,quantity
-            ,modifieddate
-        from {{ source('production', 'productinventory') }}
-)
-,product as (
-    select
-        productid
-        ,name as product_name
-        ,productnumber
-    from {{ source('production', 'product') }}
-)
-,location as (
-    select
-        locationid
-        ,name as location_name
-    from {{ source('production', 'location') }}
-)
-,final_fact_inventory as (
-    select
-        product_inventory.productid
-        ,product.name as product_name
-        ,product.productnumber
-        ,product_inventory.locationid
-        ,location.name as location_name
-        ,sum(product_inventory.quantity) as total_quantity
-        ,max(product_inventory.modifieddate) as last_inventory_update
-    from product_inventory
-    left join product
-        on product_inventory.productid = product.productid
-    left join location
-        on product_inventory.locationid = location.locationid
-    group by
-        product_inventory.productid
-        ,product.name
-        ,product.productnumber
-        ,product_inventory.locationid
-        ,location.name
-)
-select * 
-from final_fact_inventory;
+            productid_id
+            ,name_nm as product_name
+            ,productnumber_cd as product_number
+            ,standardcost_vl
+            ,listprice_vl
+            ,modifieddate_ts as product_modifieddate
+        from {{ ref('stg_production_product') }}
+    )
+    ,product_inventory as (
+        select
+            productid_id
+            ,locationid_id
+            ,shelf_desc
+            ,bin_desc
+            ,quantity_qt
+            ,modifieddate_ts as inventory_modifieddate
+        from {{ ref('stg_production_inventory') }}
+    )
+    ,joined_data as (
+        select
+            product.productid_id
+            ,product.product_name
+            ,product.product_number
+            ,product_inventory.locationid_id
+            ,product_inventory.shelf_desc
+            ,product_inventory.bin_desc
+            ,product_inventory.quantity_qt
+            ,greatest(product.product_modifieddate, product_inventory.inventory_modifieddate) as last_modifieddate
+        from product
+        join product_inventory
+            on product.productid_id = product_inventory.productid_id
+    )
+select
+    joined_data.productid_id
+    ,joined_data.product_name
+    ,joined_data.product_number
+    ,joined_data.locationid_id
+    ,joined_data.shelf_desc
+    ,joined_data.bin_desc
+    ,sum(joined_data.quantity_qt) as total_quantity
+    ,max(joined_data.last_modifieddate) as last_inventory_update
+from joined_data
+group by
+    joined_data.productid_id
+    ,joined_data.product_name
+    ,joined_data.product_number
+    ,joined_data.locationid_id
+    ,joined_data.shelf_desc
+    ,joined_data.bin_desc

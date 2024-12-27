@@ -1,11 +1,8 @@
 version: 2
 
-sources:
-  - name: raw_data
-    database: raw_data       
-    schema: raw_data
-    tables:
-      - name: humanresources_employee
+models:
+      - name: stg_humanresources_employee
+        description: "Modelo staging para humanresources_employee."
         columns:
 
           - name: businessentityid

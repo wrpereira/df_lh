@@ -1,11 +1,8 @@
 version: 2
 
-sources:
-  - name: raw_data
-    database: raw_data       
-    schema: raw_data
-    tables:
-      - name: production_product
+models:
+      - name: stg_production_product
+        description: "Modelo staging para production_product."
         columns:
         
           - name: productid_id

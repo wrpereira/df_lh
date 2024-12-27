@@ -15,8 +15,9 @@ environments:
         - sales-salesorderdetail.*
         - production-product.*
         - production-productinventory.*
+        - production-location.*
         - person-person.*
-        - humanresources-employee.*
+        - humanresources-employee.*        
 
 - name: staging
 - name: prod

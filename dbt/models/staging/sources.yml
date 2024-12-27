@@ -47,6 +47,19 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
+      - name: production_location
+        columns:
+          - name: locationid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: costrate
+            data_type: numeric
+          - name: availability
+            data_type: int64
+          - name: modifieddate
+            data_type: timestamp
+
       - name: production_productinventory
         columns:
           - name: productid
@@ -192,10 +205,6 @@ sources:
             data_type: string
           - name: modifieddate
             data_type: timestamp
-
-
-version: 2
-
 
       - name: sales_store
         columns:
