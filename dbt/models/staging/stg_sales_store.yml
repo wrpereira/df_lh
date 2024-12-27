@@ -1,16 +1,33 @@
 version: 2
 
-models:
-  - name: stg_salesorderheader  # igual ao nome do arquivo .sql (sem extensão)
-    columns:
-      - name: salesorderid
-        tests:
-          - not_null
-          - unique
+sources:
+  - name: raw_data
+    database: raw_data       
+    schema: raw_data
+    tables:
+      - name: sales_store
+        columns:
 
-      - name: orderdate
-        tests:
-          - not_null
-          # ... etc.
+          - name: businessentityid_id
+            description: "Identificador único da loja."
+            tests:
+              - not_null
+              - unique
 
-      # Se quiser testar outras colunas, adicione aqui
+          - name: modifieddate_ts
+            description: "Data da última modificação dos dados da loja."
+            tests:
+              - not_null
+
+          - name: name
+            description: "Nome da loja."
+            tests:
+              - not_null
+
+          - name: salespersonid_id
+            description: "Identificador do vendedor responsável pela loja."
+          - name: demographics_desc
+            description: "Informações demográficas da loja (tipo XML)."
+          - name: rowguid_desc
+            description: "Identificador global único (GUID) da loja."
+

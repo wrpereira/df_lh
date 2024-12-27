@@ -1,0 +1,31 @@
+version: 2
+
+macros:
+  - name: is_incremental
+    description: |
+      A macro utilizada para controlar a carga incremental de dados nos modelos dbt.
+      Ela verifica se o modelo está sendo executado de forma incremental, e, se sim, 
+      garante que apenas dados novos ou modificados sejam carregados na tabela de destino, 
+      evitando duplicações de dados. Isso é feito verificando se a tabela já existe 
+      e aplicando a lógica de atualização apenas para as linhas que foram alteradas ou inseridas.
+    example: |
+      {% if is_incremental() %}
+        -- Este bloco será executado apenas em uma carga incremental
+        SELECT *
+        FROM source_table
+        WHERE updated_at > (SELECT max(updated_at) FROM target_table)
+      {% else %}
+        -- Este bloco será executado na primeira carga completa
+        SELECT *
+        FROM source_table
+      {% endif %}
+    impact:
+      - O uso da macro `is_incremental` garante que a carga de dados seja feita de forma eficiente, 
+        carregando apenas os dados novos ou alterados e evitando duplicação na tabela de destino.
+      - Pode ser aplicada a modelos que requerem uma atualização contínua sem recarregar toda a tabela.
+    caveats:
+      - A macro assume que o modelo está configurado para funcionar de forma incremental e que há uma coluna 
+        que pode ser usada para comparar registros alterados (como `updated_at`).
+    tests:
+      - Testar a carga incremental em um ambiente controlado, garantindo que as alterações nos dados 
+        sejam corretamente detectadas e carregadas.

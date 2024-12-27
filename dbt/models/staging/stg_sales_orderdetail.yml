@@ -1,24 +1,45 @@
 version: 2
 
-models:
-  - name: stg_salesorderdetail
-    description: "Flatten de dados JSON para colunas do Sales.SalesOrderDetail"
-    columns:
-      - name: salesorderdetailid
-        description: "Chave primária do detalhe do pedido"
-        tests:
-          - not_null
-          - unique
+sources:
+  - name: raw_data
+    database: raw_data       
+    schema: raw_data
+    tables:
+      - name: sales_salesorderdetail
+        columns:
 
-      - name: salesorderid
-        description: "ID do pedido que este detalhe pertence"
-        tests:
-          - not_null
+          - name: salesorderid_id
+            description: "Identificador do pedido de venda."
+            tests:
+              - not_null
+              - unique
 
-      - name: productid
-        description: "ID do produto vendido"
-        tests:
-          - not_null
+          - name: salesorderdetailid_id
+            description: "Identificador do detalhe do pedido de venda."
+            tests:
+              - not_null
+              - unique
+          - name: productid_id
+            description: "Identificador do produto no pedido."
+            tests:
+              - not_null
+              - unique    
 
-      - name: modifieddate
-        description: "Data da última modificação"
+          - name: modifieddate_ts
+            description: "Data da última modificação dos dados do item do pedido."
+            tests:
+              - not_null          
+
+          - name: carriertrackingnumber_cd
+            description: "Número de rastreamento do transportador."
+          - name: orderqty_qt
+            description: "Quantidade do produto no pedido."
+          - name: specialofferid_id
+            description: "Identificador da oferta especial no pedido."
+          - name: unitprice_vr
+            description: "Preço unitário do produto no pedido."
+          - name: unitpricediscount_vr
+            description: "Desconto aplicado no preço unitário do produto."
+          - name: rowguid_desc
+            description: "Identificador global único (GUID) do item do pedido."
+
