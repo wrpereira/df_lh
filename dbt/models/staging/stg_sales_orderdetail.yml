@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_salesorderdetail
+    description: "Flatten de dados JSON para colunas do Sales.SalesOrderDetail"
+    columns:
+      - name: salesorderdetailid
+        description: "Chave primária do detalhe do pedido"
+        tests:
+          - not_null
+          - unique
+
+      - name: salesorderid
+        description: "ID do pedido que este detalhe pertence"
+        tests:
+          - not_null
+
+      - name: productid
+        description: "ID do produto vendido"
+        tests:
+          - not_null
+
+      - name: modifieddate
+        description: "Data da última modificação"

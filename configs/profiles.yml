@@ -6,7 +6,7 @@ adventureworks:
       method: service-account
       keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
       project: "desafioadventureworks-445317"
-      dataset: "raw_data"
+      dataset: "stg_data"
       threads: 16
 
     staging:
@@ -14,13 +14,13 @@ adventureworks:
       method: service-account
       keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
       project: "desafioadventureworks-445317"
-      dataset: "raw_data"
+      dataset: "stg_data"
       threads: 16
 
-    prod:
+    marts:
       type: bigquery
       method: service-account
       keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
       project: "desafioadventureworks-445317"
-      dataset: "raw_data"
+      dataset: "marts_data"
       threads: 16

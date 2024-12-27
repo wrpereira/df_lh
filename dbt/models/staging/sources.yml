@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: desafioadventureworks-445317
+    schema: raw_data
+    tables:
+      - name: sales_salesorderheader
+      - name: sales_salesorderdetail
