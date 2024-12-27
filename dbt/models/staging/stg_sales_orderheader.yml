@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_salesorderheader  # igual ao nome do arquivo .sql (sem extensão)
+    columns:
+      - name: salesorderid
+        tests:
+          - not_null
+          - unique
+
+      - name: orderdate
+        tests:
+          - not_null
+          # ... etc.
+
+      # Se quiser testar outras colunas, adicione aqui
