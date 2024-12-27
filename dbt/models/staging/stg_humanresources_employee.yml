@@ -1,0 +1,48 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: raw_data       
+    schema: raw_data
+    tables:
+      - name: humanresources_employee
+        columns:
+
+          - name: businessentityid
+            description: "Identificador único do funcionário."
+            tests:
+              - not_null
+              - unique             
+
+          - name: modifieddate
+            description: "Data da última modificação dos dados do funcionário."
+            tests:
+              - not_null
+
+          - name: nationalidnumber_id
+            description: "Número de identificação nacional do funcionário."
+          - name: loginid_id
+            description: "ID de login do funcionário."
+          - name: jobtitle_nm
+            description: "Título de trabalho do funcionário."
+          - name: birthdate_ts
+            description: "Data de nascimento do funcionário."
+          - name: maritalstatus_st
+            description: "Status marital do funcionário."
+          - name: gender_tp
+            description: "Gênero do funcionário."
+          - name: hiredate_ts
+            description: "Data de contratação do funcionário."
+          - name: salariedflag_fl
+            description: "Flag indicando se o funcionário é assalariado."
+          - name: vacationhours_nr
+            description: "Número de horas de férias do funcionário."
+          - name: sickleavehours_nr
+            description: "Número de horas de licença médica do funcionário."
+          - name: currentflag_fl
+            description: "Flag indicando se o funcionário está ativo."
+          - name: rowguid_desc
+            description: "Identificador global único (GUID) do funcionário."
+          - name: organizationnode_desc
+            description: "Descrição da organização"
+
