@@ -1,11 +1,8 @@
 version: 2
 
-sources:
-  - name: raw_data
-    database: raw_data       
-    schema: raw_data
-    tables:
-      - name: sales_salesorderdetail
+models:
+      - name: stg_sales_orderdetail
+        description: "Modelo staging para sales_salesorderdetail."
         columns:
 
           - name: salesorderid_id

@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 with 
     sales_order_header as (
         select
@@ -7,14 +9,14 @@ with
             ,subtotal
             ,taxamt
             ,freight
-        from {{ source('sales', 'salesorderheader') }}
+        from {{ source('raw_data', 'sales_salesorderheader') }}
 )
 ,sales_order_detail as (
     select
         salesorderid
         ,orderqty
         ,unitprice
-    from {{ source('sales', 'salesorderdetail') }}
+    from {{ source('raw_data', 'sales_salesorderdetail') }}
 )
 ,employee as (
     select
@@ -22,14 +24,14 @@ with
         ,firstname
         ,lastname
         ,jobtitle
-    from {{ source('humanresources', 'employee') }}
+    from {{ source('raw_data', 'humanresources_employee') }}
 )
 ,store as (
     select
         businessentityid as store_id
         ,territoryid
         ,name as store_name
-    from {{ source('sales', 'store') }}
+    from {{ source('raw_data', 'sales_store') }}
 )
 ,final_aggregated_sales as (
     select
@@ -57,4 +59,5 @@ with
         ,employee.jobtitle
 )
 select * 
-from final_aggregated_sales;
+from final_aggregated_sales
+

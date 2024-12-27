@@ -21,7 +21,10 @@ vars:
 
 models:
   adventureworks:
+    staging:
+      +schema: staging
     +on_schema_change: "sync_all_columns"
+    +materialized: table
     +persist_docs:
       relation: true
       columns: true
@@ -46,5 +49,6 @@ models:
 
 seeds:
   adventureworks:
+    +materialized: table
     +quote_columns: true
     +schema: raw_data

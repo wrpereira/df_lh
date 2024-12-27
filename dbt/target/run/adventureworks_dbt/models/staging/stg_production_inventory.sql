@@ -1,4 +1,15 @@
-{{ config(materialized='table') }}
+
+  
+    
+
+    create or replace table `desafioadventureworks-445317`.`dbt_adventureworks`.`stg_production_inventory`
+      
+    
+    
+
+    OPTIONS()
+    as (
+      
 
 with 
     renamed as (
@@ -10,9 +21,10 @@ with
             ,cast(JSON_VALUE(data, '$.quantity') as int64) as quantity_qt
             ,JSON_VALUE(data, '$.rowguid') as rowguid_desc
             ,parse_timestamp('%Y-%m-%dT%H:%M:%S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'production_productinventory') }}
+        from `raw_data`.`raw_data`.`production_productinventory`
     )
 
 select *
 from renamed
-
+    );
+  

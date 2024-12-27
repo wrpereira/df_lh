@@ -1,6 +1,4 @@
-{{ config(
-    materialized='table'
-) }}
+
 
 with 
     product as (
@@ -11,7 +9,7 @@ with
             ,standardcost_vl
             ,listprice_vl
             ,modifieddate_ts as product_modifieddate
-        from {{ ref('stg_production_product') }}
+        from `desafioadventureworks-445317`.`dbt_adventureworks`.`stg_production_product`
     )
     ,product_inventory as (
         select
@@ -21,7 +19,7 @@ with
             ,bin_desc
             ,quantity_qt
             ,modifieddate_ts as inventory_modifieddate
-        from {{ ref('stg_production_inventory') }}
+        from `desafioadventureworks-445317`.`dbt_adventureworks`.`stg_production_inventory`
     )
     ,joined_data as (
         select

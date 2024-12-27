@@ -1,4 +1,4 @@
-{{ config(materialized="incremental") }}
+{{ config(materialized='table') }}
 
 with 
     renamed as (
@@ -18,4 +18,4 @@ with
 
 select *
 from renamed
-{{ incremental_filter('modifieddate') }}
+

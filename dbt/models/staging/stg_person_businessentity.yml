@@ -1,13 +1,10 @@
 version: 2
 
-sources:
-  - name: raw_data
-    database: raw_data       
-    schema: raw_data
-    tables:
-      - name: person_businessentity
+models:
+      - name: stg_person_businessentity
+        description: "Modelo staging para person_businessentity."
         columns:
-
+                     
           - name: businessentityid_id
             description: "Identificador único da entidade de negócios."
             tests:
