@@ -1,0 +1,26 @@
+adventureworks:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
+      project: "desafioadventureworks-445317"
+      dataset: "raw_data"
+      threads: 16
+
+    staging:
+      type: bigquery
+      method: service-account
+      keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
+      project: "desafioadventureworks-445317"
+      dataset: "raw_data"
+      threads: 16
+
+    prod:
+      type: bigquery
+      method: service-account
+      keyfile: "C:/Temp/desafiolh-445818-3cb0f62cb9ef.json"
+      project: "desafioadventureworks-445317"
+      dataset: "raw_data"
+      threads: 16
