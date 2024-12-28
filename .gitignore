@@ -10,3 +10,4 @@ __pycache__/
 *.py[cod]
 *.env
 configs/desafioadventureworks-445317-09719dd72590.json
+target/

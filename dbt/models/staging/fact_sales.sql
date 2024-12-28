@@ -79,4 +79,4 @@ final_fact_sales as (
 )
 
 select * 
-from final_fact_sales;
+from final_fact_sales

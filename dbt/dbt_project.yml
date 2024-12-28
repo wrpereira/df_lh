@@ -16,39 +16,24 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-vars:
-  table_name: []
-
 models:
-  adventureworks:
-    staging:
-      +schema: staging
+  adventureworks_dbt:
     +on_schema_change: "sync_all_columns"
-    +materialized: table
     +persist_docs:
       relation: true
       columns: true
+    +materialized: table
 
     staging:
-      +materialized: table
-      +schema: staging
+      +schema: stg_data
       +tags:
         - staging
 
-    intermediate:
-      +materialized: table
-      +schema: intermediate
-      +tags:
-        - intermediate
-
     marts:
-      +materialized: table
-      +schema: marts
+      +schema: marts_data
       +tags:
         - marts
-
 seeds:
-  adventureworks:
     +materialized: table
     +quote_columns: true
     +schema: raw_data
