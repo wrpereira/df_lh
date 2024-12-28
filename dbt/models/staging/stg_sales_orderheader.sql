@@ -3,7 +3,7 @@
 with 
     renamed as (
         select
-             cast(JSON_VALUE(data, '$.salesorderid') as int64) as salesorderid_id
+             JSON_VALUE(data, '$.salesorderid')  as salesorderid_id
             ,cast(JSON_VALUE(data, '$.revisionnumber') as int64) as revisionnumber_cd
             ,parse_timestamp('%Y-%m-%dT%H:%M:%S', JSON_VALUE(data, '$.orderdate')) as orderdate_ts
             ,parse_timestamp('%Y-%m-%dT%H:%M:%S', JSON_VALUE(data, '$.duedate')) as duedate_ts
@@ -27,7 +27,7 @@ with
             ,cast(JSON_VALUE(data, '$.totaldue') as numeric) as totaldue_vr
             ,JSON_VALUE(data, '$.comment') as comment_desc
             ,JSON_VALUE(data, '$.rowguid') as rowguid_desc
-            ,parse_timestamp('%Y-%m-%dT%H:%M:%S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
+            ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
         from {{ source('raw_data', 'sales_salesorderheader') }}
     )
 

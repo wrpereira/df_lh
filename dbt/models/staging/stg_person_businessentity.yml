@@ -6,7 +6,7 @@ models:
         columns:
                      
           - name: businessentityid_id
-            description: "Identificador único da entidade de negócios."
+            description: "Identificador único do funcionário."
             tests:
               - not_null
               - unique

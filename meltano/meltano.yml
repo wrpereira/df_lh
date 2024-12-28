@@ -8,9 +8,12 @@ environments:
     plugins:
       extractors:
       - name: tap-postgres
+        config:          
+          replication_method: FULL_TABLE
         select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
+        - sales-customer.*
         - sales-salesorderheader.*
         - sales-salesorderdetail.*
         - sales-store.*
@@ -18,7 +21,8 @@ environments:
         - production-productinventory.*
         - production-location.*
         - person-person.*
-        - humanresources-employee.*        
+        - person-businessentity.*
+        - humanresources-employee.*
 
 - name: staging
 - name: prod
@@ -30,14 +34,20 @@ plugins:
     pip_url: git+https://github.com/MeltanoLabs/tap-postgres.git
     config:
       sqlalchemy_url: postgresql://stitch_extract:etl_101_passwd@35.239.223.162:5432/Adventureworks
-      replication_method: INCREMENTAL
+      replication_method: FULL_TABLE
       select:
-      - sales-salesorderheader.*
-      - sales-salesorderdetail.*
-      - production-product.*
-      - production-productinventory.*
-      - '*.*.*'
-      - '!information_schema*.*'
+        - '!*.*.*'
+        - '!!information_schema*.*.*'
+        - sales-customer.*
+        - sales-salesorderheader.*
+        - sales-salesorderdetail.*
+        - sales-store.*
+        - production-product.*
+        - production-productinventory.*
+        - production-location.*
+        - person-person.*
+        - person-businessentity.*
+        - humanresources-employee.*
 
   loaders:
   - name: target-bigquery
