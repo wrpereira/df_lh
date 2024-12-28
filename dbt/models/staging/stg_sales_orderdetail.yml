@@ -9,7 +9,6 @@ models:
             description: "Identificador do pedido de venda."
             tests:
               - not_null
-              - unique
 
           - name: salesorderdetailid_id
             description: "Identificador do detalhe do pedido de venda."
@@ -20,8 +19,7 @@ models:
             description: "Identificador do produto no pedido."
             tests:
               - not_null
-              - unique    
-
+     
           - name: modifieddate_ts
             description: "Data da última modificação dos dados do item do pedido."
             tests:

@@ -5,13 +5,13 @@ models:
         description: "Modelo staging para humanresources_employee."
         columns:
 
-          - name: businessentityid
+          - name: businessentityid_id
             description: "Identificador único do funcionário."
             tests:
               - not_null
               - unique             
 
-          - name: modifieddate
+          - name: modifieddate_ts
             description: "Data da última modificação dos dados do funcionário."
             tests:
               - not_null

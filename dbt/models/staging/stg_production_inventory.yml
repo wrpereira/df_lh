@@ -9,8 +9,7 @@ models:
             description: "Identificador do produto."
             tests:
               - not_null
-              - unique
-
+              
           - name: locationid_id
             description: "Identificador da localização do inventário."
             tests:
