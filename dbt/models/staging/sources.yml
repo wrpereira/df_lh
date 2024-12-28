@@ -235,4 +235,61 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
+      - name: sales_customer
+        columns:
+          - name: customerid
+            data_type: int64
+          - name: personid
+            data_type: int64
+          - name: storeid
+            data_type: int64
+          - name: territoryid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: 
+            
+      - name: production_productsubcategory
+        columns:
+          - name: productsubcategoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
+
+      - name: sales_territory
+        columns:
+          - name: territoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: countryregioncode
+            data_type: string
+          - name: group
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
+      - name: production_productcategory
+        columns:
+          - name: productcategoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
+
+
+
+
 

@@ -1,0 +1,28 @@
+- name: stg_sales_territory
+  description: "Modelo staging para sales_territory."
+  columns:
+
+    - name: territoryid_id
+      description: "Identificador único do território de vendas."
+      tests:
+        - not_null
+        - unique
+
+    - name: territory_name_nm
+      description: "Nome do território de vendas."
+      tests:
+        - not_null
+
+    - name: countryregioncode_desc
+      description: "Código da região ou país do território."
+
+    - name: territory_group_desc
+      description: "Grupo do território de vendas."
+
+    - name: rowguid_desc
+      description: "Identificador global exclusivo do território."
+
+    - name: modifieddate_ts
+      description: "Data da última modificação dos dados do território."
+      tests:
+        - not_null
