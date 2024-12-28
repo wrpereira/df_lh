@@ -13,6 +13,7 @@ environments:
         - '!!information_schema*.*.*'
         - sales-salesorderheader.*
         - sales-salesorderdetail.*
+        - sales-store.*
         - production-product.*
         - production-productinventory.*
         - production-location.*

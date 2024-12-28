@@ -2,7 +2,6 @@ version: 2
 
 sources:
   - name: raw_data
-    database: raw_data       
     schema: raw_data
     tables:
       - name: humanresources_employee
