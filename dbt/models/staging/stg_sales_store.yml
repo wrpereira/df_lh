@@ -16,7 +16,7 @@ models:
             tests:
               - not_null
 
-          - name: name
+          - name: name_nm
             description: "Nome da loja."
             tests:
               - not_null

@@ -15,8 +15,7 @@ models:
             description: "Identificador do cliente associado ao pedido."
             tests:
               - not_null
-              - unique
-
+              
           - name: orderdate_ts
             description: "Data em que o pedido foi realizado."
             tests:
