@@ -219,3 +219,20 @@ sources:
             data_type: string
           - name: modifieddate
             data_type: timestamp
+            
+      - name: person_person
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: firstname
+            data_type: string
+          - name: middlename
+            data_type: string
+          - name: lastname
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
+
