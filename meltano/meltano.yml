@@ -17,11 +17,15 @@ environments:
         - sales-salesorderheader.*
         - sales-salesorderdetail.*
         - sales-store.*
+        - sales-salesterritory.*
         - production-product.*
         - production-productinventory.*
+        - production-productcategory.*
+        - production-productsubcategory.*
         - production-location.*
         - person-person.*
         - person-businessentity.*
+        - person-address.*
         - humanresources-employee.*
 
 - name: staging
@@ -36,17 +40,22 @@ plugins:
       sqlalchemy_url: postgresql://stitch_extract:etl_101_passwd@35.239.223.162:5432/Adventureworks
       replication_method: FULL_TABLE
       select:
+        select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
         - sales-customer.*
         - sales-salesorderheader.*
         - sales-salesorderdetail.*
         - sales-store.*
+        - sales-salesterritory.*
         - production-product.*
         - production-productinventory.*
+        - production-productcategory.*
+        - production-productsubcategory.*
         - production-location.*
         - person-person.*
         - person-businessentity.*
+        - person-address.*
         - humanresources-employee.*
 
   loaders:

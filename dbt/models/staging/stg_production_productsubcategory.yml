@@ -1,0 +1,22 @@
+- name: stg_production_productsubcategory
+  description: "Modelo staging para production_productsubcategory."
+  columns:
+  
+    - name: productsubcategoryid_id
+      description: "Identificador único da subcategoria do produto."
+      tests:
+        - not_null
+        - unique
+
+    - name: subcategory_name_nm
+      description: "Nome da subcategoria do produto."
+      tests:
+        - not_null
+
+    - name: rowguid_desc
+      description: "Identificador global exclusivo da subcategoria."
+      
+    - name: modifieddate_ts
+      description: "Data da última modificação dos dados da subcategoria."
+      tests:
+        - not_null
