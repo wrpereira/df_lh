@@ -13,7 +13,7 @@ with
             ,taxamt_vr
             ,freight_vr
         from {{ ref('stg_sales_orderheader') }}
-),
+    ),
 
     sales_order_detail as (
         select
@@ -23,7 +23,7 @@ with
             ,unitprice_vr
             ,unitpricediscount_vr
         from {{ ref('stg_sales_orderdetail') }}
-),
+    ),
 
     product as (
         select
@@ -31,15 +31,14 @@ with
             ,name_nm as product_name
             ,productnumber_cd
         from {{ ref('stg_production_product') }}
-),
+    ),
 
     store as (
         select
             businessentityid_id as store_id
             ,name_nm as store_name
-            ,territoryid_id
         from {{ ref('stg_sales_store') }}
-),
+    ),
 
 final_fact_sales as (
     select
@@ -63,7 +62,7 @@ final_fact_sales as (
     left join product
         on sales_order_detail.productid_id = product.productid_id
     left join store
-        on sales_order_header.territoryid_id = store.territoryid_id
+        on sales_order_header.salespersonid_id = store.store_id -- Corrigido o relacionamento com base em salespersonid_id
     group by
         sales_order_header.salesorderid_id
         ,sales_order_header.customerid_id
