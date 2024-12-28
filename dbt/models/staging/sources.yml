@@ -15,13 +15,13 @@ sources:
           - name: jobtitle
             data_type: string
           - name: birthdate
-            data_type: timestamp
+            data_type: date
           - name: maritalstatus
             data_type: string
           - name: gender
             data_type: string
           - name: hiredate
-            data_type: timestamp
+            data_type: date
           - name: salariedflag
             data_type: string
           - name: vacationhours
@@ -55,7 +55,7 @@ sources:
           - name: costrate
             data_type: numeric
           - name: availability
-            data_type: int64
+            data_type: numeric
           - name: modifieddate
             data_type: timestamp
 
