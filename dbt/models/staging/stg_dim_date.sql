@@ -4,11 +4,11 @@ with
     stg_sales_orderdetail as (
         select
             salesorderid_id
-            ,order_date_dt
-            ,extract(day from order_date_dt) as day_nr
-            ,extract(month from order_date_dt) as month_nr
-            ,extract(year from order_date_dt) as year_nr
-        from {{ ref('stg_sales_orderdetail') }}
+            ,orderdate_ts
+            ,extract(day from orderdate_ts) as day_nr
+            ,extract(month from orderdate_ts) as month_nr
+            ,extract(year from orderdate_ts) as year_nr
+        from {{ ref('stg_sales_orderheader') }}
     )
 
 select

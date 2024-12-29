@@ -1,14 +1,14 @@
-{{ config(materialized='table') }}
+{{ config(materialized="table") }}
 
 with 
     renamed as (
         select
-             cast(JSON_VALUE(data, '$.businessentityid') as int64) as businessentityid_id
-            ,JSON_VALUE(data, '$.firstname') as firstname_nm
-            ,JSON_VALUE(data, '$.middlename') as middlename_nm
-            ,JSON_VALUE(data, '$.lastname') as lastname_nm
-            ,JSON_VALUE(data, '$.rowguid') as rowguid_desc
-            ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
+            cast(json_value(data, '$.businessentityid') as int64) as businessentityid_id -- Garante que é INT64
+            ,json_value(data, '$.firstname') as firstname_nm
+            ,json_value(data, '$.middlename') as middlename_nm
+            ,json_value(data, '$.lastname') as lastname_nm
+            ,json_value(data, '$.rowguid') as rowguid_desc
+            ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', json_value(data, '$.modifieddate')) as modifieddate_ts
         from {{ source('raw_data', 'person_person') }}
     )
 

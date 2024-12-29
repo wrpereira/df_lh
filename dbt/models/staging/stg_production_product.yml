@@ -33,9 +33,9 @@ models:
             description: "Nível de estoque de segurança do produto."
           - name: reorderpoint_tp
             description: "Ponto de reabastecimento do produto."
-          - name: standardcost_vl
+          - name: standardcost_vr
             description: "Custo padrão do produto."
-          - name: listprice_vl
+          - name: listprice_vr
             description: "Preço de venda do produto."
           - name: size_tp
             description: "Tamanho do produto."

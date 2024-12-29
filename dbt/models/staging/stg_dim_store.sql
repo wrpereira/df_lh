@@ -4,9 +4,9 @@ with
     stg_sales_salesterritory as (
         select
             territoryid_id
-            ,name_desc as territory_name_desc
+            ,territory_name_nm
             ,countryregioncode_desc
-            ,group_desc as territory_group_desc
+            ,territory_group_tp
             ,rowguid_desc
             ,modifieddate_ts
         from {{ ref('stg_sales_salesterritory') }}
@@ -26,9 +26,9 @@ with
 
 select
     stg_sales_salesterritory.territoryid_id
-    ,stg_sales_salesterritory.territory_name_desc
+    ,stg_sales_salesterritory.territory_name_nm
     ,stg_sales_salesterritory.countryregioncode_desc
-    ,stg_sales_salesterritory.territory_group_desc
+    ,stg_sales_salesterritory.territory_group_tp
     ,stg_sales_salesterritory.rowguid_desc as territory_rowguid_desc
     ,stg_sales_salesterritory.modifieddate_ts as territory_modifieddate_ts
     ,stg_person_address.addressid_id
@@ -39,6 +39,6 @@ select
     ,stg_person_address.postalcode_desc
     ,stg_person_address.rowguid_desc as address_rowguid_desc
     ,stg_person_address.modifieddate_ts as address_modifieddate_ts
-from stg_sales_territory
+from stg_sales_salesterritory
 left join stg_person_address
-    on stg_sales_territory.territoryid_id = stg_person_address.stateprovinceid_id
+    on stg_sales_salesterritory.territoryid_id = stg_person_address.stateprovinceid_id

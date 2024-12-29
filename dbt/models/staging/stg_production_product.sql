@@ -11,8 +11,8 @@ with
             ,JSON_VALUE(data, '$.color') as color_tp
             ,cast(JSON_VALUE(data, '$.safetystocklevel') as int64) as safetystocklevel_nr
             ,cast(JSON_VALUE(data, '$.reorderpoint') as int64) as reorderpoint_tp
-            ,cast(JSON_VALUE(data, '$.standardcost') as numeric) as standardcost_vl
-            ,cast(JSON_VALUE(data, '$.listprice') as numeric) as listprice_vl
+            ,cast(JSON_VALUE(data, '$.standardcost') as numeric) as standardcost_vr
+            ,cast(JSON_VALUE(data, '$.listprice') as numeric) as listprice_vr
             ,JSON_VALUE(data, '$.size') as size_tp
             ,JSON_VALUE(data, '$.sizeunitmeasurecode') as sizeunitmeasurecode_cd
             ,JSON_VALUE(data, '$.weightunitmeasurecode') as weightunitmeasurecode_cd
