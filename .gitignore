@@ -291,3 +291,14 @@ airflow_env/
 # Ignorar bytecodes
 __pycache__/
 *.py[cod]
+
+meltano_env/
+
+airflow_env/
+meltano_env/
+dbt_env/
+*.log
+*.tmp
+*.pyc
+*.ipynb_checkpoints
+__pycache__/

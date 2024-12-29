@@ -11,3 +11,4 @@ python-nvd3==0.15.0
 pendulum==2.1.2
 google-cloud-bigquery 
 apache-airflow-providers-papermill
+sqlalchemy==1.4.49

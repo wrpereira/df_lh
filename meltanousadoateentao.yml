@@ -65,7 +65,7 @@ plugins:
     config:
       project: desafioadventureworks-445317
       dataset: raw_data
-      credentials_path: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json 
+      credentials_path: C:/Temp/desafiolh-445818-3cb0f62cb9ef.json
       max_workers: 8
 
   - name: target-jsonl
