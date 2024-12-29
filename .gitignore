@@ -11,3 +11,4 @@ __pycache__/
 *.env
 configs/desafioadventureworks-445317-09719dd72590.json
 target/
+arflow_env/
