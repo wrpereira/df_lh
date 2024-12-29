@@ -1,0 +1,19 @@
+# Ignore virtual environments
+airflow_env/
+dbt_env/
+meltano_env/
+venv/
+
+# Ignore Python installation artifacts
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore pip-related files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignore common IDE files
+*.idea/
+*.vscode/

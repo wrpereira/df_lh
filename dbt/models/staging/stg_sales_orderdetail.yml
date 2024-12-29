@@ -1,0 +1,40 @@
+version: 2
+
+models:
+      - name: stg_sales_orderdetail
+        description: "Modelo staging para sales_salesorderdetail."
+        columns:
+
+          - name: salesorderid_id
+            description: "Identificador do pedido de venda."
+            tests:
+              - not_null
+
+          - name: salesorderdetailid_id
+            description: "Identificador do detalhe do pedido de venda."
+            tests:
+              - not_null
+              - unique
+          - name: productid_id
+            description: "Identificador do produto no pedido."
+            tests:
+              - not_null
+     
+          - name: modifieddate_ts
+            description: "Data da última modificação dos dados do item do pedido."
+            tests:
+              - not_null          
+
+          - name: carriertrackingnumber_cd
+            description: "Número de rastreamento do transportador."
+          - name: orderqty_qt
+            description: "Quantidade do produto no pedido."
+          - name: specialofferid_id
+            description: "Identificador da oferta especial no pedido."
+          - name: unitprice_vr
+            description: "Preço unitário do produto no pedido."
+          - name: unitpricediscount_vr
+            description: "Desconto aplicado no preço unitário do produto."
+          - name: rowguid_desc
+            description: "Identificador global único (GUID) do item do pedido."
+

@@ -1,0 +1,30 @@
+version: 2
+
+models:
+      - name: stg_sales_store
+        description: "Modelo staging para sales_store."
+        columns:
+
+          - name: businessentityid_id
+            description: "Identificador único da loja."
+            tests:
+              - not_null
+              - unique
+
+          - name: modifieddate_ts
+            description: "Data da última modificação dos dados da loja."
+            tests:
+              - not_null
+
+          - name: name_nm
+            description: "Nome da loja."
+            tests:
+              - not_null
+
+          - name: salespersonid_id
+            description: "Identificador do vendedor responsável pela loja."
+          - name: demographics_desc
+            description: "Informações demográficas da loja (tipo XML)."
+          - name: rowguid_desc
+            description: "Identificador global único (GUID) da loja."
+

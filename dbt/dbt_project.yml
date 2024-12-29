@@ -1,0 +1,39 @@
+name: 'adventureworks_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'adventureworks'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  adventureworks_dbt:
+    +on_schema_change: "sync_all_columns"
+    +persist_docs:
+      relation: true
+      columns: true
+    +materialized: table
+
+    staging:
+      +schema: stg_data
+      +tags:
+        - staging
+
+    marts:
+      +schema: marts_data
+      +tags:
+        - marts
+seeds:
+    +materialized: table
+    +quote_columns: true
+    +schema: raw_data

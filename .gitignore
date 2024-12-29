@@ -1,0 +1,32 @@
+# Ignorar arquivos de configuração e logs gerais
+*.log
+*.env
+
+# Ignorar Airflow e suas configurações
+
+airflow/*.log
+airflow/logs/
+airflow/dags/__pycache__/
+
+# Ignorar Meltano e seus logs
+
+meltano/.meltano/
+meltano/.meltano/logs/
+meltano/.meltano/run/
+meltano/plugins/**/pip.log
+
+# Ignorar arquivos de configurações locais
+configs/
+configs/*.ini
+
+# Ignorar dbt e arquivos temporários
+dbt/.user.yml
+dbt/logs/
+dbt/target/
+
+# Ignorar scripts locais
+load_env.sh
+
+# Ignorar qualquer virtual environment
+*.venv
+*env/

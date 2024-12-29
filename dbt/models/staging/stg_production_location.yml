@@ -1,0 +1,28 @@
+version: 2
+
+models:
+
+      - name: stg_production_location
+        description: "Modelo staging para production_location."
+        columns:
+
+          - name: locationid_id
+            description: "Identificador único da localização."
+            tests:
+              - unique
+              - not_null
+
+          - name: name_nm
+            description: "Nome da localização."
+            tests:
+              - not_null
+
+          - name: modifieddate_ts
+            description: "Data da última modificação."
+            tests:
+              - not_null
+
+          - name: costrate_vr
+            description: "Taxa de custo associada à localização."
+          - name: availability_nr
+            description: "Disponibilidade de recursos na localização."
