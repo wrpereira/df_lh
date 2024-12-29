@@ -8,8 +8,8 @@ with
             productid_id
             ,name_nm as product_name
             ,productnumber_cd as product_number
-            ,standardcost_vl
-            ,listprice_vl
+            ,standardcost_vr
+            ,listprice_vr
             ,modifieddate_ts as product_modifieddate
         from {{ ref('stg_production_product') }}
     )

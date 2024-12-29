@@ -4,7 +4,7 @@ with
     renamed as (
         select
             cast(json_value(data, '$.customerid') as int64) as customerid_id
-            ,json_value(data, '$.personid') as personid_id
+            ,cast(json_value(data, '$.personid') as int64) as personid_id -- Garante que é INT64
             ,json_value(data, '$.storeid') as storeid_id
             ,json_value(data, '$.territoryid') as territoryid_id
             ,json_value(data, '$.rowguid') as rowguid_desc
@@ -14,4 +14,3 @@ with
 
 select *
 from renamed
-
