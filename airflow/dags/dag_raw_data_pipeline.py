@@ -3,6 +3,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.papermill.operators.papermill import PapermillOperator
 from airflow.operators.bash import BashOperator
 from airflow.operators.empty import EmptyOperator
+from airflow.utils.dates import days_ago
 from datetime import datetime
 from google.cloud import bigquery
 from google.oauth2 import service_account
@@ -47,16 +48,22 @@ default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
     'start_date': datetime(2023, 1, 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
     'retries': 1,
 }
 
 # === DAG ===
 with DAG(
-    dag_id="humanresources_employee_pipeline",
+    dag_id="dag_raw_data_pipeline",
     default_args=default_args,
-    schedule=None,
+    description='Executa EDA do humanresources_employee usando Papermill',
+    schedule_interval=None,  # Pode ser ajustado para rodar periodicamente
+    start_date=days_ago(1),
     catchup=False,
+
 ) as dag:
+
     # Tarefa de Extração
     extract = PythonOperator(
         task_id="extract_raw_data",
