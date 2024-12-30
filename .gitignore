@@ -1,12 +1,15 @@
 # Ignorar arquivos de configuração e logs gerais
 *.log
 *.env
+logs/
+
 
 # Ignorar Airflow e suas configurações
 
 airflow/*.log
 airflow/logs/
 airflow/dags/__pycache__/
+airflow_db/
 
 # Ignorar Meltano e seus logs
 
