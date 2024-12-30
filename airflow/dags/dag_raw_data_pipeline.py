@@ -22,6 +22,9 @@ RAW_DATA_CLEANED_TABLE = f"{os.getenv('RAW_DATA_CLEANED_PROJECT')}.{os.getenv('R
 credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
 client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"))
 
+# Verifica se a variável está configurada
+print(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+
 # === FUNÇÕES DO PIPELINE ===
 
 # === EXTRACT ===
