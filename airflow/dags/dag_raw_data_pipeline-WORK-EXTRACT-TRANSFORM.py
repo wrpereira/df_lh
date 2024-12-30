@@ -55,7 +55,7 @@ default_args = {
 
 # === DAG ===
 with DAG(
-    dag_id="dag_raw_data_pipeline",
+    dag_id="dag_raw_data_pipeline2",
     default_args=default_args,
     description='Executa EDA do humanresources_employee usando Papermill',
     schedule_interval=None,  # Pode ser ajustado para rodar periodicamente
@@ -70,17 +70,29 @@ with DAG(
         python_callable=extract_raw_data,
     )
 
-    # Tarefa de Tranformação e Carga com Papermill
-    load = PapermillOperator(
-    task_id="load_humanresources_employee",
+    # Tarefa de Transformação com Papermill
+    transform = PapermillOperator(
+    task_id="transform_humanresources_employee",
     input_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee.ipynb",
-    output_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee_output.ipynb",
+    output_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee_transformed_output.ipynb",
     parameters={
         'credentials_path': CREDENTIALS_PATH,
-        'table_name': 'raw_data_cleaned.humanresources_employee',
+        'table_name': RAW_DATA_TABLE,
     },
 )
 
-    # Ordem das tarefas
-    extract >> load  # O notebook de "load" unifica as fases de transformação e carga
 
+    load = PapermillOperator(
+    task_id="load_humanresources_employee",
+    input_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee.ipynb",
+    output_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee_load_output.ipynb",
+    parameters={
+        'credentials_path': CREDENTIALS_PATH,
+        'destination_table': RAW_DATA_CLEANED_TABLE,
+    },
+)
+
+
+
+    # Ordem das tarefas
+    extract >> transform >> load
