@@ -1,6 +1,6 @@
 version: 1
 default_environment: dev
-project_id: desafiolh-445818
+project_id: desafioadventureworks-446600
 
 environments:
 - name: dev

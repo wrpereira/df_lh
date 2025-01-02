@@ -1,13 +1,14 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator 
 from airflow.providers.papermill.operators.papermill import PapermillOperator
+from airflow.operators.bash import BashOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.utils.dates import days_ago
 from datetime import datetime
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from dotenv import load_dotenv
 import pandas as pd
-import psycopg2
 import os
 
 # Carregar variáveis do arquivo .env
@@ -17,48 +18,30 @@ load_dotenv()
 CREDENTIALS_PATH = "/mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json"
 RAW_DATA_TABLE = f"{os.getenv('BIGQUERY_PROJECT')}.{os.getenv('BIGQUERY_DATASET')}.humanresources_employee"
 RAW_DATA_CLEANED_TABLE = f"{os.getenv('RAW_DATA_CLEANED_PROJECT')}.{os.getenv('RAW_DATA_CLEANED_DATASET')}.humanresources_employee"
-
+client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"), location="us-central1")
 # Configuração do BigQuery
 credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
+#client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"))
 client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"), location="us-central1")
 
-# Configuração do PostgreSQL
-POSTGRES_CONFIG = {
-    "host": os.getenv("POSTGRES_HOST"),
-    "port": os.getenv("POSTGRES_PORT"),
-    "user": os.getenv("POSTGRES_USER"),
-    "password": os.getenv("POSTGRES_PASSWORD"),
-    "database": os.getenv("POSTGRES_DB"),
-}
+
+# Verifica se a variável está configurada
+print(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
 
 # === FUNÇÕES DO PIPELINE ===
 
-# Extrair dados do PostgreSQL e carregar no BigQuery
-def extract_postgres_to_bigquery():
-    # Conectar ao PostgreSQL
-    conn = psycopg2.connect(**POSTGRES_CONFIG)
-    query = "SELECT * FROM humanresources_employee"
-    df = pd.read_sql_query(query, conn)
-    conn.close()
-
-    # Carregar no BigQuery
-    table_id = RAW_DATA_TABLE
-    job = client.load_table_from_dataframe(df, table_id)
-    job.result()  # Espera a carga terminar
-    print(f"Dados carregados no BigQuery: {table_id}")
-
-# Extrair dados do BigQuery
+# === EXTRACT ===
 def extract_raw_data():
     query = f"SELECT * FROM `{RAW_DATA_TABLE}`"
     raw_data = client.query(query).result().to_dataframe()
     raw_data.to_pickle("/tmp/humanresources_employee_raw.pkl")
     print("Dados extraídos do BigQuery.")
 
-# Placeholder para transformação
+# === TRANSFORM ===
 def transform_data():
     print("Placeholder para a transformação (Papermill na DAG).")
 
-# Placeholder para carga
+# === LOAD ===
 def load_cleaned_data():
     print("Placeholder para a carga (Papermill na DAG).")
 
@@ -74,36 +57,32 @@ default_args = {
 
 # === DAG ===
 with DAG(
-    dag_id="dag_raw_data_pipeline",
+    dag_id="dag_raw_data_pipeline2",
     default_args=default_args,
-    description='Pipeline que extrai dados do PostgreSQL, carrega no BigQuery e realiza transformações com Papermill',
+    description='Executa EDA do humanresources_employee usando Papermill',
     schedule_interval=None,  # Pode ser ajustado para rodar periodicamente
     start_date=days_ago(1),
     catchup=False,
+
 ) as dag:
 
-    # Tarefa para extrair dados do PostgreSQL e carregar no BigQuery
-    extract_postgres = PythonOperator(
-        task_id="extract_postgres_to_bigquery",
-        python_callable=extract_postgres_to_bigquery,
-    )
-
-    # Tarefa para extrair dados do BigQuery
-    extract_bq = PythonOperator(
+    # Tarefa de Extração
+    extract = PythonOperator(
         task_id="extract_raw_data",
         python_callable=extract_raw_data,
     )
 
-    # Tarefa de transformação e carga com Papermill
+    # Tarefa de Tranformação e Carga com Papermill
     load = PapermillOperator(
-        task_id="load_humanresources_employee",
-        input_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee.ipynb",
-        output_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee_output.ipynb",
-        parameters={
-            'credentials_path': CREDENTIALS_PATH,
-            'table_name': 'raw_data_cleaned.humanresources_employee',
-        },
-    )
+    task_id="load_humanresources_employee",
+    input_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee.ipynb",
+    output_nb="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/EDA_humanresources_employee_output.ipynb",
+    parameters={
+        'credentials_path': CREDENTIALS_PATH,
+        'table_name': 'raw_data_cleaned.humanresources_employee',
+    },
+)
 
     # Ordem das tarefas
-    extract_postgres >> extract_bq >> load
+    extract >> load  # O notebook de "load" unifica as fases de transformação e carga
+
