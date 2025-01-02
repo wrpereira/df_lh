@@ -168,6 +168,7 @@ ordered-set==4.1.0
 overrides==7.7.0
 packaging==24.2
 pandas==2.1.4
+pandas-gbq==0.26.0
 pandocfilters==1.5.1
 papermill==2.6.0
 parso==0.8.4
@@ -184,6 +185,7 @@ prompt_toolkit==3.0.48
 propcache==0.2.1
 proto-plus==1.25.0
 protobuf==5.29.2
+psycopg2==2.9.10
 psutil==6.1.1
 ptyprocess==0.7.0
 pure_eval==0.2.3
@@ -191,6 +193,7 @@ pyarrow==18.1.0
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pycparser==2.22
+pydata-google-auth==1.9.0
 PyGithub==2.5.0
 Pygments==2.18.0
 PyJWT==2.10.1
