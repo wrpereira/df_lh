@@ -63,10 +63,12 @@ plugins:
     variant: z3z1ma
     pip_url: git+https://github.com/z3z1ma/target-bigquery.git
     config:
-      project: desafioadventureworks-445317
+      project: desafioadventureworks-446600
       dataset: raw_data
+      location: us-central1
       credentials_path: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json 
       max_workers: 8
+      table_name_format: "{schema}_{table}"
 
   - name: target-jsonl
     variant: andyh1203

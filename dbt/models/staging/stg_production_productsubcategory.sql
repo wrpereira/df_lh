@@ -7,7 +7,7 @@ with
             ,json_value(data, '$.name') as subcategory_name_nm
             ,json_value(data, '$.rowguid') as rowguid_desc
             ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', json_value(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'production_productsubcategory') }}
+        from {{ source('raw_data_cleaned', 'production_productsubcategory') }}
     )
 
 select *

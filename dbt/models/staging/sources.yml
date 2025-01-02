@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: raw_data
-    schema: raw_data
+  - name: raw_data_cleaned
+    schema: raw_data_cleaned
     tables:
       - name: humanresources_employee
         columns:

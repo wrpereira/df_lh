@@ -9,7 +9,7 @@ with
             ,json_value(data, '$.territoryid') as territoryid_id
             ,json_value(data, '$.rowguid') as rowguid_desc
             ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', json_value(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'sales_customer') }}
+        from {{ source('raw_data_cleaned', 'sales_customer') }}
     )
 
 select *

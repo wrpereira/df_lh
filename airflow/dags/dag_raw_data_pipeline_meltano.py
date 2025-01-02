@@ -42,7 +42,7 @@ default_args = {
 
 # === DAG ===
 with DAG(
-    dag_id="dag_combined_pipeline_with_meltano",
+    dag_id="dag_combined_pipeline_with_meltano2",
     default_args=default_args,
     description='Pipeline integrado com Meltano: extrai tabelas do PostgreSQL, carrega no BigQuery e executa transformações com Papermill e DBT',
     schedule_interval=None,

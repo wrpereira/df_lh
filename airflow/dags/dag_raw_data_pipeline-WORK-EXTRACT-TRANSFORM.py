@@ -55,7 +55,7 @@ default_args = {
 
 # === DAG ===
 with DAG(
-    dag_id="dag_raw_data_pipeline2",
+    dag_id="dag_raw_data_pipeline3",
     default_args=default_args,
     description='Executa EDA do humanresources_employee usando Papermill',
     schedule_interval=None,  # Pode ser ajustado para rodar periodicamente

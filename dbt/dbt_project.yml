@@ -25,12 +25,12 @@ models:
     +materialized: table
 
     staging:
-      +schema: stg_data
+      +schema: stg_tables
       +tags:
         - staging
 
     marts:
-      +schema: marts_data
+      +schema: marts_tables
       +tags:
         - marts
 seeds:

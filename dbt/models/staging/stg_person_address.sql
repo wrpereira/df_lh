@@ -11,7 +11,7 @@ with
             ,json_value(data, '$.postalcode') as postalcode_desc
             ,json_value(data, '$.rowguid') as rowguid_desc
             ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', json_value(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'person_address') }}
+        from {{ source('raw_data_cleaned', 'person_address') }}
     )
 
 select *

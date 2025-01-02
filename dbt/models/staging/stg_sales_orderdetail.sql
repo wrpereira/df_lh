@@ -13,7 +13,7 @@ with
             , cast(JSON_VALUE(data, '$.unitpricediscount') as numeric) as unitpricediscount_vr
             , JSON_VALUE(data, '$.rowguid') as rowguid_desc
             , parse_timestamp('%Y-%m-%dT%H:%M:%E6S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'sales_salesorderdetail') }}
+        from {{ source('raw_data_cleaned', 'sales_salesorderdetail') }}
 )
 
 select *

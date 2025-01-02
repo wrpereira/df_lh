@@ -8,7 +8,7 @@ with
             ,cast(JSON_VALUE(data, '$.costrate') as numeric) as costrate_vr
             ,cast(JSON_VALUE(data, '$.availability') as numeric) as availability_nr
             ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
-        from {{ source('raw_data', 'production_location') }}
+        from {{ source('raw_data_cleaned', 'production_location') }}
     )
 
 select *
