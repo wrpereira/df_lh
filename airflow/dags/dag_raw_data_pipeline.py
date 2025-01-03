@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.papermill.operators.papermill import PapermillOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from airflow.operators.bash import BashOperator
 from airflow.utils.dates import days_ago
 from datetime import datetime
@@ -50,15 +51,11 @@ with DAG(
     catchup=False,
 ) as dag:
 
-    # Tarefa para executar o Meltano
-    meltano_run = BashOperator(
-        task_id="meltano_run",
-        bash_command="""
-        source /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano_env/bin/activate && \
-        cd /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano && \
-        meltano run tap-postgres target-bigquery
-        """,
-        cwd="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano",  # Diretório de execução dos comandos
+    # Tarefa para disparar a DAG do Meltano
+    trigger_meltano = TriggerDagRunOperator(
+        task_id="trigger_meltano_dag",
+        trigger_dag_id="dag_meltano_pipeline",  # ID da DAG do Meltano
+        conf={},  # Você pode passar configurações, se necessário
     )
 
     # Lista de tarefas para notebooks e DBT
@@ -92,4 +89,4 @@ with DAG(
         )
 
         # Configurar dependências
-        meltano_run >> notebook_task >> dbt_task
+        trigger_meltano >> notebook_task >> dbt_task
