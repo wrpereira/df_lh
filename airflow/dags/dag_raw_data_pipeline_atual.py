@@ -42,7 +42,7 @@ default_args = {
 
 # === DAG ===
 with DAG(
-    dag_id="dag_combined_pipeline_with_meltano",
+    dag_id="dag_combined_pipeline_with_meltano2",
     default_args=default_args,
     description='Pipeline integrado com Meltano: extrai tabelas do PostgreSQL, carrega no BigQuery e executa transformações com Papermill e DBT',
     schedule_interval=None,
@@ -61,6 +61,23 @@ with DAG(
         cwd="/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano",  # Diretório de execução dos comandos
     )
 
+    #Validação após o meltano_run
+    def validate_bigquery_table(schema_table):
+        schema, table = schema_table.split("-")
+        table_id = f"{BIGQUERY_PROJECT}.{BIGQUERY_DATASET}.{schema}_{table}"
+        try:
+            client.get_table(table_id)  # Verifica se a tabela existe
+            print(f"Tabela {table_id} encontrada no BigQuery.")
+        except Exception as e:
+            raise ValueError(f"Tabela {table_id} não encontrada no BigQuery: {e}")
+
+    for schema_table in TABLES_TO_PROCESS:
+        validate_task = PythonOperator(
+            task_id=f"validate_{schema_table}",
+            python_callable=validate_bigquery_table,
+            op_args=[schema_table],
+    )
+   
     # Lista de tarefas para notebooks e DBT
     for schema_table in TABLES_TO_PROCESS:
         schema, table = schema_table.split("-")

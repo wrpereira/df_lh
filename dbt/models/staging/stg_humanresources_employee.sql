@@ -19,6 +19,7 @@ with
             ,modifieddate as modifieddate_ts
             ,organizationnode as organizationnode_desc
         from {{ source('raw_data_cleaned', 'humanresources_employee') }}
+)
 
 select *
 from renamed

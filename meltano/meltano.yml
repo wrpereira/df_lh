@@ -13,19 +13,19 @@ environments:
         select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
-        - sales-customer.*
-        - sales-salesorderheader.*
-        - sales-salesorderdetail.*
-        - sales-store.*
-        - sales-salesterritory.*
-        - production-product.*
-        - production-productinventory.*
-        - production-productcategory.*
-        - production-productsubcategory.*
-        - production-location.*
-        - person-person.*
-        - person-businessentity.*
-        - person-address.*
+        # - sales-customer.*
+        # - sales-salesorderheader.*
+        # - sales-salesorderdetail.*
+        # - sales-store.*
+        # - sales-salesterritory.*
+        # - production-product.*
+        # - production-productinventory.*
+        # - production-productcategory.*
+        # - production-productsubcategory.*
+        # - production-location.*
+        # - person-person.*
+        # - person-businessentity.*
+        # - person-address.*
         - humanresources-employee.*
 
 - name: staging
@@ -43,19 +43,19 @@ plugins:
         select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
-        - sales-customer.*
-        - sales-salesorderheader.*
-        - sales-salesorderdetail.*
-        - sales-store.*
-        - sales-salesterritory.*
-        - production-product.*
-        - production-productinventory.*
-        - production-productcategory.*
-        - production-productsubcategory.*
-        - production-location.*
-        - person-person.*
-        - person-businessentity.*
-        - person-address.*
+        # - sales-customer.*
+        # - sales-salesorderheader.*
+        # - sales-salesorderdetail.*
+        # - sales-store.*
+        # - sales-salesterritory.*
+        # - production-product.*
+        # - production-productinventory.*
+        # - production-productcategory.*
+        # - production-productsubcategory.*
+        # - production-location.*
+        # - person-person.*
+        # - person-businessentity.*
+        # - person-address.*
         - humanresources-employee.*
 
   loaders:
