@@ -1,11 +1,12 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime
+from dotenv import load_dotenv
 import os
 
 # Carregar variáveis do arquivo .env
-from dotenv import load_dotenv
-load_dotenv()
+
+load_dotenv("/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/.env")  # Caminho para o arquivo .env
 
 # Configurações a partir do .env
 MELTANO_ENV_PATH = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano_env/bin/activate"

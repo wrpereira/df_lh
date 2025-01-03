@@ -3,17 +3,16 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.papermill.operators.papermill import PapermillOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from airflow.operators.bash import BashOperator
-from airflow.utils.dates import days_ago
 from datetime import datetime
+from airflow.utils.dates import days_ago
+import time
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from dotenv import load_dotenv
-import pandas as pd
-import psycopg2
 import os
 
 # Carregar variáveis do arquivo .env
-load_dotenv()
+load_dotenv("/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/.env")  # Caminho para o arquivo .env
 
 # Configurações a partir do .env
 CREDENTIALS_PATH = "/mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json"
@@ -41,6 +40,19 @@ default_args = {
     'retries': 1,
 }
 
+def wait_for_5_minutes():
+    """
+    Função que aguarda 5 minutos antes de continuar com a execução.
+    """
+    print("Aguardando 5 minutos para garantir que a DAG do Meltano tenha sido concluída...")
+    time.sleep(300)  # Aguarda 5 minutos
+
+def continue_on_failure(context):
+    """
+    Função para garantir que a DAG continue mesmo após falha.
+    """
+    print("O sensor não conseguiu encontrar a task. Continuando o pipeline...")
+
 # === DAG ===
 with DAG(
     dag_id="dag_combined_pipeline_with_meltano",
@@ -56,6 +68,12 @@ with DAG(
         task_id="trigger_meltano_dag",
         trigger_dag_id="dag_meltano_pipeline",  # ID da DAG do Meltano
         conf={},  # Você pode passar configurações, se necessário
+    )
+
+    # Tarefa para aguardar 5 minutos
+    wait_for_time = PythonOperator(
+        task_id="wait_for_5_minutes",
+        python_callable=wait_for_5_minutes,
     )
 
     # Lista de tarefas para notebooks e DBT
@@ -85,10 +103,8 @@ with DAG(
             source /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_env/bin/activate && \
             cd /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt && \
             dbt run --select {schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
-            """.format(schema=schema, table=table),
+            """,
         )
 
-        
-
         # Configurar dependências
-        trigger_meltano >> notebook_task >> dbt_task
+        trigger_meltano >> wait_for_time >> notebook_task >> dbt_task
