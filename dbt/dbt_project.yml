@@ -25,6 +25,8 @@ models:
     +materialized: table
 
     staging:
+      +materialized: table
+      +schema: stg_tables
       +tags:
         - staging
 

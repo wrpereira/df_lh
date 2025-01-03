@@ -85,8 +85,10 @@ with DAG(
             source /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_env/bin/activate && \
             cd /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt && \
             dbt run --select {schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
-            """,
+            """.format(schema=schema, table=table),
         )
+
+        
 
         # Configurar dependências
         trigger_meltano >> notebook_task >> dbt_task
