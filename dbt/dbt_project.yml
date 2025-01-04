@@ -32,7 +32,7 @@ models:
         - staging
 
     marts:
-      +schema: marts_tables
+      +schema: stg_tables
       +enabled: true
       +tags:
         - marts

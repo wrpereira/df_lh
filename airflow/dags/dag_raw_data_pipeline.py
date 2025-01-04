@@ -40,19 +40,19 @@ default_args = {
     'retries': 1,
 }
 
-def wait_for_5_minutes():
+def wait_for_30_minutes():
     """
-    Função que aguarda 5 minutos antes de continuar com a execução.
+    Função que aguarda 30 minutos antes de continuar com a execução.
     """
-    print("Aguardando 5 minutos para garantir que a DAG do Meltano tenha sido concluída...")
-    time.sleep(300)  # Aguarda 5 minutos
+    print("Aguardando 30 minutos para garantir que a DAG do Meltano tenha sido concluída...")
+    time.sleep(1800)  # Aguarda 30 minutos
 
-def wait_2_minutes():
+def wait_10_minutes():
     """
     Função que aguarda 2 minutos antes de continuar com a execução.
     """
     print("Aguardando 2 minutos para garantir que as tabelas estejam no raw_data_cleaned...")
-    time.sleep(120)  # Aguarda 2 minutos
+    time.sleep(600)  # Aguarda 2 minutos
 
 
 # === DAG ===
@@ -74,10 +74,10 @@ with DAG(
         conf={},  # Você pode passar configurações, se necessário
     )
 
-    # Tarefa para aguardar 5 minutos
-    wait_for_5_minutes_task = PythonOperator(
-        task_id="wait_for_5_minutes",
-        python_callable=wait_for_5_minutes,
+    # Tarefa para aguardar 30 minutos
+    wait_for_30_minutes_task = PythonOperator(
+        task_id="wait_for_30_minutes",
+        python_callable=wait_for_30_minutes,
     )
 
     # Loop para criar tarefas específicas para cada tabela
@@ -100,10 +100,10 @@ with DAG(
             },
         )
 
-        # Tarefa para aguardar 2 minutos
-        wait_2_task = PythonOperator(
-            task_id=f"wait_2_minutes_{schema}_{table}",
-            python_callable=wait_2_minutes,       
+        # Tarefa para aguardar 10 minutos
+        wait_10_task = PythonOperator(
+            task_id=f"wait_10_minutes_{schema}_{table}",
+            python_callable=wait_10_minutes,       
         )
 
         # Tarefa para rodar DBT
@@ -112,9 +112,9 @@ with DAG(
             bash_command=f"""
             source /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_env/bin/activate && \
             cd /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt && \
-            dbt run --select {schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
+            dbt run --select staging.stg_{schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
             """,
         )
 
         # Configurar dependências
-        trigger_meltano >> wait_for_5_minutes_task >> notebook_task >> wait_2_task >> dbt_task
+        trigger_meltano >> wait_for_30_minutes_task >> notebook_task >> wait_10_task >> dbt_task
