@@ -9,6 +9,7 @@ import time
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from dotenv import load_dotenv
+from pendulum import timezone #adicionei depois de validar, só tirar
 import os
 
 # Carregar variáveis do arquivo .env
@@ -40,12 +41,12 @@ default_args = {
     'retries': 1,
 }
 
-def wait_for_30_minutes():
-    """
-    Função que aguarda 30 minutos antes de continuar com a execução.
-    """
-    print("Aguardando 30 minutos para garantir que a DAG do Meltano tenha sido concluída...")
-    time.sleep(1800)  # Aguarda 30 minutos
+# def wait_for_30_minutes():
+#     """
+#     Função que aguarda 30 minutos antes de continuar com a execução.
+#     """
+#     print("Aguardando 30 minutos para garantir que a DAG do Meltano tenha sido concluída...")
+#     time.sleep(1800)  # Aguarda 30 minutos
 
 def wait_10_minutes():
     """
@@ -56,14 +57,20 @@ def wait_10_minutes():
 
 
 # === DAG ===
+
 with DAG(
     dag_id="dag_combined_pipeline_with_meltano",
     default_args=default_args,
     description='Pipeline integrado com Meltano: extrai tabelas do PostgreSQL, carrega no BigQuery e executa transformações com Papermill e DBT',
-    schedule_interval=None,
-    start_date=days_ago(1),
+    # schedule_interval='@daily',  # Executa diariamente
+    # start_date=timezone("America/Sao_Paulo").datetime(2025, 1, 4, 0, 0),  # Data de início EDITAR PRA 1X AO DIA AS TAL HORA IGUAL A DO MELTANO
+    # end_date=timezone("America/Sao_Paulo").datetime(2025, 1, 6, 23, 59),  # Data de término
+    schedule_interval=None, #DEPOIS QUE EU FINALIZAR -- APAAAAAAAAAAAGAR ESSA LINHA
+    start_date=datetime(2023, 1, 1),
     catchup=False,
+    timezone=timezone("America/Sao_Paulo"),  # Define o fuso horário
 ) as dag:
+
 
     print(f"Tabelas a processar: {TABLES_TO_PROCESS}")
 
@@ -74,11 +81,11 @@ with DAG(
         conf={},  # Você pode passar configurações, se necessário
     )
 
-    # Tarefa para aguardar 30 minutos
-    wait_for_30_minutes_task = PythonOperator(
-        task_id="wait_for_30_minutes",
-        python_callable=wait_for_30_minutes,
-    )
+    # # Tarefa para aguardar 30 minutos
+    # wait_for_30_minutes_task = PythonOperator(
+    #     task_id="wait_for_30_minutes",
+    #     python_callable=wait_for_30_minutes,
+    # )
 
     # Loop para criar tarefas específicas para cada tabela
     for schema_table in TABLES_TO_PROCESS:
@@ -117,4 +124,5 @@ with DAG(
         )
 
         # Configurar dependências
-        trigger_meltano >> wait_for_30_minutes_task >> notebook_task >> wait_10_task >> dbt_task
+        # trigger_meltano >> wait_for_30_minutes_task >> notebook_task >> wait_10_task >> dbt_task
+        trigger_meltano >> notebook_task >> wait_10_task >> dbt_task
