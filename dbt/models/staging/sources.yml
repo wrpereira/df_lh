@@ -4,7 +4,7 @@ sources:
   - name: raw_data_cleaned
     schema: raw_data_cleaned
     tables:
-      - name: humanresources_employee
+      - name: stg_humanresources_employee
         columns:
           - name: businessentityid
             data_type: int64

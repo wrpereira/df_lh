@@ -47,11 +47,13 @@ def wait_for_5_minutes():
     print("Aguardando 5 minutos para garantir que a DAG do Meltano tenha sido concluída...")
     time.sleep(300)  # Aguarda 5 minutos
 
-def continue_on_failure(context):
+def wait_2_minutes():
     """
-    Função para garantir que a DAG continue mesmo após falha.
+    Função que aguarda 2 minutos antes de continuar com a execução.
     """
-    print("O sensor não conseguiu encontrar a task. Continuando o pipeline...")
+    print("Aguardando 2 minutos para garantir que as tabelas estejam no raw_data_cleaned...")
+    time.sleep(120)  # Aguarda 2 minutos
+
 
 # === DAG ===
 with DAG(
@@ -63,6 +65,8 @@ with DAG(
     catchup=False,
 ) as dag:
 
+    print(f"Tabelas a processar: {TABLES_TO_PROCESS}")
+
     # Tarefa para disparar a DAG do Meltano
     trigger_meltano = TriggerDagRunOperator(
         task_id="trigger_meltano_dag",
@@ -71,12 +75,12 @@ with DAG(
     )
 
     # Tarefa para aguardar 5 minutos
-    wait_for_time = PythonOperator(
+    wait_for_5_minutes_task = PythonOperator(
         task_id="wait_for_5_minutes",
         python_callable=wait_for_5_minutes,
     )
 
-    # Lista de tarefas para notebooks e DBT
+    # Loop para criar tarefas específicas para cada tabela
     for schema_table in TABLES_TO_PROCESS:
         schema, table = schema_table.split("-")
 
@@ -96,6 +100,12 @@ with DAG(
             },
         )
 
+        # Tarefa para aguardar 2 minutos
+        wait_2_task = PythonOperator(
+            task_id=f"wait_2_minutes_{schema}_{table}",
+            python_callable=wait_2_minutes,       
+        )
+
         # Tarefa para rodar DBT
         dbt_task = BashOperator(
             task_id=f"dbt_transform_{schema}_{table}",
@@ -107,4 +117,4 @@ with DAG(
         )
 
         # Configurar dependências
-        trigger_meltano >> wait_for_time >> notebook_task >> dbt_task
+        trigger_meltano >> wait_for_5_minutes_task >> notebook_task >> wait_2_task >> dbt_task

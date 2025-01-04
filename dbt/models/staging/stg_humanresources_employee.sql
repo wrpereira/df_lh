@@ -18,7 +18,7 @@ with
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_ts
             ,organizationnode as organizationnode_desc
-        from {{ source('raw_data_cleaned', 'humanresources_employee') }}
+        from {{ source('raw_data_cleaned', 'stg_humanresources_employee') }}
 )
 
 select *
