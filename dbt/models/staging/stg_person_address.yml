@@ -12,29 +12,24 @@ models:
             - not_null
             - unique
 
-        - name: addressline1_desc
-          description: "Primeira linha do endereço."
-          tests:
-            - not_null
-
-        - name: addressline2_desc
-          description: "Segunda linha do endereço."
-
-        - name: city_desc
+        - name: city_nm
           description: "Cidade do endereço."
           tests:
-            - not_null
+            - not_null 
 
-        - name: stateprovinceid_id
-          description: "Identificador da província ou estado."
-
-        - name: postalcode_desc
-          description: "Código postal do endereço."
-
-        - name: rowguid_desc
-          description: "Identificador global exclusivo do endereço."
-
-        - name: modifieddate_ts
+        - name: modifieddate_dt
           description: "Data da última modificação dos dados do endereço."
           tests:
             - not_null
+
+        - name: addressline1_desc
+          description: "Primeira linha do endereço."
+        - name: addressline2_desc
+          description: "Segunda linha do endereço."
+        - name: stateprovinceid_id
+          description: "Identificador da província ou estado."
+        - name: postalcode_desc
+          description: "Código postal do endereço."
+        - name: rowguid_desc
+          description: "Identificador global exclusivo do endereço."
+

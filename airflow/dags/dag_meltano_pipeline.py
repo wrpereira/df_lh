@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from datetime import datetime
+from datetime import datetime,timedelta
 from dotenv import load_dotenv
 from pendulum import timezone #adicionei depois de validar, só tirar
 import os
@@ -24,6 +24,9 @@ default_args = {
     'retries': 1,
 }
 
+# Configura o fuso horário
+fuso_horario = timezone("America/Sao_Paulo")
+
 # === DAG para Meltano ===
 with DAG(
     dag_id="dag_meltano_pipeline",
@@ -36,7 +39,7 @@ with DAG(
     #schedule_interval=None,
     #start_date=datetime(2023, 1, 1),
     catchup=False,
-    timezone=timezone("America/Sao_Paulo"),  # Define o fuso horário
+    max_active_runs=1,
 ) as dag:
 
     def log_execution(**kwargs):
@@ -46,7 +49,6 @@ with DAG(
         task_id="log_execution",
         python_callable=log_execution,
     )    
-
 
     # Tarefa para executar o Meltano
     meltano_run = BashOperator(

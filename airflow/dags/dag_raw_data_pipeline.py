@@ -3,7 +3,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.papermill.operators.papermill import PapermillOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from airflow.operators.bash import BashOperator
-from datetime import datetime
+from datetime import datetime, timedelta
 from airflow.utils.dates import days_ago
 import time
 from google.cloud import bigquery
@@ -40,6 +40,8 @@ default_args = {
     'email_on_retry': False,
     'retries': 1,
 }
+# Configura o fuso horário
+fuso_horario = timezone("America/Sao_Paulo")
 
 # def wait_for_30_minutes():
 #     """
@@ -68,7 +70,7 @@ with DAG(
     schedule_interval=None, #DEPOIS QUE EU FINALIZAR -- APAAAAAAAAAAAGAR ESSA LINHA
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    timezone=timezone("America/Sao_Paulo"),  # Define o fuso horário
+    max_active_runs=1,
 ) as dag:
 
 
