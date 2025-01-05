@@ -2,9 +2,7 @@ version: 2
 
 models:
   - name: stg_person_person
-    description: >
-      Modelo de staging para a tabela Person.Person, contendo informações básicas como
-      nomes (firstname, middlename, lastname) e identificadores associados.
+    description: Informações detalhadas sobre a pessoa, incluindo nomes, identificadores e atributos associados.
     columns:
 
       - name: businessentityid_id
@@ -23,17 +21,28 @@ models:
         tests:
           - not_null
 
-      - name: rowguid_desc
-        description: Identificador global exclusivo para a entidade.
+      - name: modifieddate_dt
+        description: Data e hora da última modificação no registro
         tests:
-          - not_null
-          
-      - name: modifieddate_ts
-        description: Data e hora da última modificação no registro.
-        tests:
-          - not_null
+          - not_null      
 
+      - name: persontype_tp
+        description: Tipo de pessoa, categorizando a entidade
+      - name: namestyle_fl
+        description: Estilo do nome, indicando formatação específica
+      - name: title_desc
+        description: Título ou prefixo associado ao nome da pessoa  
       - name: middlename_nm
-        description: Nome do meio da pessoa, caso aplicável.
-
+        description: Nome do meio da pessoa, caso aplicável
+      - name: suffix_desc
+        description: Sufixo associado ao nome da pessoa, se houver
+      - name: emailpromotion_nr
+        description: Nível de adesão à promoção por e-mail
+      - name: additionalcontactinfo_desc
+        description: Informações adicionais de contato
+      - name: demographics_desc
+        description: Informações demográficas relacionadas à pessoa
+      - name: rowguid_desc
+        description: Identificador global exclusivo para a entidade
+ 
 

@@ -3,7 +3,7 @@
 with 
     renamed as (
         select
-            businessentityid as businessentityid_id
+             businessentityid as businessentityid_id
             ,nationalidnumber as nationalidnumber_id
             ,loginid as loginid_id
             ,jobtitle as jobtitle_tp

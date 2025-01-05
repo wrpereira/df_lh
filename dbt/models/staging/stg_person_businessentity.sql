@@ -1,15 +1,13 @@
 {{ config(materialized='table') }}
 
-
 with 
     renamed as (
         select
-            cast(JSON_VALUE(data, '$.businessentityid') as int64) as businessentityid_id
-            ,JSON_VALUE(data, '$.rowguid') as rowguid_desc
-            ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', JSON_VALUE(data, '$.modifieddate')) as modifieddate_ts
+             businessentityid as businessentityid_id
+            ,rowguid as rowguid_desc
+            ,modifieddate as modifieddate_dt
         from {{ source('raw_data_cleaned', 'person_businessentity') }}
     )
 
 select *
 from renamed
-

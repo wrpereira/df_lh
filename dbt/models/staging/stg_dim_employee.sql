@@ -1,36 +1,36 @@
-{{ config(materialized="table") }}
+-- {{ config(materialized="table") }}
 
-with 
-    stg_person_person as (
-        select
-            businessentityid_id
-            ,firstname_nm
-            ,middlename_nm
-            ,lastname_nm
-        from {{ ref('stg_person_person') }}
-    ),
+-- with 
+--     stg_person_person as (
+--         select
+--             businessentityid_id
+--             ,firstname_nm
+--             ,middlename_nm
+--             ,lastname_nm
+--         from {{ ref('stg_person_person') }}
+--     ),
 
-    stg_humanresources_employee as (
-        select
-            businessentityid_id
-            ,jobtitle_tp
-            ,birthdate_dt
-            ,hiredate_dt
-            ,gender_tp
-        from {{ ref('stg_humanresources_employee') }}
-    )
+--     stg_humanresources_employee as (
+--         select
+--             businessentityid_id
+--             ,jobtitle_tp
+--             ,birthdate_dt
+--             ,hiredate_dt
+--             ,gender_tp
+--         from {{ ref('stg_humanresources_employee') }}
+--     )
 
-select
-    stg_person_person.businessentityid_id
-    ,stg_person_person.firstname_nm
-    ,stg_person_person.middlename_nm
-    ,stg_person_person.lastname_nm
-    ,stg_humanresources_employee.gender_tp
-    ,stg_humanresources_employee.jobtitle_tp
-    ,stg_humanresources_employee.birthdate_dt
-    ,stg_humanresources_employee.hiredate_dt
-    ,stg_humanresources_employee.modifieddate_dt as humanresources_employee_modifieddate_dt
-    ,stg_person_person.modifieddate_dt as stg_person_person_modifieddate_dt
-from stg_humanresources_employee
-left join stg_person_person
-    on stg_humanresources_employee.businessentityid_id = stg_person_person.businessentityid_id
+-- select
+--     stg_person_person.businessentityid_id
+--     ,stg_person_person.firstname_nm
+--     ,stg_person_person.middlename_nm
+--     ,stg_person_person.lastname_nm
+--     ,stg_humanresources_employee.gender_tp
+--     ,stg_humanresources_employee.jobtitle_tp
+--     ,stg_humanresources_employee.birthdate_dt
+--     ,stg_humanresources_employee.hiredate_dt
+--     ,stg_humanresources_employee.modifieddate_dt as humanresources_employee_modifieddate_dt
+--     ,stg_person_person.modifieddate_dt as stg_person_person_modifieddate_dt
+-- from stg_humanresources_employee
+-- left join stg_person_person
+--     on stg_humanresources_employee.businessentityid_id = stg_person_person.businessentityid_id

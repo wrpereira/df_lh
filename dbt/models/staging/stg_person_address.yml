@@ -3,33 +3,32 @@ version: 2
 models:
 
     - name: stg_person_address
-      description: "Modelo staging para person_address."
-      columns:
+      description: informações de endereço de clientes, funcionários e fornecedores, entre outros.                  
 
+      columns:
         - name: addressid_id
-          description: "Identificador único do endereço."
+          description: Identificador único do endereço
           tests:
             - not_null
             - unique
 
         - name: city_nm
-          description: "Cidade do endereço."
+          description: Cidade do endereço
           tests:
             - not_null 
 
         - name: modifieddate_dt
-          description: "Data da última modificação dos dados do endereço."
+          description: Data da última modificação dos dados do endereço
           tests:
             - not_null
 
         - name: addressline1_desc
-          description: "Primeira linha do endereço."
+          description: Primeira linha do endereço
         - name: addressline2_desc
-          description: "Segunda linha do endereço."
+          description: Segunda linha do endereço
         - name: stateprovinceid_id
-          description: "Identificador da província ou estado."
-        - name: postalcode_desc
-          description: "Código postal do endereço."
+          description: Identificador da província ou estado
+        - name: postalcode_cd
+          description: Código postal do endereço
         - name: rowguid_desc
-          description: "Identificador global exclusivo do endereço."
-
+          description: Identificador global exclusivo do endereço

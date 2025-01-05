@@ -8,7 +8,7 @@ environments:
     plugins:
       extractors:
       - name: tap-postgres
-        config:          
+        config:
           replication_method: FULL_TABLE
         select:
         - '!*.*.*'
@@ -40,7 +40,6 @@ plugins:
       sqlalchemy_url: postgresql://stitch_extract:etl_101_passwd@35.239.223.162:5432/Adventureworks
       replication_method: FULL_TABLE
       select:
-        select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
         - sales-customer.*
@@ -70,9 +69,15 @@ plugins:
       max_workers: 8
       table_name_format: "{schema}_{table}"
 
-  - name: target-jsonl
-    variant: andyh1203
-    pip_url: target-jsonl
+  - name: target-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/target-csv.git
+    config:
+      destination_path: ./csv_output
+      delimiter: ","
+      quotechar: '"'
+      overwrite: true
+
   transformers:
   - name: dbt
     variant: dbt-labs

@@ -1,12 +1,13 @@
-{{ config(materialized="table") }}
+{{ config(materialized='table') }}
 
 with 
     renamed as (
         select
-            cast(json_value(data, '$.productsubcategoryid') as int64) as productsubcategoryid_id
-            ,json_value(data, '$.name') as subcategory_name_nm
-            ,json_value(data, '$.rowguid') as rowguid_desc
-            ,parse_timestamp('%Y-%m-%dT%H:%M:%E6S', json_value(data, '$.modifieddate')) as modifieddate_ts
+             productsubcategoryid as productsubcategoryid_id
+            ,productcategoryid as productcategoryid_id
+            ,name as subcategory_nm
+            ,rowguid as rowguid_desc
+            ,modifieddate as modifieddate_dt
         from {{ source('raw_data_cleaned', 'production_productsubcategory') }}
     )
 
