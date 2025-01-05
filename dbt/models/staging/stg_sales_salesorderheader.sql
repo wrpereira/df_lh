@@ -28,7 +28,7 @@ with
             ,comment as comment_desc
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'sales-salesorderheader') }}
+        from {{ source('raw_data_cleaned', 'sales_salesorderheader') }}
     )
 
 select *

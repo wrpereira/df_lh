@@ -13,7 +13,7 @@ with
             ,unitpricediscount as unitpricediscount_vr
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'sales-salesorderdetail') }}
+        from {{ source('raw_data_cleaned', 'sales_salesorderdetail') }}
     )
 
 select *

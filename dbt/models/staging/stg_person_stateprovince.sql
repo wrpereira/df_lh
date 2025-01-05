@@ -11,7 +11,7 @@ with
             ,territoryid as territoryid_id
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'person-stateprovince') }}
+        from {{ source('raw_data_cleaned', 'person_stateprovince') }}
     )
 
 select *

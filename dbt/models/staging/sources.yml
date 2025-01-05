@@ -1,10 +1,10 @@
 version: 2
 
 sources:
-  - name: raw_data
-    schema: raw_data
+  - name: raw_data_cleaned
+    schema: raw_data_cleaned
     tables:
-      - name: humanresources-employee
+      - name: humanresources_employee
         columns:
           - name: businessentityid
             data_type: int64
@@ -37,7 +37,7 @@ sources:
           - name: organizationnode
             data_type: string
 
-      - name: person-address
+      - name: person_address
         columns:
           - name: addressid
             data_type: int64
@@ -56,7 +56,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: person-businessentity
+      - name: person_businessentity
         columns:
           - name: businessentityid
             data_type: int64
@@ -65,7 +65,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: person-person
+      - name: person_person
         columns:
           - name: businessentityid          
             data_type: int64
@@ -94,7 +94,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: person-stateprovince
+      - name: person_stateprovince
         columns:
           - name: stateprovinceid
             data_type: int64
@@ -113,7 +113,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production-location
+      - name: production_location
         columns:
           - name: locationid
             data_type: int64
@@ -126,7 +126,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production-product
+      - name: production_product
         columns:
           - name: productid
             data_type: int64
@@ -179,7 +179,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production-productcategory
+      - name: production_productcategory
         columns:
           - name: productcategoryid
             data_type: int64
@@ -190,7 +190,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production-productinventory
+      - name: production_productinventory
         columns:
           - name: productid
             data_type: int64
@@ -207,7 +207,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production-productsubcategory
+      - name: production_productsubcategory
         columns:
           - name: productsubcategoryid
             data_type: int64
@@ -218,7 +218,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales-customer
+      - name: sales_customer
         columns:
           - name: customerid
             data_type: int64
@@ -233,7 +233,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales-salesorderdetail
+      - name: sales_salesorderdetail
         columns:
           - name: salesorderid
             data_type: int64
@@ -256,7 +256,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales-salesorderheader
+      - name: sales_salesorderheader
         columns:
           - name: salesorderid
             data_type: int64
@@ -309,7 +309,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales-salesterritory
+      - name: sales_salesterritory
         columns:
           - name: territoryid
             data_type: int64
@@ -332,7 +332,7 @@ sources:
           - name: modifieddate
             data_type: timestamp     
 
-      - name: sales-store
+      - name: sales_store
         columns:
           - name: businessentityid
             data_type: int64

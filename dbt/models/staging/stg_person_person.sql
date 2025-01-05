@@ -16,7 +16,7 @@ with
             ,demographics as demographics_desc
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'person-person') }}
+        from {{ source('raw_data_cleaned', 'person_person') }}
     )
 
 select *

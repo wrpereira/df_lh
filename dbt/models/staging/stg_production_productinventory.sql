@@ -10,7 +10,7 @@ with
             ,quantity as quantity_qt
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'production-productinventory') }}
+        from {{ source('raw_data_cleaned', 'production_productinventory') }}
     )
 
 select *

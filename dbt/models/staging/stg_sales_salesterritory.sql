@@ -13,7 +13,7 @@ with
             ,costlastyear as costlastyear_vr
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'sales-salesterritory') }}
+        from {{ source('raw_data_cleaned', 'sales_salesterritory') }}
     )
 
 select *

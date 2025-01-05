@@ -8,7 +8,7 @@ with
             ,costrate as costrate_vr
             ,availability as availability_nr
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'production-location') }}
+        from {{ source('raw_data_cleaned', 'production_location') }}
     )
 
 select *

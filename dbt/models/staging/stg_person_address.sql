@@ -11,7 +11,7 @@ with
             ,postalcode as postalcode_cd
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'person-address') }}
+        from {{ source('raw_data_cleaned', 'person_address') }}
     )
 
 select *

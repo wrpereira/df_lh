@@ -9,7 +9,7 @@ with
             ,demographics as demographics_desc
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data', 'sales-store') }}
+        from {{ source('raw_data_cleaned', 'sales_store') }}
     )
 
 select *
