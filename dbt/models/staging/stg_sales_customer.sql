@@ -9,7 +9,7 @@ with
             ,territoryid as territoryid_id
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'sales_customer') }}
+        from {{ source('raw_data', 'sales-customer') }}
     )
 
 select *

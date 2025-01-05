@@ -11,7 +11,7 @@ models:
               - not_null
               - unique
 
-          - name: name_nm
+          - name: product_nm
             description: Nome do produto
             tests:
               - not_null

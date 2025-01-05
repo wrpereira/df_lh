@@ -24,6 +24,7 @@ environments:
         - production-productsubcategory.*
         - production-location.*
         - person-person.*
+        - person-stateprovince.*
         - person-businessentity.*
         - person-address.*
         - humanresources-employee.*
@@ -53,6 +54,7 @@ plugins:
         - production-productsubcategory.*
         - production-location.*
         - person-person.*
+        - person-stateprovince.*
         - person-businessentity.*
         - person-address.*
         - humanresources-employee.*

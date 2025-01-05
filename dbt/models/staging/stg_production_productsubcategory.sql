@@ -8,7 +8,7 @@ with
             ,name as subcategory_nm
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'production_productsubcategory') }}
+        from {{ source('raw_data', 'production-productsubcategory') }}
     )
 
 select *

@@ -1,10 +1,10 @@
 version: 2
 
 sources:
-  - name: raw_data_cleaned
-    schema: raw_data_cleaned
+  - name: raw_data
+    schema: raw_data
     tables:
-      - name: humanresources_employee
+      - name: humanresources-employee
         columns:
           - name: businessentityid
             data_type: int64
@@ -37,7 +37,7 @@ sources:
           - name: organizationnode
             data_type: string
 
-      - name: person_address
+      - name: person-address
         columns:
           - name: addressid
             data_type: int64
@@ -56,7 +56,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: person_businessentity
+      - name: person-businessentity
         columns:
           - name: businessentityid
             data_type: int64
@@ -65,7 +65,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: person_person
+      - name: person-person
         columns:
           - name: businessentityid          
             data_type: int64
@@ -94,7 +94,26 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production_location
+      - name: person-stateprovince
+        columns:
+          - name: stateprovinceid
+            data_type: int64
+          - name: stateprovincecode
+            data_type: string
+          - name: countryregioncode
+            data_type: string
+          - name: isonlystateprovinceflag
+            data_type: boolean
+          - name: name
+            data_type: string
+          - name: territoryid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
+      - name: production-location
         columns:
           - name: locationid
             data_type: int64
@@ -107,7 +126,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production_product
+      - name: production-product
         columns:
           - name: productid
             data_type: int64
@@ -160,7 +179,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production_productcategory
+      - name: production-productcategory
         columns:
           - name: productcategoryid
             data_type: int64
@@ -171,7 +190,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production_productinventory
+      - name: production-productinventory
         columns:
           - name: productid
             data_type: int64
@@ -188,7 +207,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: production_productsubcategory
+      - name: production-productsubcategory
         columns:
           - name: productsubcategoryid
             data_type: int64
@@ -199,7 +218,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales_customer
+      - name: sales-customer
         columns:
           - name: customerid
             data_type: int64
@@ -214,7 +233,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales_salesorderdetail
+      - name: sales-salesorderdetail
         columns:
           - name: salesorderid
             data_type: int64
@@ -237,7 +256,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales_salesorderheader
+      - name: sales-salesorderheader
         columns:
           - name: salesorderid
             data_type: int64
@@ -290,7 +309,7 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
-      - name: sales_salesterritory
+      - name: sales-salesterritory
         columns:
           - name: territoryid
             data_type: int64
@@ -308,12 +327,12 @@ sources:
             data_type: int64
           - name: costlastyear
             data_type: int64
-           - name: rowguid
+          - name: rowguid
             data_type: string
           - name: modifieddate
             data_type: timestamp     
 
-      - name: sales_store
+      - name: sales-store
         columns:
           - name: businessentityid
             data_type: int64

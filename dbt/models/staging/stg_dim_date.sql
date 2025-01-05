@@ -1,19 +1,23 @@
--- {{ config(materialized="table") }}
+{{ config(materialized="table") }}
 
--- with 
---     stg_sales_orderdetail as (
---         select
---             salesorderid_id
---             ,orderdate_ts
---             ,extract(day from orderdate_ts) as day_nr
---             ,extract(month from orderdate_ts) as month_nr
---             ,extract(year from orderdate_ts) as year_nr
---         from {{ ref('stg_sales_orderheader') }}
---     )
+with 
+    sales_salesorderheader as (
+        select
+             salesorderid_id
+            ,extract(day from orderdate_dt) as day_nr
+            ,extract(month from orderdate_dt) as month_nr
+            ,extract(year from orderdate_dt) as year_nr
+        from {{ ref('stg_sales_salesorderheader') }}
+    ),
 
--- select
---     stg_sales_orderdetail.salesorderid_id
---     ,stg_sales_orderdetail.day_nr
---     ,stg_sales_orderdetail.month_nr
---     ,stg_sales_orderdetail.year_nr
--- from stg_sales_orderdetail
+    final_dim_date as (
+        select
+             sales_salesorderheader.salesorderid_id
+            ,sales_salesorderheader.day_nr
+            ,sales_salesorderheader.month_nr
+            ,sales_salesorderheader.year_nr
+        from sales_salesorderheader
+)
+
+select*
+from final_dim_date

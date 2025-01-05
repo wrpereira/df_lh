@@ -5,7 +5,7 @@ with
         select
              salesorderid as salesorderid_id
             ,revisionnumber as revisionnumber_cd
-            ,orderdate as orderdate_dt
+            ,cast(orderdate as timestamp) as orderdate_dt
             ,duedate as duedate_dt
             ,shipdate as shipdate_dt
             ,status as status_st
@@ -28,7 +28,7 @@ with
             ,comment as comment_desc
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'sales_salesorderheader') }}
+        from {{ source('raw_data', 'sales-salesorderheader') }}
     )
 
 select *

@@ -6,14 +6,14 @@ with
              territoryid as territoryid_id
             ,name as territory_nm
             ,countryregioncode as countryregioncode_cd
-            ,territory_group as territory_group_tp
+            ,"group" as group_tp
             ,salesytd as salesytd_vr
             ,saleslastyear as saleslastyear_vr
             ,costytd as costytd_vr
             ,costlastyear as costlastyear_vr
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'sales_salesterritory') }}
+        from {{ source('raw_data', 'sales-salesterritory') }}
     )
 
 select *

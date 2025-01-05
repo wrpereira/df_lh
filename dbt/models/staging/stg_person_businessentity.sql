@@ -6,7 +6,7 @@ with
              businessentityid as businessentityid_id
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'person_businessentity') }}
+        from {{ source('raw_data', 'person-businessentity') }}
     )
 
 select *

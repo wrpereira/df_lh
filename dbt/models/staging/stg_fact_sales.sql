@@ -1,81 +1,81 @@
--- {{ config(materialized='table') }}
+{{ config(materialized='table') }}
 
--- with 
---     sales_order_header as ( 
---         select
---             salesorderid_id
---             ,customerid_id
---             ,salespersonid_id
---             ,orderdate_ts
---             ,shipdate_ts
---             ,territoryid_id
---             ,subtotal_vr
---             ,taxamt_vr
---             ,freight_vr
---         from {{ ref('stg_sales_orderheader') }}
---     ),
+with 
+    sales_salesorderheader as ( 
+        select
+             salesorderid_id
+            ,customerid_id
+            ,salespersonid_id
+            ,orderdate_dt
+            ,shipdate_dt
+            ,territoryid_id
+            ,subtotal_vr
+            ,taxamt_vr
+            ,freight_vr
+        from {{ ref('stg_sales_salesorderheader') }}
+    ),
 
---     sales_order_detail as (
---         select
---             salesorderid_id
---             ,productid_id
---             ,orderqty_qt
---             ,unitprice_vr
---             ,unitpricediscount_vr
---         from {{ ref('stg_sales_orderdetail') }}
---     ),
+    sales_salesorderdetail as (
+        select
+             salesorderid_id
+            ,productid_id
+            ,orderqty_qt
+            ,unitprice_vr
+            ,unitpricediscount_vr
+        from {{ ref('stg_sales_salesorderdetail') }}
+    ),
 
---     product as (
---         select
---             productid_id
---             ,name_nm as product_name
---             ,productnumber_cd
---         from {{ ref('stg_production_product') }}
---     ),
+    production_product as (
+        select
+             productid_id
+            ,product_nm
+        from {{ ref('stg_production_product') }}
+    ),
 
---     store as (
---         select
---             businessentityid_id as store_id
---             ,name_nm as store_name
---         from {{ ref('stg_sales_store') }}
---     ),
+    sales_store as (
+        select
+             businessentityid_id as store_id
+            ,store_nm
+        from {{ ref('stg_sales_store') }}
+    ),
 
--- final_fact_sales as (
---     select
---         sales_order_header.salesorderid_id as salesorderid
---         ,sales_order_header.customerid_id as customerid
---         ,sales_order_header.salespersonid_id as salespersonid
---         ,sales_order_header.orderdate_ts as orderdate
---         ,sales_order_header.shipdate_ts as shipdate
---         ,sales_order_detail.productid_id as productid
---         ,product.product_name
---         ,product.productnumber_cd as productnumber
---         ,store.store_id
---         ,store.store_name
---         ,sales_order_header.territoryid_id as territoryid
---         ,sum(sales_order_detail.orderqty_qt) as total_quantity
---         ,sum(sales_order_detail.unitprice_vr * sales_order_detail.orderqty_qt) as total_sales_value
---         ,sum(sales_order_header.subtotal_vr + sales_order_header.taxamt_vr + sales_order_header.freight_vr) as total_order_value
---     from sales_order_header
---     join sales_order_detail
---         on sales_order_header.salesorderid_id = sales_order_detail.salesorderid_id
---     left join product
---         on sales_order_detail.productid_id = product.productid_id
---     left join store
---         on sales_order_header.salespersonid_id = store.store_id -- Corrigido o relacionamento com base em salespersonid_id
---     group by
---         sales_order_header.salesorderid_id
---         ,sales_order_header.customerid_id
---         ,sales_order_header.salespersonid_id
---         ,sales_order_header.orderdate_ts
---         ,sales_order_header.shipdate_ts
---         ,sales_order_detail.productid_id
---         ,product.product_name
---         ,product.productnumber_cd
---         ,store.store_id
---         ,store.store_name
---         ,sales_order_header.territoryid_id
--- )
+    sales_salesterritory as (
+        select
+             territoryid_id
+            ,territory_nm
+        from {{ ref('stg_sales_salesterritory') }}
+    ),
 
--- select * 
--- from final_fact_sales
+    final_fact_sales as (
+        select
+             sales_salesorderheader.customerid_id
+            ,sales_salesorderheader.salesorderid_id 
+            ,production_product.product_nm   
+            ,sum(sales_salesorderdetail.orderqty_qt) as total_quantity
+            ,sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
+            ,sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr) as total_order_value
+            ,sales_salesorderheader.orderdate_dt
+            ,sales_salesorderheader.shipdate_dt
+            ,sales_store.store_nm
+            ,sales_salesterritory.territory_nm      
+        from sales_salesorderheader
+        join sales_salesorderdetail
+             on sales_salesorderheader.salesorderid_id = sales_salesorderdetail.salesorderid_id
+        left join production_product
+             on sales_salesorderdetail.productid_id = production_product.productid_id
+        left join sales_store
+             on sales_salesorderheader.salespersonid_id = sales_store.store_id 
+        left join sales_salesterritory
+             on sales_salesorderheader.territoryid_id = sales_salesterritory.territoryid_id
+        group by
+             sales_salesorderheader.customerid_id
+            ,sales_salesorderheader.salesorderid_id 
+            ,production_product.product_nm      
+            ,sales_salesorderheader.orderdate_dt
+            ,sales_salesorderheader.shipdate_dt
+            ,sales_store.store_nm
+            ,sales_salesterritory.territory_nm 
+)
+
+select * 
+from final_fact_sales

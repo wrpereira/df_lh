@@ -21,7 +21,7 @@ models:
             description: Número de identificação nacional do funcionário
           - name: loginid_id
             description: ID de login do funcionário
-          - name: jobtitle_dt
+          - name: jobtitle_tp
             description: Título de trabalho do funcionário
           - name: birthdate_dt
             description: Data de nascimento do funcionário

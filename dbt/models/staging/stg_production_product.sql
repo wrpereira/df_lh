@@ -4,7 +4,7 @@ with
     renamed as (
         select
              productid as productid_id
-            ,name as name_nm
+            ,name as product_nm
             ,productnumber as productnumber_cd
             ,makeflag as makeflag_fl
             ,finishedgoodsflag as finishedgoodsflag_fl
@@ -28,7 +28,7 @@ with
             ,discontinueddate as discontinueddate_dt
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
-        from {{ source('raw_data_cleaned', 'production_product') }}
+        from {{ source('raw_data', 'production-product') }}
     )
 
 select *
