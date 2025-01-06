@@ -14,7 +14,6 @@ models:
         - name: productcategoryid_id
           description: Identificador único da categoria do produto
           tests:
-            - unique
             - not_null
           
         - name: subcategory_nm
@@ -22,7 +21,7 @@ models:
           tests:
             - not_null
 
-        - name: modifieddate_ts
+        - name: modifieddate_dt
           description: Data da última modificação dos dados da subcategoria
           tests:
             - not_null

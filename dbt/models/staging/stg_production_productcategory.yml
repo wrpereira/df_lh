@@ -17,7 +17,7 @@ models:
           tests:
             - not_null
         
-        - name: modifieddate_ts
+        - name: modifieddate_dt
           description: Data da última modificação dos dados da categoria
           tests:
             - not_null

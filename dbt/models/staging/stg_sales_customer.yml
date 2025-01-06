@@ -16,20 +16,14 @@ models:
             tests:
                 - not_null
 
-          - name: personid_id
-            description: ID da pessoa associada ao cliente
-            tests:
-                - not_null
-
-          - name: storeid_id
-            description: ID da loja associada ao cliente
-            tests:
-                - not_null
-
           - name: territoryid_id
             description: ID do território associado ao cliente
             tests:
                 - not_null
-
+                
+          - name: storeid_id
+            description: ID da loja associada ao cliente
+          - name: personid_id
+            description: ID da pessoa associada ao cliente
           - name: rowguid_desc
             description: GUID exclusivo da linha

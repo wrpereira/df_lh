@@ -11,7 +11,7 @@ models:
               - unique
               - not_null
  
-          - name: modifieddate_ts
+          - name: modifieddate_dt
             description: Data da última modificação dos dados da loja
             tests:
               - not_null

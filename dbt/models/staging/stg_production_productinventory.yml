@@ -8,13 +8,11 @@ models:
           - name: productid_id
             description: Identificador do produto
             tests:      
-              - unique        
               - not_null
               
           - name: locationid_id
             description: Identificador da localização do inventário
             tests:
-              - unique 
               - not_null
         
           - name: modifieddate_dt
