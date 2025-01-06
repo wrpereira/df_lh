@@ -5,7 +5,7 @@ with
         select
              salesorderid as salesorderid_id
             ,revisionnumber as revisionnumber_cd
-            ,cast(orderdate as timestamp) as orderdate_dt
+            ,orderdate as orderdate_dt
             ,duedate as duedate_dt
             ,shipdate as shipdate_dt
             ,status as status_st
