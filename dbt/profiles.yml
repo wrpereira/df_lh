@@ -5,6 +5,22 @@ adventureworks:
       type: bigquery
       method: service-account
       project: desafioadventureworks-446600
-      dataset: "{{ target.dataset }}"
+      dataset: "stg"
+      threads: 4
+      keyfile: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json
+
+    staging:
+      type: bigquery
+      method: service-account
+      project: desafioadventureworks-446600
+      dataset: "stg"
+      threads: 4
+      keyfile: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json
+
+    prod:
+      type: bigquery
+      method: service-account
+      project: desafioadventureworks-446600
+      dataset: "adventureworks_prod"
       threads: 4
       keyfile: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json

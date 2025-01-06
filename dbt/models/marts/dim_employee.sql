@@ -5,7 +5,6 @@ with
         select
              businessentityid_id
             ,firstname_nm
-            ,middlename_nm
             ,lastname_nm
         from {{ ref('stg_person_person') }}
     ),
@@ -24,7 +23,6 @@ with
         select
              person_person.businessentityid_id
             ,person_person.firstname_nm
-            ,person_person.middlename_nm
             ,person_person.lastname_nm
             ,humanresources_employee.gender_tp
             ,humanresources_employee.jobtitle_tp

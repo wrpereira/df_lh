@@ -25,7 +25,6 @@ with
             ,productmodelid as productmodelid_id
             ,sellstartdate as sellstartdate_dt
             ,sellenddate as sellenddate_dt
-            ,discontinueddate as discontinueddate_dt
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
         from {{ source('raw_data_cleaned', 'production_product') }}

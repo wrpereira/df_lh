@@ -1,7 +1,6 @@
 version: 2
 
 models:
-
       - name: stg_humanresources_employee
         description: informações dos funcionários, como salário, departamento e cargo,entre outros.
 

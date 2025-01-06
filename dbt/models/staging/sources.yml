@@ -1,7 +1,8 @@
 version: 2
 
 sources:
-  - name: raw_data_cleaned >
+  - name: raw_data_cleaned
+    description:
       Dataset contendo dados brutos pós-processados e limpos no Jupyter Notebook. 
       A escolha de usar este dataset ao invés do `raw_data` foi feita para garantir 
       que os dados consumidos no dbt já estejam filtrados, padronizados e sem colunas desnecessárias.
@@ -161,8 +162,6 @@ sources:
             data_type: timestamp
           - name: sellenddate
             data_type: timestamp
-          - name: discontinueddate
-            data_type: timestamp
           - name: rowguid
             data_type: string
           - name: modifieddate
@@ -321,21 +320,3 @@ sources:
             data_type: string
           - name: modifieddate
             data_type: timestamp
-            
-     
-     
-            
-      
-
-
-     
-     
- 
-
-
-
-
-
-
-
-

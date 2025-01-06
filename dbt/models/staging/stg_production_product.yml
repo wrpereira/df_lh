@@ -61,7 +61,5 @@ models:
             description: Data de início das vendas do produto
           - name: sellenddate_dt
             description: Data de término das vendas do produto
-          - name: discontinueddate_dt
-            description: Data de descontinuação do produto
           - name: rowguid_desc
             description: Identificador global único (GUID) do produto

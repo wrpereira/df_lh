@@ -16,7 +16,6 @@ with
         select
              businessentityid_id
             ,firstname_nm
-            ,middlename_nm
             ,lastname_nm
             ,rowguid_desc
             ,modifieddate_dt
@@ -32,7 +31,6 @@ with
             ,sales_customer.rowguid_desc as customer_rowguid_desc
             ,sales_customer.modifieddate_dt as customer_modifieddate_dt
             ,person_person.firstname_nm
-            ,person_person.middlename_nm
             ,person_person.lastname_nm
             ,person_person.rowguid_desc as person_rowguid_desc
             ,person_person.modifieddate_dt as person_modifieddate_dt
