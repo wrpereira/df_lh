@@ -8,9 +8,9 @@ models:
           - name: productid_id
             description: Identificador único do produto
             tests:
-              - not_null
               - unique
-
+              - not_null
+            
           - name: product_nm
             description: Nome do produto
             tests:

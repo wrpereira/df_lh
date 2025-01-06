@@ -9,8 +9,8 @@ models:
         - name: addressid_id
           description: Identificador único do endereço
           tests:
-            - not_null
             - unique
+            - not_null
 
         - name: city_nm
           description: Cidade do endereço
@@ -24,8 +24,6 @@ models:
 
         - name: addressline1_desc
           description: Primeira linha do endereço
-        - name: addressline2_desc
-          description: Segunda linha do endereço
         - name: stateprovinceid_id
           description: Identificador da província ou estado
         - name: postalcode_cd

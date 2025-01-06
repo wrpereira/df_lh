@@ -8,8 +8,8 @@ models:
           - name: locationid_id
             description: Identificador único da localização
             tests:
-              - not_null
-              - unique             
+              - unique
+              - not_null             
 
           - name: location_nm
             description: Nome da localização

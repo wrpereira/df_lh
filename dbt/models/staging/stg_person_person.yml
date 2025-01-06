@@ -8,8 +8,8 @@ models:
       - name: businessentityid_id
         description: Identificador único da entidade de negócio (BusinessEntityID).
         tests:
-          - not_null
           - unique
+          - not_null
 
       - name: firstname_nm
         description: Primeiro nome da pessoa.
@@ -28,20 +28,8 @@ models:
 
       - name: persontype_tp
         description: Tipo de pessoa, categorizando a entidade
-      - name: namestyle_fl
-        description: Estilo do nome, indicando formatação específica
-      - name: title_desc
-        description: Título ou prefixo associado ao nome da pessoa  
-      - name: middlename_nm
-        description: Nome do meio da pessoa, caso aplicável
-      - name: suffix_desc
-        description: Sufixo associado ao nome da pessoa, se houver
       - name: emailpromotion_nr
         description: Nível de adesão à promoção por e-mail
-      - name: additionalcontactinfo_desc
-        description: Informações adicionais de contato
-      - name: demographics_desc
-        description: Informações demográficas relacionadas à pessoa
       - name: rowguid_desc
         description: Identificador global exclusivo para a entidade
  

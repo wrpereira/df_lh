@@ -9,8 +9,8 @@ models:
         - name: territoryid_id
           description: Identificador único do território de vendas
           tests:
-            - not_null   
-            - unique                      
+            - unique 
+            - not_null                        
 
         - name: territory_nm
           description: Nome do território de vendas
@@ -30,10 +30,6 @@ models:
           description: Vendas acumuladas no ano para o território
         - name: saleslastyear_vr
           description: Vendas realizadas no último ano para o território
-        - name: costytd_vr
-          description: Custos acumulados no ano para o território
-        - name: costlastyear_vr
-          description: Custos realizados no último ano para o território
         - name: rowguid_desc
           description: Identificador global exclusivo do território
 

@@ -8,8 +8,8 @@ models:
           - name: salesorderdetailid_id
             description: Identificador do detalhe do pedido de venda
             tests:
+              - unique
               - not_null
-              - unique             
 
           - name: salesorderid_id
             description: Identificador do pedido de venda

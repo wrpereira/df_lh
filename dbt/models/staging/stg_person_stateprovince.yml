@@ -8,8 +8,8 @@ models:
           - name: stateprovinceid_id
             description: Identificador único do estado ou província
             tests:
-              - not_null
               - unique
+              - not_null
 
           - name: stateprovincecode_cd
             description: Código do estado ou província

@@ -8,9 +8,9 @@ models:
           - name: salesorderid_id
             description: Identificador único do pedido de venda
             tests:
+              - unique
               - not_null
-              - unique                           
-
+             
           - name: customerid_id
             description: Identificador do cliente associado ao pedido
             tests:

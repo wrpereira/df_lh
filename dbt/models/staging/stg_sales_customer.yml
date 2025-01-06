@@ -8,8 +8,8 @@ models:
           - name: customerid_id
             description: ID único do cliente
             tests:
+                - unique 
                 - not_null
-                - unique               
 
           - name: modifieddate_dt
             description: Data e hora da última modificação

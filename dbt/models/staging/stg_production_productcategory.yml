@@ -9,8 +9,8 @@ models:
         - name: productcategoryid_id
           description: Identificador único da categoria do produto
           tests:
-            - not_null
             - unique
+            - not_null
 
         - name: category_nm
           description: Nome da categoria do produto

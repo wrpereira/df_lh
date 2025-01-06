@@ -8,8 +8,8 @@ models:
           - name: businessentityid_id
             description: Identificador único do funcionário
             tests:
-              - not_null
               - unique
+              - not_null
 
           - name: modifieddate_dt
             description: Data da última modificação dos dados da entidade de negócios
