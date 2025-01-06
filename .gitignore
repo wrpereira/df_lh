@@ -10,6 +10,8 @@ airflow/*.log
 airflow/logs/
 airflow/dags/__pycache__/
 airflow_db/
+*output.ipynb
+
 
 # Ignorar Meltano e seus logs
 

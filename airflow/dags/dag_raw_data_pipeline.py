@@ -18,21 +18,20 @@ CREDENTIALS_PATH = "/mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json"
 credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
 client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"), location="us-central1")
 
-# Tabelas a processar
 TABLES_TO_PROCESS = ["humanresources-employee",
                      "person-address",
-                     "person_businessentity",
-                     "person_person",
-                     "person_stateprovince",
-                     "production_location",
-                     "production_product",
-                     "production_productcategory",
-                     "production_productinventory",
-                     "production_productsubcategory",
-                     "sales_customer",
-                     "sales_salesorderdetail",
-                     "sales_salesorderheader",
-                     "sales_salesterritory",
+                     "person-businessentity",
+                     "person-person",
+                     "person-stateprovince",
+                     "production-location",
+                     "production-product",
+                     "production-productcategory",
+                     "production-productinventory",
+                     "production-productsubcategory",
+                     "sales-customer",
+                     "sales-salesorderdetail",
+                     "sales-salesorderheader",
+                     "sales-salesterritory",
                      "sales-store"]
 
 # Default arguments
@@ -63,9 +62,9 @@ with DAG(
         conf={},
     )
 
-    # Esperar 3 minutos com TimeDeltaSensor
-    wait_for_3_minutes_task = TimeDeltaSensor(
-        task_id="wait_for_3_minutes",
+    # Esperar 1 minutos com TimeDeltaSensor
+    wait_for_1_minutes_task = TimeDeltaSensor(
+        task_id="wait_for_1_minutes",
         delta=timedelta(minutes=1),
     )
 
@@ -87,9 +86,9 @@ with DAG(
             },
         )
 
-        # Esperar 3 minutos com TimeDeltaSensor
-        wait_3_task = TimeDeltaSensor(
-            task_id=f"wait_3_minutes_{schema}_{table}",
+        # Esperar 1 minutos com TimeDeltaSensor
+        wait_1_task = TimeDeltaSensor(
+            task_id=f"wait_1_minutes_{schema}_{table}",
             delta=timedelta(minutes=5),
         )
 
@@ -106,4 +105,5 @@ with DAG(
 
 
         # Configurar dependências
-        trigger_meltano >> wait_for_3_minutes_task >> notebook_task >> wait_3_task >> dbt_task
+        trigger_meltano >> wait_for_1_minutes_task >> notebook_task >> wait_1_task >> dbt_task
+   

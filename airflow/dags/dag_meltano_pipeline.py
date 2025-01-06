@@ -13,7 +13,7 @@ load_dotenv("/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/.env")
 # Configurações a partir do .env
 MELTANO_ENV_PATH = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano_env/bin/activate"
 MELTANO_DIR = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano"
-CSV_DIR = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano/csv_output"  # Caminho para os arquivos CSV
+CSV_DIR = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano/csv_output" 
 BIGQUERY_PROJECT = "desafioadventureworks-446600"
 BIGQUERY_DATASET = "raw_data"
 
