@@ -22,7 +22,7 @@ client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PR
 TABLES_TO_PROCESS = ["humanresources-employee",
                      "person-address",
                      "person_businessentity",
-                     "person_person"]
+                     "person_person",]
 
 # Default arguments
 default_args = {

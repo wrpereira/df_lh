@@ -1,7 +1,10 @@
 version: 2
 
 sources:
-  - name: raw_data_cleaned
+  - name: raw_data_cleaned >
+      Dataset contendo dados brutos pós-processados e limpos no Jupyter Notebook. 
+      A escolha de usar este dataset ao invés do `raw_data` foi feita para garantir 
+      que os dados consumidos no dbt já estejam filtrados, padronizados e sem colunas desnecessárias.
     schema: raw_data_cleaned
     tables:
       - name: humanresources_employee

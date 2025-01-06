@@ -5,6 +5,6 @@ adventureworks:
       type: bigquery
       method: service-account
       project: desafioadventureworks-446600
-      dataset: fact_dim
+      dataset: "{{ target.dataset }}"
       threads: 4
       keyfile: /mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json

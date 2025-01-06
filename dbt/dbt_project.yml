@@ -26,13 +26,14 @@ models:
 
     staging:
       +materialized: table
-      +schema: stg_tables
+      +schema: staging_tables
       +enabled: true
       +tags:
         - staging
 
     marts:
-      +schema: stg_tables
+      +materialized: table
+      +schema: marts_tables
       +enabled: true
       +tags:
         - marts
