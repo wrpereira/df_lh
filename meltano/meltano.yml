@@ -18,6 +18,7 @@ environments:
         - sales-salesorderdetail.*
         - sales-store.*
         - sales-salesterritory.*
+        - sales-salesperson.*
         - production-product.*
         - production-productinventory.*
         - production-productcategory.*
@@ -48,6 +49,7 @@ plugins:
         - sales-salesorderdetail.*
         - sales-store.*
         - sales-salesterritory.*
+        - sales-salesperson.*
         - production-product.*
         - production-productinventory.*
         - production-productcategory.*

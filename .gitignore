@@ -11,7 +11,9 @@ airflow/logs/
 airflow/dags/__pycache__/
 airflow_db/
 *output.ipynb
-
+airflow.db
+airflow.cfg
+delete_dags.sh
 
 # Ignorar Meltano e seus logs
 

@@ -289,6 +289,27 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
+      - name: sales_salesperson
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: territoryid
+            data_type: int64
+          - name: salesquota
+            data_type: int64
+          - name: bonus
+            data_type: int64
+          - name: commissionpct
+            data_type: float
+          - name: salesytd
+            data_type: float
+          - name: saleslastyear
+            data_type: float
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+
       - name: sales_salesterritory
         columns:
           - name: territoryid
@@ -320,3 +341,5 @@ sources:
             data_type: string
           - name: modifieddate
             data_type: timestamp
+
+

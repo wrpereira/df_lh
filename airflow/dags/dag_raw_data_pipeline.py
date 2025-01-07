@@ -31,6 +31,7 @@ TABLES_TO_PROCESS = ["humanresources-employee",
                      "sales-customer",
                      "sales-salesorderdetail",
                      "sales-salesorderheader",
+                     "sales-salesperson",
                      "sales-salesterritory",
                      "sales-store"]
 
@@ -52,7 +53,7 @@ with DAG(
     schedule_interval=None,
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    max_active_runs=1,
+    max_active_runs=2,
 ) as dag:
     
     # Disparar a DAG do Meltano

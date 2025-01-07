@@ -44,10 +44,10 @@ with
              historical_sales.store_id
             ,historical_sales.productid_id
             ,forecast_dates.forecast_date
-            ,round(sum(historical_sales.total_quantity_sold) over (partition by historical_sales.store_id, historical_sales.productid_id), 2) as forecast_quantity
+            ,round(avg(historical_sales.total_quantity_sold) over (partition by historical_sales.store_id, historical_sales.productid_id), 2) as forecast_quantity
         from historical_sales
         cross join forecast_dates
-    )
+)
 
 select *
 from product_forecast
