@@ -178,6 +178,19 @@ sources:
           - name: modifieddate
             data_type: timestamp
 
+      - name: production_productcosthistory
+        columns:
+          - name: productid
+            data_type: int64
+          - name: startdate
+            data_type: timestamp
+          - name: enddate
+            data_type: timestamp
+          - name: standardcost
+            data_type: float
+          - name: modifieddate
+            data_type: timestamp
+
       - name: production_productinventory
         columns:
           - name: productid

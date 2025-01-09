@@ -20,6 +20,7 @@ environments:
         - sales-salesterritory.*
         - sales-salesperson.*
         - production-product.*
+        - production-productcosthistory.*
         - production-productinventory.*
         - production-productcategory.*
         - production-productsubcategory.*
@@ -51,6 +52,7 @@ plugins:
         - sales-salesterritory.*
         - sales-salesperson.*
         - production-product.*
+        - production-productcosthistory.*
         - production-productinventory.*
         - production-productcategory.*
         - production-productsubcategory.*
