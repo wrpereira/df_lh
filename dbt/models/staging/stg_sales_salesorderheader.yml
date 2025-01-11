@@ -36,6 +36,9 @@ models:
             tests:
               - not_null
 
+          - name: salespersonid_id
+            description: Identificador do vendedor associado ao pedido
+
           - name: revisionnumber_cd
             description: Número da revisão do pedido      
           - name: status_st

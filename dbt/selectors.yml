@@ -1,0 +1,6 @@
+selectors:
+  - name: staging_and_marts
+    definition:
+      union:
+        - path: models/staging
+        - path: models/marts

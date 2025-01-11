@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_sales_creditcard
+    description: informações sobre os cartões de crédito utilizados nas transações
+    columns:
+      - name: creditcardid_id
+        description: identificador único do cartão de crédito
+        tests:
+          - unique
+          - not_null
+      
+      - name: modifieddate_dt
+        description: data da última modificação do registro
+        tests:
+          - not_null
+
+      - name: cardtype_tp
+        description: Tipo de cartão de crédito
+      - name: cardnumber_nr
+        description: Número do cartão de crédito
+      - name: expmonth_nr
+        description: Mês de expiração do cartão de crédito
+      - name: expyear_nr
+        description: Ano de expiração do cartão de crédito
+
+

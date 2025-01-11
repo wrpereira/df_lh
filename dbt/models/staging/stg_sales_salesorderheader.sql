@@ -12,6 +12,7 @@ with
             ,onlineorderflag as onlineorderflag_fl
             ,accountnumber as accountnumber_cd
             ,customerid as customerid_id
+            ,salespersonid as salespersonid_id
             ,territoryid as territoryid_id
             ,billtoaddressid as billtoaddressid_id
             ,shiptoaddressid as shiptoaddressid_id
