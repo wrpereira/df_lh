@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_purchasing_vendor
+    description: informações sobre os fornecedores cadastrados
+    columns:
+      - name: businessentityid_id
+        description: identificador único do fornecedor
+        tests:
+          - unique
+          - not_null
+
+      - name: modifieddate_dt
+        description: data da última modificação do registro
+        tests:
+          - not_null
+
+      - name: accountnumber_cd
+        description: número da conta do fornecedor
+      - name: vendor_name_nm
+        description: nome do fornecedor
+      - name: creditrating_nr
+        description: classificação de crédito do fornecedor
+      - name: preferredvendorstatus_fl
+        description: indica se o fornecedor é preferencial
+      - name: activeflag_fl
+        description: flag indicando se o fornecedor está ativo
+
+
+

@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_purchasing_purchaseorderheader
+    description: informações gerais sobre os pedidos de compra de fornecedores
+    columns:
+      - name: purchaseorderid_id
+        description: identificador único do pedido de compra
+        tests:
+          - unique
+          - not_null
+
+      - name: orderdate_dt
+        description: data do pedido de compra
+        tests:
+          - not_null          
+
+      - name: modifieddate_dt
+        description: data da última modificação do registro
+        tests:
+          - not_null
+          
+      - name: revisionnumber_desc
+        description: número da revisão do pedido
+      - name: status_st
+        description: status do pedido de compra
+      - name: employeeid_id
+        description: identificador do funcionário associado ao pedido
+      - name: vendorid_id
+        description: identificador do fornecedor
+      - name: shipmethodid_id
+        description: identificador do método de envio
+      - name: shipdate_dt
+        description: data de envio do pedido
+      - name: subtotal_vr
+        description: subtotal do pedido
+      - name: taxamt_vr
+        description: valor total de impostos do pedido
+      - name: freight_vr
+        description: valor do frete no pedido
+
