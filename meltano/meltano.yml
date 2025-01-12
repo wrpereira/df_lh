@@ -13,24 +13,27 @@ environments:
         select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
-        - sales-creditcard.*
-        - sales-customer.*
-        - sales-salesorderheader.*
-        - sales-salesorderdetail.*
-        - sales-store.*
-        - sales-salesterritory.*
-        - sales-salesperson.*
-        - production-product.*
-        - production-productcosthistory.*
-        - production-productinventory.*
-        - production-productcategory.*
-        - production-productsubcategory.*
-        - production-location.*
+        - humanresources-employee.*  
+        - person-address.*            
+        - person-businessentity.*         
         - person-person.*
         - person-stateprovince.*
-        - person-businessentity.*
-        - person-address.*
-        - humanresources-employee.*
+        - production-location.*        
+        - production-product.*
+        - production-productcategory.*     
+        - production-productcosthistory.*   
+        - production-productinventory.*
+        - production-productsubcategory.*
+        - sales-creditcard.*
+        - sales-customer.*
+        - sales-salesorderdetail.*
+        - sales-salesorderheader.*  
+        - sales-salesperson.*   
+        - sales-salesterritory.*
+        - sales-store.*
+        - purchasing-purchaseorderdetail.*
+        - purchasing-purchaseorderheader.*
+        - purchasing-vendor.*   
 
 - name: staging
 - name: prod
@@ -46,24 +49,27 @@ plugins:
       select:
         - '!*.*.*'
         - '!!information_schema*.*.*'
-        - sales-creditcard.*
-        - sales-customer.*
-        - sales-salesorderheader.*
-        - sales-salesorderdetail.*
-        - sales-store.*
-        - sales-salesterritory.*
-        - sales-salesperson.*
-        - production-product.*
-        - production-productcosthistory.*
-        - production-productinventory.*
-        - production-productcategory.*
-        - production-productsubcategory.*
-        - production-location.*
+        - humanresources-employee.*  
+        - person-address.*            
+        - person-businessentity.*         
         - person-person.*
         - person-stateprovince.*
-        - person-businessentity.*
-        - person-address.*
-        - humanresources-employee.*
+        - production-location.*        
+        - production-product.*
+        - production-productcategory.*     
+        - production-productcosthistory.*   
+        - production-productinventory.*
+        - production-productsubcategory.*
+        - sales-creditcard.*
+        - sales-customer.*
+        - sales-salesorderdetail.*
+        - sales-salesorderheader.*  
+        - sales-salesperson.*   
+        - sales-salesterritory.*
+        - sales-store.*
+        - purchasing-purchaseorderdetail.*
+        - purchasing-purchaseorderheader.*
+        - purchasing-vendor.*   
 
   loaders:
   - name: target-bigquery

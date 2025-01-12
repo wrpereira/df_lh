@@ -18,23 +18,27 @@ CREDENTIALS_PATH = "/mnt/c/Temp/desafiolh-445818-3cb0f62cb9ef.json"
 credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
 client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"), location="us-central1")
 
-TABLES_TO_PROCESS = ["humanresources-employee",
-                     "person-address",
-                     "person-businessentity",
-                     "person-person",
-                     "person-stateprovince",
-                     "production-location",
-                     "production-product",
-                     "production-productcategory",
-                     "production-productcosthistory.*",
-                     "production-productinventory",
-                     "production-productsubcategory",
-                     "sales-customer",
-                     "sales-salesorderdetail",
-                     "sales-salesorderheader",
-                     "sales-salesperson",
-                     "sales-salesterritory",
-                     "sales-store"]
+TABLES_TO_PROCESS = ["humanresources-employee"
+                    ,"person-address"
+                    ,"person-businessentity"
+                    ,"person-person"
+                    ,"person-stateprovince"
+                    ,"production-location"        
+                    ,"production-product"
+                    ,"production-productcategory"
+                    ,"production-productcosthistory"   
+                    ,"production-productinventory"
+                    ,"production-productsubcategory"
+                    ,"sales-creditcard"
+                    ,"sales-customer"
+                    ,"sales-salesorderdetail"
+                    ,"sales-salesorderheader"  
+                    ,"sales-salesperson"   
+                    ,"sales-salesterritory"
+                    ,"sales-store"
+                    ,"purchasing-purchaseorderdetail"
+                    ,"purchasing-purchaseorderHeader"
+                    ,"purchasing-vendor"]
 
 # Default arguments
 default_args = {
