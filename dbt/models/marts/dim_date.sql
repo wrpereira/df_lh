@@ -3,17 +3,17 @@
 with 
     date_bounds as (
         select
-            cast(min(orderdate_dt) as date) as min_date
+             cast(min(orderdate_dt) as date) as min_date
             ,cast(max(orderdate_dt) as date) as max_date
         from {{ ref('stg_sales_salesorderheader') }}
     ),
 
     dates as (
         select 
-            date as full_date
+             date as full_date
         from unnest(generate_date_array(
-            (select min_date from date_bounds),
-            (select max_date from date_bounds)
+             (select min_date from date_bounds)
+            ,(select max_date from date_bounds)
         )) as date
     ),
 
@@ -34,7 +34,7 @@ with
                                 '2013-12-25', '2014-01-01', '2014-07-04') 
                 then true 
                 else false 
-            end as is_holiday
+             end as is_holiday
             ,date_trunc(full_date, month) as first_day_of_month
             ,date_sub(date_trunc(date_add(full_date, interval 1 month), month), interval 1 day) as last_day_of_month
         from dates

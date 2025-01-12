@@ -11,7 +11,7 @@ with
             ,color as color_tp
             ,safetystocklevel as safetystocklevel_nr
             ,reorderpoint as reorderpoint_tp
-            ,standardcost as standardcost_vr
+            ,round((standardcost), 2) as standardcost_vr
             ,listprice as listprice_vr
             ,size as size_tp
             ,sizeunitmeasurecode as sizeunitmeasurecode_cd

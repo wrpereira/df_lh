@@ -2,31 +2,32 @@
 
 with product_inventory as (
     select
-        pi.productid_id,
-        p.product_nm,
-        subc.subcategory_nm,
-        cat.category_nm,
-        pi.quantity_qt,
-        p.safetystocklevel_nr,
-        p.reorderpoint_tp,
-        ch.standardcost_vr,
-        p.listprice_vr, -- Agora buscamos o preço de venda na tabela de produtos
-        (p.listprice_vr - ch.standardcost_vr) as profit_margin,
-        case
-            when pi.quantity_qt < p.safetystocklevel_nr then 'Baixa Rotatividade'
-            when pi.quantity_qt > p.reorderpoint_tp then 'Alta Rotatividade'
+         production_productinventory.productid_id
+        ,production_product.product_nm
+        ,production_productsubcategory.subcategory_nm
+        ,production_productcategory.category_nm
+        ,production_productinventory.quantity_qt
+        ,production_product.safetystocklevel_nr
+        ,production_product.reorderpoint_tp
+        ,production_productcosthistory.standardcost_vr
+        ,production_product.listprice_vr 
+        ,round((production_product.listprice_vr - production_productcosthistory.standardcost_vr), 2) as profit_margin
+        ,case
+            when production_productinventory.quantity_qt < production_product.safetystocklevel_nr then 'Baixa Rotatividade'
+            when production_productinventory.quantity_qt > production_product.reorderpoint_tp then 'Alta Rotatividade'
             else 'Normal'
-        end as stock_status,
-        current_date as snapshot_date
-    from {{ ref('stg_production_productinventory') }} pi
-    join {{ ref('stg_production_product') }} p
-        on pi.productid_id = p.productid_id
-    left join {{ ref('stg_production_productsubcategory') }} subc
-        on p.productsubcategoryid_id = subc.productsubcategoryid_id
-    left join {{ ref('stg_production_productcategory') }} cat
-        on subc.productcategoryid_id = cat.productcategoryid_id
-    left join {{ ref('stg_production_productcosthistory') }} ch
-        on p.productid_id = ch.productid_id
-)
+        end as stock_status
+        ,current_date as snapshot_date
+    from {{ ref('stg_production_productinventory') }} as production_productinventory
+    join {{ ref('stg_production_product') }} as production_product
+        on production_productinventory.productid_id = production_product.productid_id
+    left join {{ ref('stg_production_productsubcategory') }} as production_productsubcategory
+        on production_product.productsubcategoryid_id = production_productsubcategory.productsubcategoryid_id
+    left join {{ ref('stg_production_productcategory') }} as production_productcategory
+        on production_productsubcategory.productcategoryid_id = production_productcategory.productcategoryid_id
+    left join {{ ref('stg_production_productcosthistory') }} as production_productcosthistory
+        on production_product.productid_id = production_productcosthistory.productid_id
+    )
+    
 select *
 from product_inventory

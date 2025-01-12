@@ -57,7 +57,7 @@ with
             ,production_product.product_nm
             ,sum(sales_salesorderdetail.orderqty_qt) as total_quantity
             ,sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
-            ,sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr) as total_order_value
+            ,round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
         from sales_salesorderheader
         join sales_salesorderdetail
              on sales_salesorderheader.salesorderid_id = sales_salesorderdetail.salesorderid_id

@@ -17,7 +17,7 @@ CSV_DIR = "/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/meltano/.meltano/csv_output
 BIGQUERY_PROJECT = "desafioadventureworks-446600"
 BIGQUERY_DATASET = "raw_data"
 
-# Configura o fuso horário
+# Configuração do fuso horário
 fuso_horario = timezone("America/Sao_Paulo")
 
 # Default args
@@ -77,7 +77,7 @@ with DAG(
     def load_csv_to_bigquery(**kwargs):
         csv_files = glob.glob(f"{CSV_DIR}/*.csv")
         for csv_file in csv_files:
-            table_name = os.path.basename(csv_file).replace('.csv', '')  # Remove a extensão .csv
+            table_name = os.path.basename(csv_file).replace('.csv', '')  
             command = f"""
             bq load \
             --source_format=CSV \

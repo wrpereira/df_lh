@@ -22,7 +22,8 @@ with
     final_dim_employee as (
         select
              person_person.businessentityid_id
-            ,CONCAT(person_person.firstname_nm, ' ', person_person.lastname_nm) AS fullname_nm
+            ,person_person.firstname_nm
+            ,person_person.lastname_nm
             ,humanresources_employee.gender_tp
             ,humanresources_employee.jobtitle_tp
             ,humanresources_employee.birthdate_dt

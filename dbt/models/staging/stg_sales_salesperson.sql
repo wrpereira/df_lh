@@ -13,7 +13,7 @@ with
             ,rowguid as rowguid_desc
             ,modifieddate as modifieddate_dt
         from {{ source('raw_data_cleaned', 'sales_salesperson') }}
-)
+    )
 
 select *
 from renamed

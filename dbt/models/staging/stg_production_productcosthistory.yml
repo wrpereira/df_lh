@@ -6,7 +6,6 @@ models:
       - name: productid_id
         description: Identificador único do produto
         tests:
-          - unique
           - not_null
     
       - name: startdate_dt

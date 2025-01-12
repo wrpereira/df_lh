@@ -1,38 +1,76 @@
 {{ config(materialized="table") }}
 
 with 
-    purchasing_vendor as (
+    sales_salesterritory as (
         select
-             businessentityid_id as vendor_id
-            ,vendor_name_nm
-            ,creditrating_nr
-        from {{ ref('stg_purchasing_vendor') }}
+             territoryid_id
+            ,territory_nm
+            ,countryregioncode_cd
+            ,group_tp as territory_group_tp
+            ,modifieddate_dt
+        from {{ ref('stg_sales_salesterritory') }}
+    ),
+    
+    person_address as (
+        select
+             addressid_id
+            ,city_nm
+            ,stateprovinceid_id
+            ,postalcode_cd
+            ,modifieddate_dt
+        from {{ ref('stg_person_address') }}
     ),
 
-    purchasing_purchaseorderheader as (
+    person_stateprovince as (
         select
-             purchaseorderid_id
-            ,vendorid_id
-            ,subtotal_vr
-            ,taxamt_vr
-            ,freight_vr
-            ,orderdate_dt
-        from {{ ref('stg_purchasing_purchaseorderheader') }}
+             stateprovinceid_id
+            ,territoryid_id
+            ,state_province_nm
+        from {{ ref('stg_person_stateprovince') }}
     ),
 
-    vendor_spending as (
+    sales_salesperson as (
         select
-             purchasing_purchaseorderheader.vendorid_id as vendor_id
-            ,purchasing_vendor.vendor_name_nm
-            ,sum(purchasing_purchaseorderheader.subtotal_vr + purchasing_purchaseorderheader.taxamt_vr + purchasing_purchaseorderheader.freight_vr) as total_spent
-            ,count(purchasing_purchaseorderheader.purchaseorderid_id) as total_orders
-        from purchasing_purchaseorderheader
-        join purchasing_vendor
-             on purchasing_purchaseorderheader.vendorid_id = purchasing_vendor.vendor_id
-        group by
-             purchasing_purchaseorderheader.vendorid_id
-            ,purchasing_vendor.vendor_name_nm
+             businessentityid_id
+        from {{ ref('stg_sales_salesperson') }}
+    ),
+
+    sales_store as (
+        select
+             salespersonid_id
+            ,store_nm
+        from {{ ref('stg_sales_store') }}
+    ),
+
+    salesperson_with_store as (
+        select
+             sales_store.store_nm
+            ,sales_store.salespersonid_id
+            ,sales_salesperson.businessentityid_id
+        from sales_store
+        left join sales_salesperson
+             on sales_store.salespersonid_id = sales_salesperson.businessentityid_id
+    ),
+
+    final_dim_store as (
+        select
+             person_address.addressid_id
+            ,COALESCE(salesperson_with_store.store_nm, 'NO STORE') AS store_nm             
+            ,person_address.city_nm
+            ,state_province_nm
+            ,person_address.postalcode_cd
+            ,sales_salesterritory.territoryid_id
+            ,sales_salesterritory.territory_nm
+            ,sales_salesterritory.countryregioncode_cd
+            ,sales_salesterritory.territory_group_tp
+        from sales_salesterritory
+        left join person_stateprovince
+             on sales_salesterritory.territoryid_id = person_stateprovince.territoryid_id
+        left join person_address
+             on person_stateprovince.stateprovinceid_id = person_address.stateprovinceid_id
+        left join salesperson_with_store
+             on salesperson_with_store.salespersonid_id = person_address.addressid_id
     )
 
 select *
-from vendor_spending
+from final_dim_store

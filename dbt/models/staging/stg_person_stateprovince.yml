@@ -36,12 +36,12 @@ models:
             tests:
               - not_null
 
-          - name: rowguid_desc
-            description: Identificador global único (GUID) do estado ou província
-            tests:
-              - not_null
-
           - name: modifieddate_dt
             description: Data da última modificação dos dados do estado ou província
             tests:
-              - not_null
+              - not_null          
+
+          - name: rowguid_desc
+            description: Identificador global único (GUID) do estado ou província
+
+

@@ -23,7 +23,7 @@ with
         from payment_data
         left join credit_card_details
              on payment_data.creditcardid_id = credit_card_details.creditcardid_id
-)
+    )
 
 select*
 from payment_method

@@ -108,8 +108,7 @@ with DAG(
             dbt run --select staging.stg_{schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
             """,
         )
-
-
+        
         # Configurar dependências
         trigger_meltano >> wait_for_1_minutes_task >> notebook_task >> wait_1_task >> dbt_task
    

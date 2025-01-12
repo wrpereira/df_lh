@@ -22,14 +22,13 @@ with
              sales_customer.customerid_id
             ,sales_customer.personid_id
             ,sales_customer.territoryid_id
-            ,person_person.firstname_nm
-            ,person_person.lastname_nm
+            ,CONCAT(person_person.firstname_nm, ' ', person_person.lastname_nm) AS fullname_nm
         from sales_customer
         left join person_person
              on sales_customer.personid_id = person_person.businessentityid_id
         where person_person.firstname_nm is not null  
           and person_person.lastname_nm is not null  
-)
+    )
 
 select *
 from final_dim_customer

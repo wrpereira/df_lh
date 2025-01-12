@@ -5,7 +5,7 @@ with
         select
              salesorderid_id
             ,territoryid_id
-            ,cast(orderdate_dt as timestamp) as orderdate_ts -- Nome distinto para evitar conflitos
+            ,cast(orderdate_dt as timestamp) as orderdate_ts 
         from {{ ref('stg_sales_salesorderheader') }}
     ),
 

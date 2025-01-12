@@ -436,5 +436,3 @@ sources:
             data_type: string
           - name: modifieddate
             data_type: timestamp
-
-

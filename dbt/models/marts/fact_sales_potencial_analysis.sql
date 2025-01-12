@@ -1,67 +1,62 @@
 {{ config(materialized='table') }}
 
 with 
+    sales_salesorderheader as (
+        select
+             salesorderid_id
+            ,territoryid_id
+            ,orderdate_dt
+            ,totaldue_vr
+        from {{ ref('stg_sales_salesorderheader') }}
+    ),
 
--- Base Sales Order Header
-sales_order_header as (
-    select
-         salesorderid_id
-        ,territoryid_id
-        ,orderdate_dt
-        ,totaldue_vr
-    from {{ ref('stg_sales_salesorderheader') }}
-),
+    sales_salesterritory as (
+        select
+             territoryid_id
+            ,territory_nm
+            ,salesytd_vr * 1000000 as salesytd_vr
+            ,saleslastyear_vr * 1000000 as saleslastyear_vr
+            ,countryregioncode_cd
+        from {{ ref('stg_sales_salesterritory') }}
+    ),
 
--- Base Sales Territory
-sales_territory as (
-    select
-         territoryid_id
-        ,territory_nm
-        ,salesytd_vr * 1000000 as salesytd_vr -- Ajuste de escala
-        ,saleslastyear_vr * 1000000 as saleslastyear_vr -- Ajuste de escala
-        ,countryregioncode_cd
-    from {{ ref('stg_sales_salesterritory') }}
-),
+    sales_with_territory as (
+        select
+             sales_salesorderheader.territoryid_id
+            ,sales_salesterritory.territory_nm
+            ,sales_salesterritory.salesytd_vr
+            ,sales_salesterritory.saleslastyear_vr
+            ,sales_salesterritory.countryregioncode_cd
+            ,round(sum(sales_salesorderheader.totaldue_vr), 2) as total_sales_value
+            ,count(sales_salesorderheader.salesorderid_id) as total_orders
+            ,min(sales_salesorderheader.orderdate_dt) as first_order_date
+            ,max(sales_salesorderheader.orderdate_dt) as last_order_date
+        from sales_salesorderheader
+        left join sales_salesterritory
+            on sales_salesorderheader.territoryid_id = sales_salesterritory.territoryid_id
+        group by
+             sales_salesorderheader.territoryid_id
+            ,sales_salesterritory.territory_nm
+            ,sales_salesterritory.salesytd_vr
+            ,sales_salesterritory.saleslastyear_vr
+            ,sales_salesterritory.countryregioncode_cd
+    ),
 
--- Joining Sales Orders with Territory
-sales_with_territory as (
-    select
-         soh.territoryid_id
-        ,st.territory_nm
-        ,st.salesytd_vr
-        ,st.saleslastyear_vr
-        ,st.countryregioncode_cd
-        ,sum(soh.totaldue_vr) as total_sales_value
-        ,count(soh.salesorderid_id) as total_orders
-        ,min(soh.orderdate_dt) as first_order_date
-        ,max(soh.orderdate_dt) as last_order_date
-    from sales_order_header soh
-    left join sales_territory st
-        on soh.territoryid_id = st.territoryid_id
-    group by
-         soh.territoryid_id
-        ,st.territory_nm
-        ,st.salesytd_vr
-        ,st.saleslastyear_vr
-        ,st.countryregioncode_cd
-),
-
--- Enriching with Date Information (Optional)
-final_sales_analysis as (
-    select
-         swt.territoryid_id
-        ,swt.territory_nm
-        ,swt.countryregioncode_cd
-        ,round(swt.salesytd_vr, 2) as salesytd_vr -- Arredondamento
-        ,round(swt.saleslastyear_vr, 2) as saleslastyear_vr -- Arredondamento
-        ,swt.total_sales_value
-        ,swt.total_orders
-        ,swt.first_order_date
-        ,swt.last_order_date
-        ,extract(year from swt.first_order_date) as first_order_year
-        ,extract(year from swt.last_order_date) as last_order_year
-    from sales_with_territory swt
-)
+    final_sales_analysis as (
+        select
+             sales_with_territory.territoryid_id
+            ,sales_with_territory.territory_nm
+            ,sales_with_territory.countryregioncode_cd
+            ,round(sales_with_territory.salesytd_vr, 2) as salesytd_vr
+            ,round(sales_with_territory.saleslastyear_vr, 2) as saleslastyear_vr
+            ,sales_with_territory.total_sales_value
+            ,sales_with_territory.total_orders
+            ,sales_with_territory.first_order_date
+            ,sales_with_territory.last_order_date
+            ,extract(year from sales_with_territory.first_order_date) as first_order_year
+            ,extract(year from sales_with_territory.last_order_date) as last_order_year
+        from sales_with_territory
+    )
 
 select * 
 from final_sales_analysis

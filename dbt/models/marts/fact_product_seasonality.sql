@@ -21,7 +21,7 @@ with
              ,historical_sales.productid_id
              ,sum(historical_sales.total_quantity_sold) as total_quantity_sold
         from historical_sales
-        where historical_sales.productid_id = 712  -- Produto específico para análise
+        where historical_sales.productid_id = 712  -- Produto escolhido para análise
         group by 
               year_month
              ,extract(year from historical_sales.orderdate_dt)

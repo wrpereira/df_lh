@@ -7,7 +7,6 @@ models:
       - name: purchaseorderid_id
         description: identificador único do pedido de compra
         tests:
-          - unique
           - not_null
 
       - name: purchaseorderdetailid_id

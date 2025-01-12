@@ -23,19 +23,14 @@ models:
 
       - name: salesquota_nr
         description: Cota de vendas atribuída ao vendedor
-
       - name: bonus_vr
         description: Bônus recebido pelo vendedor
-
       - name: commissionpct_vr
         description: Percentual de comissão do vendedor
-
       - name: salesytd_vr
         description: Total de vendas realizadas pelo vendedor no ano atual
-
       - name: saleslastyear_vr
         description: Total de vendas realizadas pelo vendedor no ano anterior
-
       - name: rowguid_desc
         description: Identificador global único (GUID) do vendedor
 
