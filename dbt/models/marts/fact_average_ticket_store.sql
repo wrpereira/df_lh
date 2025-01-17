@@ -8,7 +8,7 @@ with
     aggregated_sales as (
         select
              sales_salesorderheader.salesorderid_id
-            ,sales_store.businessentityid_id as store_id
+            ,sales_store.businessentityid_id
             ,sales_store.store_nm
             ,sales_salesorderheader.territoryid_id
             ,sum(sales_salesorderheader.totaldue_vr) as total_revenue_per_order
@@ -24,19 +24,19 @@ with
 
     ticket_by_store as (
         select
-             store_id
+             businessentityid_id
             ,store_nm
             ,count(salesorderid_id) as total_orders
             ,round(sum(total_revenue_per_order), 2) as total_revenue_store
             ,{{ calculate_average_ticket('sum(total_revenue_per_order)', 'count(salesorderid_id)') }} as average_ticket_store
         from aggregated_sales
         group by
-             store_id
+             businessentityid_id
             ,store_nm
     )
 
 select
-     store_id
+     businessentityid_id
     ,store_nm
     ,total_orders
     ,total_revenue_store

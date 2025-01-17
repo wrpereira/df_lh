@@ -99,6 +99,7 @@ with
              product_info.product_nm
             ,category_info.category_nm
             ,subcategory_info.subcategory_nm
+            ,vendor_info.vendorid_id
             ,vendor_info.vendor_name_nm
             ,sum(vendor_info.orderqty_nr) as total_quantity
             ,round(sum(vendor_info.total_cost), 2) as total_cost
@@ -113,6 +114,7 @@ with
              category_info.category_nm
             ,subcategory_info.subcategory_nm
             ,product_info.product_nm
+            ,vendor_info.vendorid_id
             ,vendor_info.vendor_name_nm
     )
 

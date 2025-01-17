@@ -3,7 +3,8 @@
 with 
     sales_with_dates as (
         select 
-             fact_sales.orderdate_dt
+             fact_sales.productid_id
+            ,fact_sales.orderdate_dt
             ,dim_date.year_nr
             ,dim_date.month_nr
             ,round(sum(fact_sales.total_sales_value), 2) as total_sales 
@@ -11,14 +12,16 @@ with
         join {{ ref('dim_date') }} as dim_date
             on cast(fact_sales.orderdate_dt as date) = dim_date.full_date
         group by
-             fact_sales.orderdate_dt
+             fact_sales.productid_id
+            ,fact_sales.orderdate_dt
             ,dim_date.year_nr
             ,dim_date.month_nr
     ),
 
     daily_growth as (
         select 
-             orderdate_dt
+             productid_id
+            ,orderdate_dt
             ,year_nr
             ,month_nr
             ,total_sales
@@ -31,6 +34,7 @@ with
     monthly_growth as (
         select 
              cast(null as timestamp) as orderdate_dt
+            ,productid_id
             ,year_nr
             ,month_nr
             ,round(sum(total_sales), 2) as total_sales
@@ -39,12 +43,14 @@ with
             ,'monthly' as growth_type
         from sales_with_dates
         group by
-             year_nr
+             productid_id
+            ,year_nr
             ,month_nr
     )
 
 select 
-     orderdate_dt
+     productid_id
+    ,orderdate_dt
     ,year_nr
     ,month_nr
     ,total_sales
@@ -55,8 +61,9 @@ from daily_growth
 
 union all
 
-select 
-     orderdate_dt
+select
+     productid_id 
+    ,orderdate_dt
     ,year_nr
     ,month_nr
     ,total_sales
