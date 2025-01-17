@@ -54,7 +54,8 @@ with
 
     final_dim_store as (
         select
-             person_address.addressid_id
+             salesperson_with_store.businessentityid_id
+            ,person_address.addressid_id
             ,COALESCE(salesperson_with_store.store_nm, 'NO STORE') AS store_nm             
             ,person_address.city_nm
             ,state_province_nm
