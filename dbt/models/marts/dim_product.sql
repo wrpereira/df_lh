@@ -31,8 +31,8 @@ with
         select
              production_product.productid_id
             ,production_product.product_nm
-            ,production_productcategory.category_nm 
-            ,production_productsubcategory.subcategory_nm                     
+            ,coalesce(production_productcategory.category_nm, 'NO CATEGORY') as category_nm
+            ,coalesce(production_productsubcategory.subcategory_nm, 'NO SUBCATEGORY') as subcategory_nm                     
             ,production_product.color_tp
             ,production_product.size_tp
             ,production_product.listprice_vr

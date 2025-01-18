@@ -36,6 +36,7 @@ with
         select
              territoryid_id
             ,territory_nm
+            ,countryregioncode_cd
         from {{ ref('stg_sales_salesterritory') }}
     ),
 
@@ -72,9 +73,10 @@ with
             ,sales_salesorderheader.customerid_id
             ,sales_salesorderheader.orderdate_dt
             ,sales_salesorderheader.shipdate_dt
-            ,sales_salesorderheader.territoryid_id
-            ,sales_salesorderheader.creditcardid_id
+            ,sales_salesorderheader.territoryid_id            
             ,sales_salesterritory.territory_nm
+            ,sales_salesterritory.countryregioncode_cd
+            ,sales_salesorderheader.creditcardid_id
             ,sales_salesorderdetail.productid_id
             ,production_product.product_nm
             ,sales_store.businessentityid_id as businessentityid_id_store
@@ -115,6 +117,7 @@ with
             ,businessentityid_id_employee
             ,purchasing_purchaseorderheader.vendorid_id
             ,sales_salesorderheader.creditcardid_id
+            ,sales_salesterritory.countryregioncode_cd
     )
 
 select *
