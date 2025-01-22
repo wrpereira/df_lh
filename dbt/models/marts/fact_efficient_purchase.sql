@@ -114,13 +114,13 @@ with
             , vendor_info.orderdate_dt
             , vendor_info.shipdate_dt
             , vendor_info.duedate_dt
-            , sum(vendor_info.orderqty_nr) as total_quantity
-            , round(sum(vendor_info.total_cost), 2) as total_cost
             , date_diff(shipdate_dt, orderdate_dt, day) as processing_time_days
             , case 
                 when shipdate_dt > duedate_dt then date_diff(shipdate_dt, duedate_dt, day)
                 else 0
             end as delivery_delay_days
+            , sum(vendor_info.orderqty_nr) as total_quantity
+            , round(sum(vendor_info.total_cost), 2) as total_cost
         from vendor_info
         join product_info
             on vendor_info.productid_id = product_info.productid_id
@@ -129,10 +129,10 @@ with
         join category_info
             on subcategory_info.productcategoryid_id = category_info.productcategoryid_id
         group by
-            category_info.category_nm
-            , subcategory_info.subcategory_nm
-            , product_info.productid_id
+            product_info.productid_id
             , product_info.product_nm
+            , category_info.category_nm
+            , subcategory_info.subcategory_nm
             , vendor_info.vendorid_id
             , vendor_info.vendor_name_nm
             , vendor_info.purchaseorderid_id
