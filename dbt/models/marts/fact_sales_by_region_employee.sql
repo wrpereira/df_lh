@@ -17,6 +17,18 @@ with
         from {{ ref('stg_sales_salesorderdetail') }}
     ),
 
+    sales_salesperson as (
+        select
+             businessentityid_id as businessentityid_id_employee
+            ,territoryid_id
+            ,salesquota_nr
+            ,bonus_vr
+            ,commissionpct_vr
+            ,salesytd_vr
+            ,saleslastyear_vr
+        from {{ ref('stg_sales_salesperson') }}
+    ),
+
     historical_sales as (
         select
              sales_salesorderheader.territoryid_id
@@ -32,7 +44,25 @@ with
             ,sales_salesorderdetail.productid_id
             ,sale_year
             ,sale_month
+    ),
+
+    sales_with_person as (
+        select
+             historical_sales.territoryid_id
+            ,historical_sales.productid_id
+            ,historical_sales.sale_year
+            ,historical_sales.sale_month
+            ,historical_sales.total_quantity_sold
+            ,sales_salesperson.businessentityid_id_employee
+            ,sales_salesperson.salesquota_nr
+            ,sales_salesperson.bonus_vr
+            ,sales_salesperson.commissionpct_vr
+            ,sales_salesperson.salesytd_vr
+            ,sales_salesperson.saleslastyear_vr
+        from historical_sales
+        left join sales_salesperson
+             on historical_sales.territoryid_id = sales_salesperson.territoryid_id
     )
 
 select *
-from historical_sales
+from sales_with_person

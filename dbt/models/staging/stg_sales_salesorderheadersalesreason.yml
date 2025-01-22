@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_sales_salesorderheadersalesreason
+    description: Informações sobre os motivos das vendas relacionados aos pedidos de venda
+    columns:
+
+      - name: salesorderid_id
+        description: Identificador único do pedido de venda
+        tests:
+          - unique
+          - not_null
+
+      - name: salesreasonid_id
+        description: Identificador único do motivo da venda
+        tests:
+          - not_null
+
+      - name: modifieddate_dt
+        description: Data da última modificação dos dados relacionados ao motivo da venda
+        tests:
+          - not_null

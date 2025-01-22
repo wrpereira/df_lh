@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_sales_salesreason
+    description: Informações sobre os motivos atribuídos às vendas
+    columns:
+
+      - name: salesorderid_id
+        description: Identificador único do pedido de venda associado ao motivo
+        tests:
+          - unique
+          - not_null
+
+      - name: reason_desc
+        description: Descrição do motivo da venda
+        tests:
+          - not_null
+          
+      - name: modifieddate_dt
+        description: Data da última modificação dos dados do motivo da venda
+        tests:
+          - not_null
+
+      - name: reasontype_tp
+        description: 'Tipo do motivo da venda (ex.: marketing, preço, etc.)'
+
+

@@ -10,23 +10,20 @@ with
     last_purchase as (
         select 
              fact_sales.customerid_id
-            ,dim_customer.firstname_nm
-            ,dim_customer.lastname_nm
-            ,concat(dim_customer.firstname_nm, ' ', dim_customer.lastname_nm) as full_name -- Concatena os nomes
+            ,dim_customer.fullname_nm
             ,cast(max(fact_sales.orderdate_dt) as date) as last_order_date
         from {{ ref('fact_sales') }}
         left join {{ ref('dim_customer') }}
             on fact_sales.customerid_id = dim_customer.customerid_id
         group by 
              fact_sales.customerid_id
-            ,dim_customer.firstname_nm
-            ,dim_customer.lastname_nm
+            ,dim_customer.fullname_nm
     ),
 
     inactivity_analysis as (
         select
              last_purchase.customerid_id
-            ,last_purchase.full_name
+            ,last_purchase.fullname_nm
             ,last_purchase.last_order_date
             ,date_diff(
                  (select max_date from date_range),

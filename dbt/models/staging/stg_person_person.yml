@@ -25,6 +25,9 @@ models:
         description: Data e hora da última modificação no registro
         tests:
           - not_null      
+      
+      - name: full_name_nm
+        description: Tipo de pessoa, categorizando a entidade
 
       - name: persontype_tp
         description: Tipo de pessoa, categorizando a entidade
