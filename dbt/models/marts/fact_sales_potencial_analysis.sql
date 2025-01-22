@@ -47,14 +47,14 @@ with
             sales_with_territory.territoryid_id
             , sales_with_territory.territory_nm
             , sales_with_territory.countryregioncode_cd
+            , sales_with_territory.total_orders
+            , sales_with_territory.first_order_date
+            , extract(year from sales_with_territory.first_order_date) as first_order_year            
+            , sales_with_territory.last_order_date
+            , extract(year from sales_with_territory.last_order_date) as last_order_year   
             , round(sales_with_territory.salesytd_vr, 2) as salesytd_vr
             , round(sales_with_territory.saleslastyear_vr, 2) as saleslastyear_vr
             , sales_with_territory.total_sales_value
-            , sales_with_territory.total_orders
-            , sales_with_territory.first_order_date
-            , sales_with_territory.last_order_date
-            , extract(year from sales_with_territory.first_order_date) as first_order_year
-            , extract(year from sales_with_territory.last_order_date) as last_order_year
         from sales_with_territory
     )
 

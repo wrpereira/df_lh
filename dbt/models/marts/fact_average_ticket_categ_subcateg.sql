@@ -29,19 +29,19 @@ with
 
     , category_and_subcategory_average_tickets as (
         select
-            product_category_details.category_name
+            stg_sales_salesorderdetail.productid_id
+            , product_category_details.category_name
             , product_category_details.subcategory_name
-            , stg_sales_salesorderdetail.productid_id
-            , round(sum(stg_sales_salesorderdetail.total_revenue_per_product), 2) as total_revenue
             , sum(stg_sales_salesorderdetail.total_orders_per_product) as total_orders
+            , round(sum(stg_sales_salesorderdetail.total_revenue_per_product), 2) as total_revenue
             , {{ calculate_average_ticket('sum(stg_sales_salesorderdetail.total_revenue_per_product)', 'sum(stg_sales_salesorderdetail.total_orders_per_product)') }} as average_ticket
         from stg_sales_salesorderdetail
         join product_category_details
             on stg_sales_salesorderdetail.productid_id = product_category_details.productid_id
         group by
-            product_category_details.category_name
+            stg_sales_salesorderdetail.productid_id
+            , product_category_details.category_name
             , product_category_details.subcategory_name
-            , stg_sales_salesorderdetail.productid_id
     )
 
 select

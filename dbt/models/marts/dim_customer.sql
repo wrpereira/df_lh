@@ -22,9 +22,9 @@ with
     , final_dim_customer as (
         select 
             sales_customer.customerid_id
+            , person_person.fullname_nm
             , sales_customer.personid_id
             , sales_customer.territoryid_id
-            , person_person.fullname_nm
             , person_person.emailpromotion_desc
         from sales_customer
         left join person_person

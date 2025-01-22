@@ -3,19 +3,19 @@ with
         select
             production_productinventory.productid_id
             , production_product.product_nm
-            , production_productsubcategory.subcategory_nm
             , production_productcategory.category_nm
+            , production_productsubcategory.subcategory_nm
             , production_productinventory.quantity_qt
             , production_product.safetystocklevel_nr
             , production_product.reorderpoint_tp
             , production_productcosthistory.standardcost_vr
             , production_product.listprice_vr 
-            , round((production_product.listprice_vr - production_productcosthistory.standardcost_vr), 2) as profit_margin
             , case
                 when production_productinventory.quantity_qt < production_product.safetystocklevel_nr then 'Low Turnover'
                 when production_productinventory.quantity_qt > production_product.reorderpoint_tp then 'High Turnover'
                 else 'Normal Turnover'
             end as stock_status
+            , round((production_product.listprice_vr - production_productcosthistory.standardcost_vr), 2) as profit_margin
             , sum(fact_sales.total_quantity) as total_quantity_sold 
             , sum(fact_sales.total_sales_value) as total_sales_value 
             , current_date as snapshot_date
@@ -33,13 +33,13 @@ with
         group by 
             production_productinventory.productid_id
             , production_product.product_nm
-            , production_productsubcategory.subcategory_nm
             , production_productcategory.category_nm
+            , production_productsubcategory.subcategory_nm
             , production_productinventory.quantity_qt
             , production_product.safetystocklevel_nr
             , production_product.reorderpoint_tp
             , production_productcosthistory.standardcost_vr
-            , production_product.listprice_vr
+            , production_product.listprice_vr 
     )
 
 select
