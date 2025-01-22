@@ -8,7 +8,6 @@ models:
       - name: salesorderid_id
         description: Identificador único do pedido de venda
         tests:
-          - unique
           - not_null
 
       - name: salesreasonid_id

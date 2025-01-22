@@ -3,158 +3,158 @@
 with 
     sales_salesorderheader as (
         select
-             salesorderid_id as salesorderid_id_soh
-            ,customerid_id
-            ,creditcardid_id
-            ,territoryid_id
-            ,cast(orderdate_dt as date) as orderdate_dt
-            ,cast(shipdate_dt as date) as shipdate_dt
-            ,cast(duedate_dt as date) as duedate_dt             
-            ,subtotal_vr
-            ,taxamt_vr
-            ,freight_vr
+            salesorderid_id as salesorderid_id_soh
+            , customerid_id
+            , creditcardid_id
+            , territoryid_id
+            , cast(orderdate_dt as date) as orderdate_dt
+            , cast(shipdate_dt as date) as shipdate_dt
+            , cast(duedate_dt as date) as duedate_dt             
+            , subtotal_vr
+            , taxamt_vr
+            , freight_vr
         from {{ ref('stg_sales_salesorderheader') }}
-    ),
+    )
 
-    sales_salesorderdetail as (
+    , sales_salesorderdetail as (
         select
-             salesorderid_id
-            ,productid_id
-            ,orderqty_qt
-            ,unitprice_vr
-            ,unitpricediscount_vr
+            salesorderid_id
+            , productid_id
+            , orderqty_qt
+            , unitprice_vr
+            , unitpricediscount_vr
         from {{ ref('stg_sales_salesorderdetail') }}
-    ),
+    )
 
-    production_product as (
+    , production_product as (
         select
-             productid_id
-            ,product_nm
+            productid_id
+            , product_nm
         from {{ ref('stg_production_product') }}
-    ),
+    )
 
-    sales_salesterritory as (
+    , sales_salesterritory as (
         select
-             territoryid_id
-            ,territory_nm
-            ,countryregioncode_cd
+            territoryid_id
+            , territory_nm
+            , countryregioncode_cd
         from {{ ref('stg_sales_salesterritory') }}
-    ),
+    )
 
-    sales_salesperson as (
+    , sales_salesperson as (
         select
-             businessentityid_id
-            ,territoryid_id
+            businessentityid_id
+            , territoryid_id
         from {{ ref('stg_sales_salesperson') }}
-    ),
+    )
 
-    sales_store as (
+    , sales_store as (
         select
-             businessentityid_id
-            ,store_nm
+            businessentityid_id
+            , store_nm
         from {{ ref('stg_sales_store') }}
-    ),
+    )
 
-    humanresources_employee as (
+    , humanresources_employee as (
         select
-             businessentityid_id
+            businessentityid_id
         from {{ ref('stg_humanresources_employee') }}
-    ),
+    )
 
-    purchasing_purchaseorderheader as (
+    , purchasing_purchaseorderheader as (
         select
-             employeeid_id
-            ,vendorid_id
+            employeeid_id
+            , vendorid_id
         from {{ ref('stg_purchasing_purchaseorderheader') }}
-    ),
+    )
 
-    sales_salesorderheadersalesreason as (
+    , sales_salesorderheadersalesreason as (
         select
-             salesorderid_id
-            ,salesreasonid_id as salesreasonid_id_sr
+            salesorderid_id
+            , salesreasonid_id as salesreasonid_id_sr
         from {{ ref('stg_sales_salesorderheadersalesreason') }}
-    ),
+    )
 
-    sales_salesreason as (
+    , sales_salesreason as (
         select
-             salesreasonid_id
-            ,reason_desc
-            ,reasontype_tp
+            salesreasonid_id
+            , reason_desc
+            , reasontype_tp
         from {{ ref('stg_sales_salesreason') }}
-    ),
+    )
 
-    final_fact_sales as (
+    , final_fact_sales as (
         select
-             sales_salesorderheader.salesorderid_id_soh
-            ,sales_salesorderheader.customerid_id
-            ,sales_salesorderheader.orderdate_dt
-            ,sales_salesorderheader.shipdate_dt
-            ,sales_salesorderheader.duedate_dt
-            ,sales_salesorderheader.territoryid_id            
-            ,sales_salesterritory.territory_nm
-            ,sales_salesterritory.countryregioncode_cd
-            ,sales_salesorderheader.creditcardid_id
-            ,sales_salesorderdetail.productid_id
-            ,production_product.product_nm
-            ,sales_salesorderdetail.orderqty_qt
-            ,sales_salesorderdetail.unitprice_vr
-            ,sales_store.businessentityid_id as businessentityid_id_store
-            ,sales_store.store_nm
-            ,sales_salesperson.businessentityid_id as businessentityid_id_sales_person
-            ,humanresources_employee.businessentityid_id as businessentityid_id_employee
-            ,purchasing_purchaseorderheader.vendorid_id
-            ,sales_salesorderheadersalesreason.salesorderid_id
-            ,sales_salesorderheadersalesreason.salesreasonid_id_sr
-            ,sales_salesreason.salesreasonid_id
-            ,sales_salesreason.reason_desc
-            ,sales_salesreason.reasontype_tp
-            ,date_diff(sales_salesorderheader.shipdate_dt, sales_salesorderheader.orderdate_dt, day) as delivery_time_days
-            ,sum(sales_salesorderdetail.orderqty_qt) as total_quantity
-            ,sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
-            ,round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
+            sales_salesorderheader.salesorderid_id_soh
+            , sales_salesorderheader.customerid_id
+            , sales_salesorderheader.orderdate_dt
+            , sales_salesorderheader.shipdate_dt
+            , sales_salesorderheader.duedate_dt
+            , sales_salesorderheader.territoryid_id            
+            , sales_salesterritory.territory_nm
+            , sales_salesterritory.countryregioncode_cd
+            , sales_salesorderheader.creditcardid_id
+            , sales_salesorderdetail.productid_id
+            , production_product.product_nm
+            , sales_salesorderdetail.orderqty_qt
+            , sales_salesorderdetail.unitprice_vr
+            , sales_store.businessentityid_id as businessentityid_id_store
+            , sales_store.store_nm
+            , sales_salesperson.businessentityid_id as businessentityid_id_sales_person
+            , humanresources_employee.businessentityid_id as businessentityid_id_employee
+            , purchasing_purchaseorderheader.vendorid_id
+            , sales_salesorderheadersalesreason.salesorderid_id
+            , sales_salesorderheadersalesreason.salesreasonid_id_sr
+            , sales_salesreason.salesreasonid_id
+            , sales_salesreason.reason_desc
+            , sales_salesreason.reasontype_tp
+            , date_diff(sales_salesorderheader.shipdate_dt, sales_salesorderheader.orderdate_dt, day) as delivery_time_days
+            , sum(sales_salesorderdetail.orderqty_qt) as total_quantity
+            , sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
+            , round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
         from sales_salesorderheader
         join sales_salesorderdetail
-             on sales_salesorderheader.salesorderid_id_soh = sales_salesorderdetail.salesorderid_id
+            on sales_salesorderheader.salesorderid_id_soh = sales_salesorderdetail.salesorderid_id
         left join production_product
-             on sales_salesorderdetail.productid_id = production_product.productid_id
+            on sales_salesorderdetail.productid_id = production_product.productid_id
         left join sales_salesterritory
-             on sales_salesorderheader.territoryid_id = sales_salesterritory.territoryid_id
+            on sales_salesorderheader.territoryid_id = sales_salesterritory.territoryid_id
         left join sales_salesperson
-             on sales_salesterritory.territoryid_id = sales_salesperson.territoryid_id
+            on sales_salesterritory.territoryid_id = sales_salesperson.territoryid_id
         full outer join sales_store
-             on sales_salesperson.businessentityid_id = sales_store.businessentityid_id
+            on sales_salesperson.businessentityid_id = sales_store.businessentityid_id
         left join humanresources_employee
-             on sales_salesperson.businessentityid_id = humanresources_employee.businessentityid_id
+            on sales_salesperson.businessentityid_id = humanresources_employee.businessentityid_id
         left join purchasing_purchaseorderheader
-             on humanresources_employee.businessentityid_id = purchasing_purchaseorderheader.employeeid_id
+            on humanresources_employee.businessentityid_id = purchasing_purchaseorderheader.employeeid_id
         left join sales_salesorderheadersalesreason
-             on sales_salesorderheader.salesorderid_id_soh = sales_salesorderheadersalesreason.salesorderid_id
+            on sales_salesorderheader.salesorderid_id_soh = sales_salesorderheadersalesreason.salesorderid_id
         left join sales_salesreason
-             on sales_salesorderheadersalesreason.salesreasonid_id_sr = sales_salesreason.salesreasonid_id
+            on sales_salesorderheadersalesreason.salesreasonid_id_sr = sales_salesreason.salesreasonid_id
         group by
-             sales_salesorderheader.salesorderid_id_soh
-            ,sales_salesorderheader.customerid_id
-            ,sales_salesorderheader.orderdate_dt
-            ,sales_salesorderheader.shipdate_dt
-            ,sales_salesorderheader.duedate_dt
-            ,sales_salesorderheader.territoryid_id
-            ,sales_salesterritory.territory_nm
-            ,sales_salesorderdetail.productid_id
-            ,production_product.product_nm
-            ,businessentityid_id_store
-            ,sales_store.store_nm
-            ,businessentityid_id_sales_person
-            ,businessentityid_id_employee
-            ,purchasing_purchaseorderheader.vendorid_id
-            ,sales_salesorderheader.creditcardid_id
-            ,sales_salesterritory.countryregioncode_cd
-            ,sales_salesorderheadersalesreason.salesorderid_id
-            ,sales_salesorderheadersalesreason.salesreasonid_id_sr
-            ,sales_salesreason.salesreasonid_id
-            ,sales_salesreason.reason_desc
-            ,sales_salesreason.reasontype_tp
-            ,sales_salesorderdetail.orderqty_qt
-            ,sales_salesorderdetail.unitprice_vr
+            sales_salesorderheader.salesorderid_id_soh
+            , sales_salesorderheader.customerid_id
+            , sales_salesorderheader.orderdate_dt
+            , sales_salesorderheader.shipdate_dt
+            , sales_salesorderheader.duedate_dt
+            , sales_salesorderheader.territoryid_id
+            , sales_salesterritory.territory_nm
+            , sales_salesorderdetail.productid_id
+            , production_product.product_nm
+            , businessentityid_id_store
+            , sales_store.store_nm
+            , businessentityid_id_sales_person
+            , businessentityid_id_employee
+            , purchasing_purchaseorderheader.vendorid_id
+            , sales_salesorderheader.creditcardid_id
+            , sales_salesterritory.countryregioncode_cd
+            , sales_salesorderheadersalesreason.salesorderid_id
+            , sales_salesorderheadersalesreason.salesreasonid_id_sr
+            , sales_salesreason.salesreasonid_id
+            , sales_salesreason.reason_desc
+            , sales_salesreason.reasontype_tp
+            , sales_salesorderdetail.orderqty_qt
+            , sales_salesorderdetail.unitprice_vr
     )
 
 select *
