@@ -6,6 +6,7 @@ with
              businessentityid_id
             ,firstname_nm
             ,lastname_nm
+            ,fullname_nm
         from {{ ref('stg_person_person') }}
     ),
 
@@ -22,14 +23,14 @@ with
     final_dim_employee as (
         select
              person_person.businessentityid_id
-            ,CONCAT(person_person.firstname_nm, ' ', person_person.lastname_nm) AS fullname_nm
+            ,person_person.fullname_nm
             ,humanresources_employee.gender_tp
             ,humanresources_employee.jobtitle_tp
             ,humanresources_employee.birthdate_dt
             ,humanresources_employee.hiredate_dt
         from humanresources_employee
         left join person_person
-            on humanresources_employee.businessentityid_id = person_person.businessentityid_id
+             on humanresources_employee.businessentityid_id = person_person.businessentityid_id
     )
 
 select *

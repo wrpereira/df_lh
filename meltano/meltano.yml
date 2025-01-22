@@ -28,7 +28,9 @@ environments:
         - sales-customer.*
         - sales-salesorderdetail.*
         - sales-salesorderheader.*  
+        - sales-salesorderheadersalesreason.*
         - sales-salesperson.*   
+        - sales-salesreason.*
         - sales-salesterritory.*
         - sales-store.*
         - purchasing-purchaseorderdetail.*
@@ -64,12 +66,14 @@ plugins:
         - sales-customer.*
         - sales-salesorderdetail.*
         - sales-salesorderheader.*  
+        - sales-salesorderheadersalesreason.*
         - sales-salesperson.*   
+        - sales-salesreason.*
         - sales-salesterritory.*
         - sales-store.*
         - purchasing-purchaseorderdetail.*
         - purchasing-purchaseorderheader.*
-        - purchasing-vendor.*   
+        - purchasing-vendor.*    
 
   loaders:
   - name: target-bigquery
