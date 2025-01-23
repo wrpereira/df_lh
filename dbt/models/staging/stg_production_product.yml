@@ -2,12 +2,14 @@ version: 2
 
 models:
       - name: stg_production_product
-        description: informações sobre os produtos vendidos ou utilizados na fabricação de novos produtos
-        columns:
+        description: 
+        Modelo contendo informações sobre os produtos vendidos ou utilizados na fabricação de 
+        novos produtos
         
+        columns:
           - name: productid_id
-            description: Identificador único do produto
-            tests:
+          description: Identificador único do produto
+          tests:
               - unique
               - not_null
             
@@ -16,50 +18,70 @@ models:
             tests:
               - not_null
 
+          - name: productnumber_cd
+            description: Código do produto    
+          
+          - name: makeflag_fl
+            description: Flag indicando se o produto é fabricado internamente
+          
+          - name: finishedgoodsflag_fl
+            description: Flag indicando se o produto é um produto acabado
+          
+          - name: color_tp
+            description: Cor do produto
+          
+          - name: safetystocklevel_nr
+            description: Nível de estoque de segurança do produto
+          
+          - name: reorderpoint_tp
+            description: Ponto de reabastecimento do produto
+          
+          - name: standardcost_vr
+            description: Custo padrão do produto
+          
+          - name: listprice_vr
+            description: Preço de venda do produto
+          
+          - name: size_tp
+            description: Tamanho do produto
+          
+          - name: sizeunitmeasurecode_cd
+            description: Código da unidade de medida do tamanho
+          
+          - name: weightunitmeasurecode_cd
+            description: Código da unidade de medida do peso
+          
+          - name: weight_tp
+            description: Peso do produto
+          
+          - name: daystomanufacture_nr
+            description: Dias necessários para fabricar o produto
+          
+          - name: productline_tp
+            description: Linha de produtos
+          
+          - name: class_tp
+            description: Classe do produto
+          
+          - name: style_tp
+            description: Estilo do produto
+          
+          - name: productsubcategoryid_id
+            description: Identificador da subcategoria do produto
+          
+          - name: productmodelid_id
+            description: Identificador do modelo do produto
+          
+          - name: sellstartdate_dt
+            description: Data de início das vendas do produto
+          
+          - name: sellenddate_dt
+            description: Data de término das vendas do produto
+          
+          - name: rowguid_desc
+            description: Identificador global único (GUID) do produto
+
           - name: modifieddate_dt
             description: Data da última modificação dos dados do produto
             tests:
               - not_null
-
-          - name: productnumber_cd
-            description: Código do produto    
-          - name: makeflag_fl
-            description: Flag indicando se o produto é fabricado internamente
-          - name: finishedgoodsflag_fl
-            description: Flag indicando se o produto é um produto acabado
-          - name: color_tp
-            description: Cor do produto
-          - name: safetystocklevel_nr
-            description: Nível de estoque de segurança do produto
-          - name: reorderpoint_tp
-            description: Ponto de reabastecimento do produto
-          - name: standardcost_vr
-            description: Custo padrão do produto
-          - name: listprice_vr
-            description: Preço de venda do produto
-          - name: size_tp
-            description: Tamanho do produto
-          - name: sizeunitmeasurecode_cd
-            description: Código da unidade de medida do tamanho
-          - name: weightunitmeasurecode_cd
-            description: Código da unidade de medida do peso
-          - name: weight_tp
-            description: Peso do produto
-          - name: daystomanufacture_nr
-            description: Dias necessários para fabricar o produto
-          - name: productline_tp
-            description: Linha de produtos
-          - name: class_tp
-            description: Classe do produto
-          - name: style_tp
-            description: Estilo do produto
-          - name: productsubcategoryid_id
-            description: Identificador da subcategoria do produto
-          - name: productmodelid_id
-            description: Identificador do modelo do produto
-          - name: sellstartdate_dt
-            description: Data de início das vendas do produto
-          - name: sellenddate_dt
-            description: Data de término das vendas do produto
-          - name: rowguid_desc
-            description: Identificador global único (GUID) do produto

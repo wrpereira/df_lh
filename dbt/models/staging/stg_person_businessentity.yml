@@ -2,19 +2,21 @@ version: 2
 
 models:
       - name: stg_person_businessentity
-        description: fonte da ID que conecta fornecedores, clientes e funcionários com endereço e informações de contato.
-        columns:
-                     
+        description: 
+        Modelo contendo informações de fonte ID que conecta fornecedores, clientes e funcionários com endereço e 
+        informações de contato.
+
+        columns:                     
           - name: businessentityid_id
             description: Identificador único do funcionário
             tests:
               - unique
               - not_null
 
+          - name: rowguid_desc
+            description: Identificador global único (GUID) da entidade de negócios
+
           - name: modifieddate_dt
             description: Data da última modificação dos dados da entidade de negócios
             tests:
-              - not_null
-
-          - name: rowguid_desc
-            description: Identificador global único (GUID) da entidade de negócios
+              - not_null            

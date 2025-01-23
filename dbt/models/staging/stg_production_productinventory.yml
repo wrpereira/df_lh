@@ -2,9 +2,10 @@ version: 2
 
 models:
       - name: stg_production_productinventory
-        description: informações de inventário de produtos.
+        description: 
+        Modelo contendo informações de inventário de produtos.
+        
         columns:
-
           - name: productid_id
             description: Identificador do produto
             tests:      
@@ -13,18 +14,22 @@ models:
           - name: locationid_id
             description: Identificador da localização do inventário
             tests:
-              - not_null
-        
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do inventário
-            tests:
               - not_null    
 
           - name: shelf_desc
             description: Localização do produto na prateleira
+          
           - name: bin_desc
             description: Localização do produto no armazém
+          
           - name: quantity_qt
             description: Quantidade do produto disponível no inventário
+          
           - name: rowguid_desc
             description: Identificador global único (GUID) do inventário
+          
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados do inventário
+            tests:
+              - not_null  
+              

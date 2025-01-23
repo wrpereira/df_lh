@@ -91,7 +91,7 @@ with
         from {{ ref('stg_sales_salesreason') }}
     )
 
-    , final_fact_sales as (
+    , fact_sales as (
         select
             sales_salesorderheader.salesorderid_id_soh
             , sales_salesorderheader.customerid_id
@@ -171,4 +171,4 @@ with
     )
 
 select *
-from final_fact_sales
+from fact_sales

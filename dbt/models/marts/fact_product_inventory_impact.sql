@@ -32,7 +32,7 @@ with
                 when sum(inventory_status.inventory_quantity) >= sum(purchasing_purchaseorderdetail.total_order_qty) then 'Sufficient'
                 when sum(inventory_status.inventory_quantity) < sum(purchasing_purchaseorderdetail.total_order_qty) then 'Insufficient'
                 else 'Unknown'
-            end as inventory_coverage
+              end as inventory_coverage
         from purchasing_purchaseorderdetail
         left join inventory_status
             on purchasing_purchaseorderdetail.productid_id = inventory_status.productid_id

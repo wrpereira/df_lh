@@ -3,7 +3,7 @@ version: 2
 models:
       - name: payment_method
         description: 
-        Tabela que contém informações de pagamento associadas aos pedidos de venda, incluindo 
+        Modelo que contém informações de pagamento associadas aos pedidos de venda, incluindo 
         identificadores de pedido, cartão de crédito e método de pagamento.
 
         columns:
@@ -17,4 +17,4 @@ models:
             description: Identificador único do cartão de crédito associado ao pedido
 
           - name: payment_method
-            description: Método de pagamento utilizado, com 'OTHER PAYMENT METHOD' como valor padrão
+            description: Método de pagamento utilizado para realizar a compra

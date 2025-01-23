@@ -3,7 +3,7 @@ version: 2
 models:
       - name: daily_monthly_growth
         description: 
-        Tabela de crescimento de vendas diário e mensal, contendo informações sobre vendas totais, 
+        Modelo de crescimento de vendas diário e mensal, contendo informações sobre vendas totais, 
         vendas do período anterior e taxas de crescimento.
 
         columns:
@@ -35,4 +35,4 @@ models:
             description: Taxa de crescimento das vendas, calculada com base no período anterior
 
           - name: growth_type
-            description: Tipo de crescimento (ex.: positivo, negativo)
+            description: 'Tipo de crescimento (ex.: positivo, negativo)'

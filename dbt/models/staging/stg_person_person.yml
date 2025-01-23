@@ -1,39 +1,40 @@
 version: 2
 
 models:
-  - name: stg_person_person
-    description: Informações detalhadas sobre a pessoa, incluindo nomes, identificadores e atributos associados.
-    columns:
+      - name: stg_person_person
+        description: 
+        Modelo contendo informações detalhadas sobre a pessoa, incluindo nomes, identificadores e atributos associados.
+        
+        columns:
+          - name: businessentityid_id
+            description: Identificador único da entidade de negócio (BusinessEntityID).
+            tests:
+              - unique
+              - not_null
 
-      - name: businessentityid_id
-        description: Identificador único da entidade de negócio (BusinessEntityID).
-        tests:
-          - unique
-          - not_null
+          - name: persontype_tp
+            description: Tipo de pessoa, categorizando a entidade
 
-      - name: firstname_nm
-        description: Primeiro nome da pessoa.
-        tests:
-          - not_null
+          - name: firstname_nm
+            description: Primeiro nome da pessoa.
+            tests:
+              - not_null
 
-      - name: lastname_nm
-        description: Sobrenome da pessoa.
-        tests:
-          - not_null
+          - name: lastname_nm
+            description: Sobrenome da pessoa.
+            tests:
+              - not_null
+              
+          - name: full_name_nm
+            description: Tipo de pessoa, categorizando a entidade
 
-      - name: modifieddate_dt
-        description: Data e hora da última modificação no registro
-        tests:
-          - not_null      
-      
-      - name: full_name_nm
-        description: Tipo de pessoa, categorizando a entidade
+          - name: emailpromotion_nr
+            description: Nível de adesão à promoção por e-mail
 
-      - name: persontype_tp
-        description: Tipo de pessoa, categorizando a entidade
-      - name: emailpromotion_nr
-        description: Nível de adesão à promoção por e-mail
-      - name: rowguid_desc
-        description: Identificador global exclusivo para a entidade
- 
+          - name: rowguid_desc
+            description: Identificador global exclusivo para a entidade
 
+          - name: modifieddate_dt
+            description: Data e hora da última modificação no registro
+            tests:
+              - not_null       

@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_sales_by_region_employee
         description: 
-        Tabela de fatos que contém informações sobre vendas por região e vendedor, incluindo 
+        Modelo de fatos que contém informações sobre vendas por região e vendedor, incluindo 
         quantidade total vendida, desempenho de vendas anuais e metas de vendas.
 
         columns:

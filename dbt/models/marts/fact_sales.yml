@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_sales
         description: 
-        Tabela de fatos que registra os detalhes dos pedidos de venda, incluindo identificadores, 
+        Modelo de fatos que registra os detalhes dos pedidos de venda, incluindo identificadores, 
         produtos, clientes, vendedores, e métricas de vendas como quantidade, valor total do pedido e 
         tempo de entrega
         
@@ -124,3 +124,4 @@ models:
 
           - name: delivery_time_days
           description: Tempo de entrega, calculado pela diferença em dias entre a data de envio e a data do pedido
+          

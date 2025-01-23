@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_product_inventory_impact
         description: 
-        Tabela de impacto de inventário dos produtos, contendo informações sobre quantidade de pedidos,
+        Modelo de impacto de inventário dos produtos, contendo informações sobre quantidade de pedidos,
         recebimentos, rejeições e estoque disponível.
 
         columns:
@@ -26,4 +26,5 @@ models:
             description: Quantidade total de produtos disponíveis no inventário
 
           - name: inventory_coverage
-            description: Cobertura de inventário, categorizada como 'Sufficient' (suficiente), 'Insufficient' (insuficiente) ou 'Unknown' (desconhecido), com base na comparação entre a quantidade de estoque e a quantidade solicitada
+            description: Cobertura de inventário, categorizada como 'Sufficient' (suficiente), 'Insufficient' (insuficiente) ou 'Unknown' (desconhecido), 
+            com base na comparação entre a quantidade de estoque e a quantidade solicitada

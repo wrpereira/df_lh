@@ -2,18 +2,14 @@ version: 2
 
 models:
       - name: stg_sales_store
-        description: Modelo staging para sales_store
+        description: 
+        Modelo contendo informações de lojas
+        
         columns:
-
           - name: businessentityid_id
             description: Identificador único da loja
             tests:
               - unique
-              - not_null
- 
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados da loja
-            tests:
               - not_null
 
           - name: store_nm
@@ -23,5 +19,11 @@ models:
 
           - name: salespersonid_id
             description: Identificador do vendedor responsável pela loja
+
           - name: rowguid_desc
             description: Identificador global único (GUID) da loja
+          
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados da loja
+            tests:
+              - not_null            

@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_inactive_churn_customers_analysis
         description: 
-        Tabela de análise de clientes inativos e churn, identificando clientes que não fizeram compras
+        Modelo de análise de clientes inativos e churn, identificando clientes que não fizeram compras
         recentemente ou que pararam de comprar.
 
         columns:

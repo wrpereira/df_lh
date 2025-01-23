@@ -6,7 +6,7 @@ with
             territoryid as territoryid_id
             , name as territory_nm
             , countryregioncode as countryregioncode_cd
-            , "group" as group_tp
+            , "group" as territory_group_tp
             , salesytd as salesytd_vr
             , saleslastyear as saleslastyear_vr
             , rowguid as rowguid_desc

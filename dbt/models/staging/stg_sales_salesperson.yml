@@ -1,36 +1,42 @@
 version: 2
 
 models:
-  - name: stg_sales_salesperson
-    description: Informações sobre os vendedores e suas métricas de desempenho
-    columns:
-    
-      - name: businessentityid_id
-        description: Identificador único da entidade do vendedor
-        tests:
-          - unique
-          - not_null
-      
-      - name: territoryid_id
-        description: Identificador do território associado ao vendedor
-        tests:
-          - not_null
-
-      - name: modifieddate_dt
-        description: Data da última modificação das informações do vendedor
-        tests:
-          - not_null
-
-      - name: salesquota_nr
-        description: Cota de vendas atribuída ao vendedor
-      - name: bonus_vr
-        description: Bônus recebido pelo vendedor
-      - name: commissionpct_vr
-        description: Percentual de comissão do vendedor
-      - name: salesytd_vr
-        description: Total de vendas realizadas pelo vendedor no ano atual
-      - name: saleslastyear_vr
-        description: Total de vendas realizadas pelo vendedor no ano anterior
-      - name: rowguid_desc
-        description: Identificador global único (GUID) do vendedor
-
+      - name: stg_sales_salesperson
+        description: 
+        Modelo contendo informações sobre os vendedores e suas métricas de desempenho
+        
+        columns:        
+          - name: businessentityid_id
+            description: Identificador único da entidade do vendedor
+            tests:
+              - unique
+              - not_null
+          
+          - name: territoryid_id
+            description: Identificador do território associado ao vendedor
+            tests:
+              - not_null
+              
+          - name: salesquota_nr
+            description: Cota de vendas atribuída ao vendedor
+          
+          - name: bonus_vr
+            description: Bônus recebido pelo vendedor
+          
+          - name: commissionpct_vr
+            description: Percentual de comissão do vendedor
+          
+          - name: salesytd_vr
+            description: Total de vendas realizadas pelo vendedor no ano atual
+          
+          - name: saleslastyear_vr
+            description: Total de vendas realizadas pelo vendedor no ano anterior
+          
+          - name: rowguid_desc
+            description: Identificador global único (GUID) do vendedor
+          
+          - name: modifieddate_dt
+            description: Data da última modificação das informações do vendedor
+            tests:
+              - not_null
+              

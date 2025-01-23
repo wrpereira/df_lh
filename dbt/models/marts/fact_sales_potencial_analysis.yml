@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_sales_potencial_analysis
         description: 
-        Tabela de análise de potencial de vendas, que contém informações sobre vendas e 
+        Modelo de análise de potencial de vendas, que contém informações sobre vendas e 
         desempenho por território, incluindo dados de pedidos e vendas realizadas.
 
         columns:

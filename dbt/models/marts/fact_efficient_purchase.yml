@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_efficient_purchase
         description: 
-        Tabela de análise de compras eficientes, incluindo dados sobre fornecedores, produtos e tempos
+        Modelo de análise da eficiência nas compras de produtos dos fornecedores, incluindo dados sobre fornecedores, produtos e tempos
         de processamento e entrega.
 
         columns:

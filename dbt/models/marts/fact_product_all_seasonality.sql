@@ -14,13 +14,13 @@ with
 
     , fact_product_all_seasonality as (
         select
-            concat(
-                cast(extract(year from historical_sales.orderdate_dt) as string), '-',
-                lpad(cast(extract(month from historical_sales.orderdate_dt) as string), 2, '0')
-            ) as year_month 
+            historical_sales.productid_id    
             , extract(year from historical_sales.orderdate_dt) as year
             , extract(month from historical_sales.orderdate_dt) as month
-            , historical_sales.productid_id
+            , concat(
+                      cast(extract(year from historical_sales.orderdate_dt) as string), '-',
+                      lpad(cast(extract(month from historical_sales.orderdate_dt) as string), 2, '0')
+                    ) as year_month             
             , sum(historical_sales.total_quantity_sold) as total_quantity_sold
         from historical_sales
         group by 

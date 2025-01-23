@@ -1,9 +1,9 @@
 version: 2
 
 models:
-      - name: purchase_vendor
+      - name: dim_purchase_vendor
         description: 
-        Tabela que contém informações sobre os fornecedores e o total gasto com cada um, 
+        Modelo que contém informações sobre os fornecedores e o total gasto com cada um, 
         incluindo número de pedidos e valores totais.
 
         columns:

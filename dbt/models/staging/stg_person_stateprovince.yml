@@ -2,9 +2,10 @@ version: 2
 
 models:
       - name: stg_person_stateprovince
-        description: Informações sobre estados e/ou províncias
+        description: 
+        Modelo contendo informações sobre estados e/ou províncias
+        
         columns:
-
           - name: stateprovinceid_id
             description: Identificador único do estado ou província
             tests:
@@ -36,12 +37,10 @@ models:
             tests:
               - not_null
 
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do estado ou província
-            tests:
-              - not_null          
-
           - name: rowguid_desc
             description: Identificador global único (GUID) do estado ou província
 
-
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados do estado ou província
+            tests:
+              - not_null     

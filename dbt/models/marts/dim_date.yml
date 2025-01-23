@@ -3,7 +3,7 @@ version: 2
 models:
       - name: dim_date
         description: 
-        Tabela de dimensão que contém informações detalhadas sobre a data do pedido, 
+        Modelo de dimensão que contém informações detalhadas sobre a data do pedido, 
         incluindo ano, mês, trimestre, semana e nome do mês.
 
         columns:

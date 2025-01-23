@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_profit_margin_by_product
         description: 
-        Tabela de análise de margem de lucro por produto, incluindo receita, custo, lucro e 
+        Modelo de análise de margem de lucro por produto, incluindo receita, custo, lucro e 
         margem de lucro percentual.
 
         columns:

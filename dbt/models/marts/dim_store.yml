@@ -3,7 +3,7 @@ version: 2
 models:
       - name: dim_store
         description: 
-        Tabela que contém informações sobre as lojas e seus territórios, incluindo 
+        Modelo que contém informações sobre as lojas e seus territórios, incluindo 
         dados de identificação da loja e região associada.
 
         columns:
@@ -27,3 +27,4 @@ models:
 
           - name: territory_group_tp
             description: Grupo do território
+            

@@ -2,24 +2,23 @@ version: 2
 
 models:
       - name: stg_sales_orderheader
-        description: Informações gerais sobre pedidos de vendas
+        description: 
+        Modelo contendo informações de gerais sobre pedidos de vendas
+        
         columns:
-
           - name: salesorderid_id
             description: Identificador único do pedido de venda
             tests:
               - unique
               - not_null
-             
-          - name: customerid_id
-            description: Identificador do cliente associado ao pedido
-            tests:
-              - not_null
-              
+
+          - name: revisionnumber_cd
+            description: Número da revisão do pedido      
+          
           - name: orderdate_dt
             description: Data em que o pedido foi realizado
             tests:
-              - not_null
+              - not_null     
 
           - name: duedate_dt
             description: Data de vencimento do pedido
@@ -31,48 +30,58 @@ models:
             tests:
               - not_null
 
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do pedido
+          - name: status_st
+            description: Status do pedido              
+
+          - name: onlineorderflag_fl
+            description: Flag indicando se o pedido foi feito online
+          
+          - name: accountnumber_cd
+            description: Número da conta do cliente
+
+          - name: customerid_id
+            description: Identificador do cliente associado ao pedido
             tests:
               - not_null
 
           - name: salespersonid_id
             description: Identificador do vendedor associado ao pedido
-          - name: revisionnumber_cd
-            description: Número da revisão do pedido      
-          - name: status_st
-            description: Status do pedido
-          - name: onlineorderflag_fl
-            description: Flag indicando se o pedido foi feito online
-          - name: purchaseordernumber_cd
-            description: Número do pedido de compra associado
-          - name: accountnumber_cd
-            description: Número da conta do cliente
-          - name: salespersonid_id
-            description: Identificador do vendedor associado ao pedido
+
           - name: territoryid_id
             description: Identificador do território do vendedor
+
           - name: billtoaddressid_id
             description: Identificador do endereço de cobrança
+
           - name: shiptoaddressid_id
             description: Identificador do endereço de envio
+
           - name: shipmethodid_id
             description: Identificador do método de envio
+
           - name: creditcardid_id
             description: Identificador do cartão de crédito
+
           - name: creditcardapprovalcode_cd
             description: Código de aprovação do cartão de crédito
-          - name: currencyrateid_id
-            description: Identificador da taxa de câmbio
+
           - name: subtotal_vr
             description: Subtotal do pedido
+
           - name: taxamt_vr
             description: Valor do imposto aplicado no pedido
+
           - name: freight_vr
             description: Valor do frete do pedido
+
           - name: totaldue_vr
             description: Total devido no pedido
-          - name: comment_desc
-            description: Comentários associados ao pedido
+
           - name: rowguid_desc
             description: Identificador global único (GUID) do pedido
+          
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados do pedido
+            tests:
+              - not_null
+              

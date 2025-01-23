@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_average_ticket_sales
         description: 
-        Tabela de fatos que contém informações sobre o ticket médio de vendas, 
+        Modelo de fatos que contém informações sobre o ticket médio de vendas, 
         incluindo o total de pedidos, quantidade total e valor total de vendas.
 
         columns:

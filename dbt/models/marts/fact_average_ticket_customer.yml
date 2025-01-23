@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_average_ticket_customer
         description: 
-        Tabela de fatos que contém informações sobre o ticket médio por cliente, incluindo 
+        Modelo de fatos que contém informações sobre o ticket médio por cliente, incluindo 
         o total de pedidos e receita gerada por cliente.
 
         columns:

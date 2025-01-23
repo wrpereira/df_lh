@@ -3,7 +3,7 @@ version: 2
 models:
       - name: dim_employee
         description: 
-        Tabela de dimensão que contém informações detalhadas sobre os funcionários, 
+        Modelo de dimensão que contém informações detalhadas sobre os funcionários, 
         incluindo dados pessoais, cargo e datas de nascimento e contratação.
 
         columns:

@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_product_turnover
         description: 
-        Tabela de análise de rotatividade de produtos, incluindo a quantidade em estoque, 
+        Modelo de análise de rotatividade de produtos, incluindo a quantidade em estoque, 
         a margem de lucro e o status de rotatividade do estoque.
 
         columns:

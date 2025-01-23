@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_sales_store
         description: 
-        Tabela de fatos que contém informações sobre as vendas por loja, incluindo o total de vendas, 
+        Modelo de fatos que contém informações sobre as vendas por loja, incluindo o total de vendas, 
         produtos e valores do pedido.
 
         columns:

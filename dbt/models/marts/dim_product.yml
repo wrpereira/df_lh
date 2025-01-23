@@ -3,7 +3,7 @@ version: 2
 models:
       - name: dim_product
         description: 
-        Tabela que contém informações detalhadas sobre os produtos, incluindo categoria, 
+        Modelo que contém informações detalhadas sobre os produtos, incluindo categoria, 
         subcategoria, cor, tamanho e preço de venda.
 
         columns:

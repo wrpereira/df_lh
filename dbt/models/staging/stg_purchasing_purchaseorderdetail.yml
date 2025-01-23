@@ -1,34 +1,42 @@
 version: 2
 
 models:
-  - name: stg_purchasing_purchaseorderdetail
-    description: informações detalhadas sobre os pedidos de compra de forncedores
-    columns:
-      - name: purchaseorderid_id
-        description: identificador único do pedido de compra
-        tests:
-          - not_null
+      - name: stg_purchasing_purchaseorderdetail
+        description: 
+        Modelo contendo informações detalhadas sobre os pedidos de compra de forncedores
+        
+        columns:
+          - name: purchaseorderid_id
+            description: Identificador único do pedido de compra
+            tests:
+              - not_null
 
-      - name: purchaseorderdetailid_id
-        description: identificador único do detalhe do pedido de compra
-        tests:
-          - unique
-          - not_null
+          - name: purchaseorderdetailid_id
+            description: Identificador único do detalhe do pedido de compra
+            tests:
+              - unique
+              - not_null
 
-      - name: modifieddate_dt
-        description: data da última modificação do registro
-        tests:
-          - not_null          
-
-      - name: duedate_dt
-        description: data prevista para entrega do pedido
-      - name: orderqty_nr
-        description: quantidade de itens no pedido
-      - name: productid_id
-        description: identificador do produto relacionado ao pedido
-      - name: unitprice_vr
-        description: preço unitário do produto no pedido
-      - name: receivedqty_nr
-        description: quantidade recebida no pedido
-      - name: rejectedqty_nr
-        description: quantidade rejeitada no pedido
+          - name: duedate_dt
+            description: Data prevista para entrega do pedido
+        
+          - name: orderqty_nr
+            description: Quantidade de itens no pedido
+        
+          - name: productid_id
+            description: Identificador do produto relacionado ao pedido
+        
+          - name: unitprice_vr
+            description: Preço unitário do produto no pedido
+        
+          - name: receivedqty_nr
+            description: Quantidade recebida no pedido
+        
+          - name: rejectedqty_nr
+            description: Quantidade rejeitada no pedido
+        
+          - name: modifieddate_dt
+            description: Data da última modificação do registro
+            tests:
+              - not_null  
+              

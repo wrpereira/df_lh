@@ -1,32 +1,31 @@
 version: 2
 
 models:        
-    - name: stg_production_productsubcategory
-      description: subcategorização de produtos
-      columns:
-      
-        - name: productsubcategoryid_id
+      - name: stg_production_productsubcategory
+        description: 
+        Modelo contendo informações de subcategorização de produtos
+        
+        columns:
+          - name: productsubcategoryid_id
           description: Identificador único da subcategoria do produto
           tests:
-            - unique          
-            - not_null
+              - unique          
+              - not_null
 
-        - name: productcategoryid_id
-          description: Identificador único da categoria do produto
-          tests:
-            - not_null
-          
-        - name: subcategory_nm
-          description: Nome da subcategoria do produto
-          tests:
-            - not_null
+          - name: productcategoryid_id
+            description: Identificador único da categoria do produto
+            tests:
+              - not_null
+            
+          - name: subcategory_nm
+            description: Nome da subcategoria do produto
+            tests:
+              - not_null
 
-        - name: modifieddate_dt
-          description: Data da última modificação dos dados da subcategoria
-          tests:
-            - not_null
-
-        - name: rowguid_desc
-          description: Identificador global exclusivo da subcategoria
-          
-   
+          - name: rowguid_desc
+            description: Identificador global exclusivo da subcategoria
+    
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados da subcategoria
+            tests:
+              - not_null

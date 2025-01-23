@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_average_ticket_categ_subcateg
         description: 
-        Tabela de fatos que contém informações sobre o ticket médio por categoria e 
+        Modelo de fatos que contém informações sobre o ticket médio por categoria e 
         subcategoria de produto, incluindo total de pedidos e receita gerada.
 
         columns:

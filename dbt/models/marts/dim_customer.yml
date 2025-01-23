@@ -3,7 +3,7 @@ version: 2
 models:
       - name: dim_customer
         description: 
-        Tabela com as informações detalhadas dos clientes, incluindo identificadores, 
+        Modelo com as informações detalhadas dos clientes, incluindo identificadores, 
         nome completo, e dados relacionados ao território e promoção de e-mail.
 
         columns:

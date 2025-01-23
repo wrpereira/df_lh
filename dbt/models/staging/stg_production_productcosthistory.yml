@@ -1,27 +1,26 @@
 models:
-  - name: stg_production_productcosthistory
-    description: informações sobre histórico de custos de produção dos produtos
-    columns:
+      - name: stg_production_productcosthistory
+        description: 
+        Modelo contendo informações sobre histórico de custos de produção dos produtos
 
-      - name: productid_id
-        description: Identificador único do produto
-        tests:
-          - not_null
-    
-      - name: startdate_dt
-        description: Data de início das operações relacionadas ao produto
-        tests:
-          - not_null
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - not_null
+        
+          - name: startdate_dt
+            description: Data de início das operações relacionadas ao produto
+            tests:
+              - not_null
+              
+          - name: enddate_dt
+            description: Data de término das operações relacionadas ao produto
 
-      - name: modifieddate_dt
-        description: Data da última modificação dos dados do produto
-        tests:
-          - not_null
+          - name: standardcost_vr
+            description: Custo padrão do produto
 
-      - name: enddate_dt
-        description: Data de término das operações relacionadas ao produto
-      - name: standardcost_vr
-        description: Custo padrão do produto
-
-
-
+          - name: modifieddate_dt
+            description: Data da última modificação dos dados do produto
+            tests:
+              - not_null            

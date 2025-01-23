@@ -3,7 +3,7 @@ version: 2
 models:
       - name: fact_product_forecast
         description: 
-        Tabela de previsão de vendas por produto e loja, incluindo quantidade projetada, preço médio e
+        Modelo de previsão de vendas por produto e loja, incluindo quantidade projetada, preço médio e
         valor projetado de vendas.
 
         columns:

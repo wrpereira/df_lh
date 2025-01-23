@@ -2,9 +2,10 @@ version: 2
 
 models:
       - name: stg_production_location
-        description: Estoque de produtos e locais de fabricação
+        description:
+        Modelo contendo informações de estoque de produtos e locais de fabricação
+        
         columns:
-
           - name: locationid_id
             description: Identificador único da localização
             tests:
@@ -16,12 +17,13 @@ models:
             tests:
               - not_null
 
-          - name: modifieddate_dt
-            description: Data da última modificação
-            tests:
-              - not_null
-
           - name: costrate_vr
             description: Taxa de custo associada à localização
+          
           - name: availability_nr
             description: Disponibilidade de recursos na localização
+          
+          - name: modifieddate_dt
+          description: Data da última modificação
+          tests:
+              - not_null

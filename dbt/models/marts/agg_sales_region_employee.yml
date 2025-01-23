@@ -3,7 +3,7 @@ version: 2
 models:
       - name: agg_sales_region_employee
         description: 
-        Tabela agregada que registra os detalhes dos pedidos de venda, incluindo território, 
+        Modelo que registra os detalhes dos pedidos de venda, incluindo território, 
         vendedores, identificadores, produtos, clientes, e métricas de vendas como 
         quantidade, valor total do pedido e tempo de entrega.
 
