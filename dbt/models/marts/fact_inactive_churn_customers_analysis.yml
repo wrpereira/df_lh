@@ -1,29 +1,29 @@
 version: 2
 
 models:
-      - name: fact_inactive_churn_customers_analysis
-        description: 
-        Modelo de análise de clientes inativos e churn, identificando clientes que não fizeram compras
-        recentemente ou que pararam de comprar.
+  - name: fact_inactive_churn_customers_analysis
+    description: > 
+      Modelo de análise de clientes inativos e churn, identificando clientes que não fizeram compras
+      recentemente ou que pararam de comprar.
 
-        columns:
-          - name: customerid_id
-            description: Identificador único do cliente
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: customerid_id
+        description: Identificador único do cliente
+        tests:
+          - unique
+          - not_null
 
-          - name: fullname_nm
-            description: Nome completo do cliente
+      - name: fullname_nm
+        description: Nome completo do cliente
 
-          - name: last_order_date
-            description: Data do último pedido realizado pelo cliente
+      - name: last_order_date
+        description: Data do último pedido realizado pelo cliente
 
-          - name: days_since_last_purchase
-            description: Número de dias desde o último pedido realizado pelo cliente
+      - name: days_since_last_purchase
+        description: Número de dias desde o último pedido realizado pelo cliente
 
-          - name: is_inactive
-            description: Indica se o cliente está inativo, baseado na falta de compras nos últimos 180 dias (verdadeiro se inativo)
+      - name: is_inactive
+        description: Indica se o cliente está inativo, baseado na falta de compras nos últimos 180 dias (verdadeiro se inativo)
 
-          - name: is_churned
-            description: Indica se o cliente entrou em churn, baseado na falta de compras nos últimos 365 dias (verdadeiro se churn)
+      - name: is_churned
+        description: Indica se o cliente entrou em churn, baseado na falta de compras nos últimos 365 dias (verdadeiro se churn)

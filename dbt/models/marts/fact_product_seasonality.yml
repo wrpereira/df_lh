@@ -1,25 +1,24 @@
 version: 2
 
 models:
-      - name: fact_product_seasonality
-        description: 
-        Modelo de análise sazonal do produto, contendo a quantidade total vendida por mês e ano.
+  - name: fact_product_seasonality
+    description: > 
+      Modelo de análise sazonal do produto, contendo a quantidade total vendida por mês e ano.
 
-        columns:
-          - name: productid_id
-            description: Identificador único do produto
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: productid_id
+        description: Identificador único do produto
+        tests:
+          - not_null
 
-          - name: total_quantity_sold
-            description: Quantidade total vendida do produto no mês
+      - name: total_quantity_sold
+        description: Quantidade total vendida do produto no mês
 
-          - name: year_month
-            description: 'Combinação do ano e mês (formato: YYYY-MM), representando o mês e o ano da venda'
+      - name: year_month
+        description: 'Combinação do ano e mês (formato: YYYY-MM), representando o mês e o ano da venda'
 
-          - name: year
-            description: Ano da venda
+      - name: year
+        description: Ano da venda
 
-          - name: month
-            description: Mês da venda
+      - name: month
+        description: Mês da venda

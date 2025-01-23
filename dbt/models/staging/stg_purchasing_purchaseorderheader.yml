@@ -1,51 +1,51 @@
 version: 2
 
 models:
-      - name: stg_purchasing_purchaseorderheader
-        description: 
-        Modelo contendo informações gerais sobre os pedidos de compra de fornecedores
+  - name: stg_purchasing_purchaseorderheader
+    description: > 
+      Modelo contendo informações gerais sobre os pedidos de compra de fornecedores
+    
+    columns:
+      - name: purchaseorderid_id
+        description: Identificador único do pedido de compra
+        tests:
+          - unique
+          - not_null
+          
+      - name: revisionnumber_desc
+        description: Número da revisão do pedido
+      
+      - name: status_st
+        description: Status do pedido de compra
+      
+      - name: employeeid_id
+        description: Identificador do funcionário associado ao pedido
+      
+      - name: vendorid_id
+        description: Identificador do fornecedor
+      
+      - name: shipmethodid_id
+        description: Identificador do método de envio
+      
+      - name: orderdate_dt
+        description: Data do pedido de compra
+        tests:
+          - not_null  
+      
+      - name: shipdate_dt
+        description: Data de envio do pedido
+      
+      - name: subtotal_vr
+        description: Subtotal do pedido
+      
+      - name: taxamt_vr
+        description: Valor total de impostos do pedido
+      
+      - name: freight_vr
+        description: Valor do frete no pedido
         
-        columns:
-          - name: purchaseorderid_id
-            description: Identificador único do pedido de compra
-            tests:
-              - unique
-              - not_null
-              
-          - name: revisionnumber_desc
-            description: Número da revisão do pedido
+      - name: modifieddate_dt
+        description: Data da última modificação do registro
+        tests:
+          - not_null
           
-          - name: status_st
-            description: Status do pedido de compra
-          
-          - name: employeeid_id
-            description: Identificador do funcionário associado ao pedido
-          
-          - name: vendorid_id
-            description: Identificador do fornecedor
-          
-          - name: shipmethodid_id
-            description: Identificador do método de envio
-          
-          - name: orderdate_dt
-            description: Data do pedido de compra
-            tests:
-              - not_null  
-          
-          - name: shipdate_dt
-            description: Data de envio do pedido
-          
-          - name: subtotal_vr
-            description: Subtotal do pedido
-          
-          - name: taxamt_vr
-            description: Valor total de impostos do pedido
-          
-          - name: freight_vr
-            description: Valor do frete no pedido
-            
-          - name: modifieddate_dt
-            description: Data da última modificação do registro
-            tests:
-              - not_null
-              

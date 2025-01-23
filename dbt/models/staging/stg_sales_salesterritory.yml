@@ -1,38 +1,38 @@
 version: 2
 
 models:    
-      - name: stg_sales_salesterritory
-        description: 
-        Modelo contendo informações de território de vendas
-        
-        columns:
-          - name: territoryid_id
-            description: Identificador único do território de vendas
-            tests:
-              - unique 
-              - not_null                        
+  - name: stg_sales_salesterritory
+    description: > 
+      Modelo contendo informações de território de vendas
+    
+    columns:
+      - name: territoryid_id
+        description: Identificador único do território de vendas
+        tests:
+          - unique 
+          - not_null                        
 
-          - name: territory_nm
-            description: Nome do território de vendas
-            tests:
-              - not_null
-              
-          - name: countryregioncode_cd
-            description: Código da região ou país do território
-
-          - name: territory_group_tp
-            description: Grupo do território de vendas
-
-          - name: salesytd_vr
-            description: Vendas acumuladas no ano para o território
-
-          - name: saleslastyear_vr
-            description: Vendas realizadas no último ano para o território
-
-          - name: rowguid_desc
-            description: Identificador global exclusivo do território
+      - name: territory_nm
+        description: Nome do território de vendas
+        tests:
+          - not_null
           
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do território
-            tests:
-              - not_null          
+      - name: countryregioncode_cd
+        description: Código da região ou país do território
+
+      - name: territory_group_tp
+        description: Grupo do território de vendas
+
+      - name: salesytd_vr
+        description: Vendas acumuladas no ano para o território
+
+      - name: saleslastyear_vr
+        description: Vendas realizadas no último ano para o território
+
+      - name: rowguid_desc
+        description: Identificador global exclusivo do território
+      
+      - name: modifieddate_dt
+        description: Data da última modificação dos dados do território
+        tests:
+          - not_null          

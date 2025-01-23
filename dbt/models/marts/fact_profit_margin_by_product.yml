@@ -1,29 +1,29 @@
 version: 2
 
 models:
-      - name: fact_profit_margin_by_product
-        description: 
-        Modelo de análise de margem de lucro por produto, incluindo receita, custo, lucro e 
-        margem de lucro percentual.
+  - name: fact_profit_margin_by_product
+    description: > 
+      Modelo de análise de margem de lucro por produto, incluindo receita, custo, lucro e 
+      margem de lucro percentual.
 
-        columns:
-          - name: productid_id
-            description: Identificador único do produto
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: productid_id
+        description: Identificador único do produto
+        tests:
+          - unique
+          - not_null
 
-          - name: product_nm
-            description: Nome do produto
+      - name: product_nm
+        description: Nome do produto
 
-          - name: total_revenue
-            description: Receita total gerada pelo produto
+      - name: total_revenue
+        description: Receita total gerada pelo produto
 
-          - name: avg_cost
-            description: Custo médio do produto, conforme o histórico de custos de produção
+      - name: avg_cost
+        description: Custo médio do produto, conforme o histórico de custos de produção
 
-          - name: total_profit
-            description: Lucro total do produto, calculado pela diferença entre receita e custo
+      - name: total_profit
+        description: Lucro total do produto, calculado pela diferença entre receita e custo
 
-          - name: profit_margin_percentage
-            description: Percentual de margem de lucro, calculado pela divisão do lucro total pela receita total
+      - name: profit_margin_percentage
+        description: Percentual de margem de lucro, calculado pela divisão do lucro total pela receita total

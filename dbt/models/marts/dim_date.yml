@@ -1,41 +1,41 @@
 version: 2
 
 models:
-      - name: dim_date
-        description: 
-        Modelo de dimensão que contém informações detalhadas sobre a data do pedido, 
-        incluindo ano, mês, trimestre, semana e nome do mês.
+  - name: dim_date
+    description: >
+      Modelo de dimensão que contém informações detalhadas sobre a data do pedido, 
+      incluindo ano, mês, trimestre, semana e nome do mês.
 
-        columns:
-          - name: orderdate_dt
-            description: Data do pedido
+    columns:
+      - name: orderdate_dt
+        description: Data do pedido
 
-          - name: year_nr
-            description: Ano do pedido
+      - name: year_nr
+        description: Ano do pedido
 
-          - name: month_nr
-            description: Mês do pedido
+      - name: month_nr
+        description: Mês do pedido
 
-          - name: quarter_nr
-            description: Trimestre do pedido
+      - name: quarter_nr
+        description: Trimestre do pedido
 
-          - name: week_nr
-            description: Semana do pedido
+      - name: week_nr
+        description: Semana do pedido
 
-          - name: day_nr
-            description: Dia do pedido
+      - name: day_nr
+        description: Dia do pedido
 
-          - name: quarter_name
-            description: 'Nome do trimestre (ex.: Q1, Q2, Q3, Q4)'
+      - name: quarter_name
+        description: 'Nome do trimestre (ex.: Q1, Q2, Q3, Q4)'
 
-          - name: month_name
-            description: 'Nome completo do mês (ex.: Janeiro, Fevereiro, etc.)'
+      - name: month_name
+        description: 'Nome completo do mês (ex.: Janeiro, Fevereiro, etc.)'
 
-          - name: month_name_abr
-            description: 'Abreviação do nome do mês (ex.: Jan, Fev, etc.)'
+      - name: month_name_abr
+        description: 'Abreviação do nome do mês (ex.: Jan, Fev, etc.)'
 
-          - name: first_day_of_month
-            description: Primeiro dia do mês do pedido
+      - name: first_day_of_month
+        description: Primeiro dia do mês do pedido
 
-          - name: last_day_of_month
-            description: Último dia do mês do pedido
+      - name: last_day_of_month
+        description: Último dia do mês do pedido

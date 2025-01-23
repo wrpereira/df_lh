@@ -1,41 +1,41 @@
 version: 2
 
 models:
-      - name: fact_average_ticket_sales
-        description: 
-        Modelo de fatos que contém informações sobre o ticket médio de vendas, 
-        incluindo o total de pedidos, quantidade total e valor total de vendas.
+  - name: fact_average_ticket_sales
+    description: > 
+      Modelo de fatos que contém informações sobre o ticket médio de vendas, 
+      incluindo o total de pedidos, quantidade total e valor total de vendas.
 
-        columns:
-          - name: salesorderid_id
-            description: Identificador único do pedido de venda
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: salesorderid_id
+        description: Identificador único do pedido de venda
+        tests:
+          - unique
+          - not_null
 
-          - name: customerid_id
-            description: Identificador único do cliente associado ao pedido
+      - name: customerid_id
+        description: Identificador único do cliente associado ao pedido
 
-          - name: orderdate_dt
-            description: Data em que o pedido foi realizado
+      - name: orderdate_dt
+        description: Data em que o pedido foi realizado
 
-          - name: shipdate_dt
-            description: Data de envio do pedido
+      - name: shipdate_dt
+        description: Data de envio do pedido
 
-          - name: territoryid_id
-            description: Identificador do território de vendas associado ao pedido
+      - name: territoryid_id
+        description: Identificador do território de vendas associado ao pedido
 
-          - name: creditcardid_id
-            description: Identificador do cartão de crédito associado ao pedido
+      - name: creditcardid_id
+        description: Identificador do cartão de crédito associado ao pedido
 
-          - name: total_quantity
-            description: Quantidade total de itens vendidos no pedido
+      - name: total_quantity
+        description: Quantidade total de itens vendidos no pedido
 
-          - name: total_sales_value
-            description: Valor total das vendas no pedido, calculado pela multiplicação do preço unitário pela quantidade
+      - name: total_sales_value
+        description: Valor total das vendas no pedido, calculado pela multiplicação do preço unitário pela quantidade
 
-          - name: total_order_value
-            description: Valor total do pedido, incluindo subtotal, impostos e frete
+      - name: total_order_value
+        description: Valor total do pedido, incluindo subtotal, impostos e frete
 
-          - name: average_ticket_sales
-            description: Ticket médio de vendas, calculado pela soma do valor das vendas dividida pelo número de pedidos distintos
+      - name: average_ticket_sales
+        description: Ticket médio de vendas, calculado pela soma do valor das vendas dividida pelo número de pedidos distintos

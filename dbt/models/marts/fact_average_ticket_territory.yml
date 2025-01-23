@@ -1,32 +1,32 @@
 version: 2
 
 models:
-      - name: fact_average_ticket_territory
-        description: 
-        Modelo de fatos que contém informações sobre o ticket médio por território, incluindo 
-        o total de pedidos, receita gerada e ticket médio por território.
+  - name: fact_average_ticket_territory
+    description: > 
+      Modelo de fatos que contém informações sobre o ticket médio por território, incluindo 
+      o total de pedidos, receita gerada e ticket médio por território.
 
-        columns:
-          - name: territory_id
-            description: Identificador único do território
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: territory_id
+        description: Identificador único do território
+        tests:
+          - unique
+          - not_null
 
-          - name: total_orders
-            description: Total de pedidos realizados no território
+      - name: total_orders
+        description: Total de pedidos realizados no território
 
-          - name: total_revenue
-            description: Receita total gerada no território
+      - name: total_revenue
+        description: Receita total gerada no território
 
-          - name: average_ticket
-            description: Ticket médio do território, calculado pela soma da receita dividida pelo número de pedidos
+      - name: average_ticket
+        description: Ticket médio do território, calculado pela soma da receita dividida pelo número de pedidos
 
-          - name: total_orders_territory
-            description: Total de pedidos realizados no território, com base nos dados da tabela `fact_average_ticket_territory`
+      - name: total_orders_territory
+        description: Total de pedidos realizados no território, com base nos dados da tabela `fact_average_ticket_territory`
 
-          - name: total_revenue_territory
-            description: Receita total gerada no território, com base nos dados da tabela `fact_average_ticket_territory`
+      - name: total_revenue_territory
+        description: Receita total gerada no território, com base nos dados da tabela `fact_average_ticket_territory`
 
-          - name: average_ticket_territory
-            description: Ticket médio do território, calculado pela soma da receita total dividida pelo número de pedidos no território
+      - name: average_ticket_territory
+        description: Ticket médio do território, calculado pela soma da receita total dividida pelo número de pedidos no território

@@ -1,26 +1,26 @@
 version: 2
 
 models:
-      - name: fact_average_ticket_store
-        description: 
-        Modelo de fatos que contém informações sobre o ticket médio por loja, incluindo o 
-        total de pedidos e receita gerada por loja.
+  - name: fact_average_ticket_store
+    description: > 
+      Modelo de fatos que contém informações sobre o ticket médio por loja, incluindo o 
+      total de pedidos e receita gerada por loja.
 
-        columns:
-          - name: businessentityid_id
-            description: Identificador único da entidade da loja
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: businessentityid_id
+        description: Identificador único da entidade da loja
+        tests:
+          - unique
+          - not_null
 
-          - name: store_nm
-            description: Nome da loja
+      - name: store_nm
+        description: Nome da loja
 
-          - name: total_orders
-            description: Total de pedidos realizados na loja
+      - name: total_orders
+        description: Total de pedidos realizados na loja
 
-          - name: total_revenue_store
-            description: Receita total gerada pela loja
+      - name: total_revenue_store
+        description: Receita total gerada pela loja
 
-          - name: average_ticket_store
-            description: Ticket médio da loja, calculado pela soma da receita dividida pelo número de pedidos
+      - name: average_ticket_store
+        description: Ticket médio da loja, calculado pela soma da receita dividida pelo número de pedidos

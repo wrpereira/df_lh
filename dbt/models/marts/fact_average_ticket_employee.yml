@@ -1,23 +1,23 @@
 version: 2
 
 models:
-      - name: fact_average_ticket_employee
-        description: 
-        Modelo de fatos que contém informações sobre o ticket médio por vendedor, incluindo 
-        o total de pedidos e receita gerada por vendedor.
+  - name: fact_average_ticket_employee
+    description: > 
+      Modelo de fatos que contém informações sobre o ticket médio por vendedor, incluindo 
+      o total de pedidos e receita gerada por vendedor.
 
-        columns:
-          - name: salesperson_id
-            description: Identificador único do vendedor
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: salesperson_id
+        description: Identificador único do vendedor
+        tests:
+          - unique
+          - not_null
 
-          - name: total_orders
-            description: Total de pedidos realizados pelo vendedor
+      - name: total_orders
+        description: Total de pedidos realizados pelo vendedor
 
-          - name: total_revenue_salesperson
-            description: Receita total gerada pelo vendedor
+      - name: total_revenue_salesperson
+        description: Receita total gerada pelo vendedor
 
-          - name: average_ticket_salesperson
-            description: Ticket médio do vendedor, calculado pela soma da receita dividida pelo número de pedidos
+      - name: average_ticket_salesperson
+        description: Ticket médio do vendedor, calculado pela soma da receita dividida pelo número de pedidos

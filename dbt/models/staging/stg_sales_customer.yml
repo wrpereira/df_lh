@@ -1,33 +1,33 @@
 version: 2
 
 models:
-      - name: stg_sales_customer
-        description: 
-        Modelo contendo os dados de clientes relacionados às vendas
+  - name: stg_sales_customer
+    description: > 
+      Modelo contendo os dados de clientes relacionados às vendas
+    
+    columns:
+      - name: customerid_id
+        description: ID único do cliente
+        tests:
+            - unique 
+            - not_null
+
+      - name: personid_id
+        description: ID da pessoa associada ao cliente
+      
+      - name: storeid_id
+        description: ID da loja associada ao cliente
+
+      - name: territoryid_id
+        description: ID do território associado ao cliente
+        tests:
+            - not_null 
+
+      - name: rowguid_desc
+        description: GUID exclusivo da linha
         
-        columns:
-          - name: customerid_id
-            description: ID único do cliente
-            tests:
-                - unique 
-                - not_null
-
-          - name: personid_id
-            description: ID da pessoa associada ao cliente
-          
-          - name: storeid_id
-            description: ID da loja associada ao cliente
-
-          - name: territoryid_id
-            description: ID do território associado ao cliente
-            tests:
-                - not_null 
-
-          - name: rowguid_desc
-            description: GUID exclusivo da linha
+      - name: modifieddate_dt
+        description: Data e hora da última modificação
+        tests:
+            - not_null
             
-          - name: modifieddate_dt
-            description: Data e hora da última modificação
-            tests:
-                - not_null
-                

@@ -1,23 +1,23 @@
 version: 2
 
 models:
-      - name: dim_purchase_vendor
-        description: 
-        Modelo que contém informações sobre os fornecedores e o total gasto com cada um, 
-        incluindo número de pedidos e valores totais.
+  - name: dim_purchase_vendor
+    description: > 
+      Modelo que contém informações sobre os fornecedores e o total gasto com cada um, 
+      incluindo número de pedidos e valores totais.
 
-        columns:
-          - name: vendor_id
-            description: Identificador único do fornecedor
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: vendor_id
+        description: Identificador único do fornecedor
+        tests:
+          - unique
+          - not_null
 
-          - name: vendor_name_nm
-            description: Nome do fornecedor
+      - name: vendor_name_nm
+        description: Nome do fornecedor
 
-          - name: total_orders
-            description: Total de pedidos realizados com o fornecedor
+      - name: total_orders
+        description: Total de pedidos realizados com o fornecedor
 
-          - name: total_spent
-            description: Total gasto com o fornecedor, incluindo subtotal, impostos e frete
+      - name: total_spent
+        description: Total gasto com o fornecedor, incluindo subtotal, impostos e frete

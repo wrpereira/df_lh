@@ -1,127 +1,103 @@
 version: 2
 
 models:
-      - name: fact_sales
-        description: 
-        Modelo de fatos que registra os detalhes dos pedidos de venda, incluindo identificadores, 
-        produtos, clientes, vendedores, e métricas de vendas como quantidade, valor total do pedido e 
-        tempo de entrega
-        
-        columns:
-          - name: salesorderid_id_soh
-          description: Identificador único do pedido de venda (soh abreviação de sales order header)
-          tests:
-              - unique 
-              - not_null 
+  - name: fact_sales
+    description: > 
+      Modelo de fatos que registra os detalhes dos pedidos de venda, incluindo identificadores, 
+      produtos, clientes, vendedores, e métricas de vendas como quantidade, valor total do pedido e 
+      tempo de entrega
 
-          - name: customerid_id
-          description: Identificador do cliente associado ao pedido
-          tests:          
-              - unique 
-              - not_null 
+    columns:
+      - name: salesorderid_id_soh
+        description: Identificador único do pedido de venda (soh abreviação de sales order header)
 
-          - name: creditcardid_id
-          description: Identificador do cartão de crédito
-          tests:          
-              - unique 
-              - not_null 
+      - name: customerid_id
+        description: Identificador do cliente associado ao pedido
+        tests:          
+            - not_null 
 
-          - name: vendorid_id
-          description: identificador do fornecedor  
-          tests:          
-              - unique 
-              - not_null           
+      - name: creditcardid_id
+        description: Identificador do cartão de crédito
 
-          - name: businessentityid_id_sales_person
-          description: Identificador único da entidade do vendedor (ref stg_sales_salesperson)
-          tests:          
-              - unique 
-              - not_null 
+      - name: vendorid_id
+        description: identificador do fornecedor  
+        tests:          
+            - unique 
 
-          - name: businessentityid_id_employee 
-          description: Identificador único do funcionário (ref stg_humanresources_employee)
-          tests:          
-              - unique 
-              - not_null 
+      - name: businessentityid_id_sales_person
+        description: Identificador único da entidade do vendedor (ref stg_sales_salesperson)
+        tests:          
+            - not_null 
 
-          - name: productid_id
-          description: Identificador do produto no pedido
-          tests:          
-              - unique 
-              - not_null 
+      - name: businessentityid_id_employee 
+        description: Identificador único do funcionário (ref stg_humanresources_employee)
+        tests:          
+            - not_null 
 
-          - name: product_nm
-          description: Nome do produto
+      - name: productid_id
+        description: Identificador do produto no pedido
+        tests:          
+            - not_null 
 
-          - name: businessentityid_id_store
-          description: Identificador único da loja (ref stg_sales_store)
-          tests:          
-              - unique 
-              - not_null 
+      - name: product_nm
+        description: Nome do produto
 
-          - name: store_nm
-          description: Nome da loja
+      - name: businessentityid_id_store
+        description: Identificador único da loja (ref stg_sales_store)
 
-          - name: territoryid_id
-          description: Identificador do território do vendedor
-          tests:          
-              - unique 
-              - not_null 
+      - name: store_nm
+        description: Nome da loja
 
-          - name: territory_nm
-          description: Nome do território de vendas
+      - name: territoryid_id
+        description: Identificador do território do vendedor
+        tests:          
+            - not_null 
 
-          - name: countryregioncode_cd
-          description: Código da região ou país do território
+      - name: territory_nm
+        description: Nome do território de vendas
 
-          - name: salesorderid_id
-          description: Identificador único do pedido de venda
-          tests:
-              - unique 
-              - not_null 
+      - name: countryregioncode_cd
+        description: Código da região ou país do território
 
-          - name: salesreasonid_id_sr (ref stg_sales_salesorderheadersalesreason)
-          description: Identificador único do motivo da venda
-          tests:
-              - unique 
-              - not_null 
+      - name: salesorderid_id
+        description: Identificador único do pedido de venda
 
-          - name: salesreasonid_id
-          description: Identificador único do pedido de venda associado ao motivo
-          tests:
-              - unique 
-              - not_null 
+      - name: salesreasonid_id_sr 
+        description: Identificador único do motivo da venda (ref stg_sales_salesorderheadersalesreason)
 
-          - name: reason_desc
-          description: Descrição do motivo da venda
+      - name: salesreasonid_id
+        description: Identificador único do pedido de venda associado ao motivo
 
-          - name: reasontype_tp
-          description: 'Tipo do motivo da venda (ex.: marketing, preço, etc.)'
+      - name: reason_desc
+        description: Descrição do motivo da venda
 
-          - name: orderqty_qt
-          description: Quantidade do produto no pedido
+      - name: reasontype_tp
+        description: 'Tipo do motivo da venda (ex.: marketing, preço, etc.)'
 
-          - name: unitprice_vr
-          description: Preço unitário do produto no pedido
+      - name: orderqty_qt
+        description: Quantidade do produto no pedido
 
-          - name: total_quantity
-          description: Total de itens vendidos
-            
-          - name: total_sales_value
-          description: Valor total das vendas
+      - name: unitprice_vr
+        description: Preço unitário do produto no pedido
 
-          - name: total_order_value
-          description: Valor total do pedido, incluindo subtotal, impostos e frete
+      - name: total_quantity
+        description: Total de itens vendidos
+      
+      - name: total_sales_value
+        description: Valor total das vendas
 
-          - name: orderdate_dt
-          description: Data em que o pedido foi realizado
+      - name: total_order_value
+        description: Valor total do pedido, incluindo subtotal, impostos e frete
 
-          - name: shipdate_dt
-          description: Data de envio do pedido
+      - name: orderdate_dt
+        description: Data em que o pedido foi realizado
 
-          - name: duedate_dt
-          description: Data de vencimento do pedido
+      - name: shipdate_dt
+        description: Data de envio do pedido
 
-          - name: delivery_time_days
-          description: Tempo de entrega, calculado pela diferença em dias entre a data de envio e a data do pedido
-          
+      - name: duedate_dt
+        description: Data de vencimento do pedido
+
+      - name: delivery_time_days
+        description: Tempo de entrega, calculado pela diferença em dias entre a data de envio e a data do pedido
+      

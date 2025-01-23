@@ -36,7 +36,7 @@ with
             , sum(sales_salesorderdetail.orderqty_qt) as total_quantity
             , sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
             , round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
-            , sum(total_sales_value) / count(distinct salesorderid_id) as average_ticket_sales
+            , sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) / count(distinct sales_salesorderheader.salesorderid_id) as average_ticket_sales
         from sales_salesorderheader
         join sales_salesorderdetail
             on sales_salesorderheader.salesorderid_id = sales_salesorderdetail.salesorderid_id

@@ -1,44 +1,44 @@
 version: 2
 
 models:
-      - name: fact_sales_potencial_analysis
-        description: 
-        Modelo de análise de potencial de vendas, que contém informações sobre vendas e 
-        desempenho por território, incluindo dados de pedidos e vendas realizadas.
+  - name: fact_sales_potencial_analysis
+    description: > 
+      Modelo de análise de potencial de vendas, que contém informações sobre vendas e 
+      desempenho por território, incluindo dados de pedidos e vendas realizadas.
 
-        columns:
-          - name: territoryid_id
-            description: Identificador único do território
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: territoryid_id
+        description: Identificador único do território
+        tests:
+          - unique
+          - not_null
 
-          - name: territory_nm
-            description: Nome do território
+      - name: territory_nm
+        description: Nome do território
 
-          - name: countryregioncode_cd
-            description: Código da região ou país do território
+      - name: countryregioncode_cd
+        description: Código da região ou país do território
 
-          - name: total_orders
-            description: Total de pedidos realizados no território
+      - name: total_orders
+        description: Total de pedidos realizados no território
 
-          - name: first_order_date
-            description: Data do primeiro pedido realizado no território
+      - name: first_order_date
+        description: Data do primeiro pedido realizado no território
 
-          - name: first_order_year
-            description: Ano do primeiro pedido realizado no território
+      - name: first_order_year
+        description: Ano do primeiro pedido realizado no território
 
-          - name: last_order_date
-            description: Data do último pedido realizado no território
+      - name: last_order_date
+        description: Data do último pedido realizado no território
 
-          - name: last_order_year
-            description: Ano do último pedido realizado no território
+      - name: last_order_year
+        description: Ano do último pedido realizado no território
 
-          - name: salesytd_vr
-            description: Vendas acumuladas no ano até a data atual
+      - name: salesytd_vr
+        description: Vendas acumuladas no ano até a data atual
 
-          - name: saleslastyear_vr
-            description: Vendas realizadas no ano anterior
+      - name: saleslastyear_vr
+        description: Vendas realizadas no ano anterior
 
-          - name: total_sales_value
-            description: Valor total das vendas realizadas no território
+      - name: total_sales_value
+        description: Valor total das vendas realizadas no território

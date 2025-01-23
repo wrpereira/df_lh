@@ -14,7 +14,7 @@ with
 
     , fact_product_seasonality as (
         select
-            , historical_sales.productid_id    
+            historical_sales.productid_id    
             , sum(historical_sales.total_quantity_sold) as total_quantity_sold                
             , concat(
                       cast(extract(year from historical_sales.orderdate_dt) as string), '-',

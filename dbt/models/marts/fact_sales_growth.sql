@@ -25,21 +25,21 @@ with
             , year_nr
             , month_nr
             , total_sales
-            , round(lag(total_sales) over (order by orderdate_dt), 2) as previous_day_sales
-            , round((total_sales - lag(total_sales) over (order by orderdate_dt)) / lag(total_sales) over (order by orderdate_dt), 2) as growth_rate
+            , round(lag(total_sales) over (partition by productid_id order by orderdate_dt), 2) as previous_day_sales
+            , round((total_sales - lag(total_sales) over (partition by productid_id order by orderdate_dt)) / lag(total_sales) over (partition by productid_id order by orderdate_dt), 2) as growth_rate
             , 'daily' as growth_type
         from sales_with_dates
     )
 
     , monthly_growth as (
         select 
-            cast(null as date) as orderdate_dt
+            DATE(year_nr, month_nr, 1) as orderdate_dt
             , productid_id
             , year_nr
             , month_nr
             , round(sum(total_sales), 2) as total_sales
-            , round(lag(sum(total_sales)) over (order by year_nr, month_nr), 2) as previous_month_sales
-            , round((sum(total_sales) - lag(sum(total_sales)) over (order by year_nr, month_nr)) / lag(sum(total_sales)) over (order by year_nr, month_nr), 2) as growth_rate
+            , round(IFNULL(lag(sum(total_sales)) over (partition by productid_id order by year_nr, month_nr), 0), 2) as previous_month_sales
+            , round((sum(total_sales) - IFNULL(lag(sum(total_sales)) over (partition by productid_id order by year_nr, month_nr), 0)) / IFNULL(lag(sum(total_sales)) over (partition by productid_id order by year_nr, month_nr), 1), 2) as growth_rate
             , 'monthly' as growth_type
         from sales_with_dates
         group by
@@ -71,7 +71,6 @@ select
     , growth_rate
     , growth_type
 from monthly_growth
-
 order by 
     orderdate_dt nulls last 
     , growth_type

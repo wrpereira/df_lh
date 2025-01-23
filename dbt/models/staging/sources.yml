@@ -1,461 +1,461 @@
 version: 2
 
 sources:
-      - name: raw_data_cleaned
-        description:
-          Dataset contendo dados brutos pós-processados e limpos no Jupyter Notebook. 
-          A escolha de usar este dataset ao invés do `raw_data` foi feita para garantir 
-          que os dados consumidos no dbt já estejam filtrados, padronizados e sem colunas 
-          irrelevantes para análise.
+  - name: raw_data_cleaned
+    description:
+      Dataset contendo dados brutos pós-processados e limpos no Jupyter Notebook. 
+      A escolha de usar este dataset ao invés do `raw_data` foi feita para garantir 
+      que os dados consumidos no dbt já estejam filtrados, padronizados e sem colunas 
+      irrelevantes para análise.
 
-        schema: raw_data_cleaned
-        
-        tables:
-          - name: humanresources_employee
-            columns:
-              - name: businessentityid
-                data_type: int64
-              - name: nationalidnumber
-                data_type: string
-              - name: loginid
-                data_type: string
-              - name: jobtitle
-                data_type: string
-              - name: birthdate
-                data_type: date
-              - name: maritalstatus
-                data_type: string
-              - name: gender
-                data_type: string
-              - name: hiredate
-                data_type: date
-              - name: salariedflag
-                data_type: boolean
-              - name: vacationhours
-                data_type: int64
-              - name: sickleavehours
-                data_type: int64
-              - name: currentflag
-                data_type: boolean
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
-              - name: organizationnode
-                data_type: string
+    schema: raw_data_cleaned
+    
+    tables:
+      - name: humanresources_employee
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: nationalidnumber
+            data_type: string
+          - name: loginid
+            data_type: string
+          - name: jobtitle
+            data_type: string
+          - name: birthdate
+            data_type: date
+          - name: maritalstatus
+            data_type: string
+          - name: gender
+            data_type: string
+          - name: hiredate
+            data_type: date
+          - name: salariedflag
+            data_type: boolean
+          - name: vacationhours
+            data_type: int64
+          - name: sickleavehours
+            data_type: int64
+          - name: currentflag
+            data_type: boolean
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+          - name: organizationnode
+            data_type: string
 
-          - name: person_address
-            columns:
-              - name: addressid
-                data_type: int64
-              - name: addressline1
-                data_type: string
-              - name: city
-                data_type: string
-              - name: stateprovinceid
-                data_type: int64
-              - name: postalcode
-                data_type: string
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: person_address
+        columns:
+          - name: addressid
+            data_type: int64
+          - name: addressline1
+            data_type: string
+          - name: city
+            data_type: string
+          - name: stateprovinceid
+            data_type: int64
+          - name: postalcode
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: person_businessentity
-            columns:
-              - name: businessentityid
-                data_type: int64
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: person_businessentity
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: person_person
-            columns:
-              - name: businessentityid          
-                data_type: int64
-              - name: persontype
-                data_type: string  
-              - name: firstname
-                data_type: string
-              - name: lastname
-                data_type: string
-              - name: emailpromotion
-                data_type: string
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: person_person
+        columns:
+          - name: businessentityid          
+            data_type: int64
+          - name: persontype
+            data_type: string  
+          - name: firstname
+            data_type: string
+          - name: lastname
+            data_type: string
+          - name: emailpromotion
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: person_stateprovince
-            columns:
-              - name: stateprovinceid
-                data_type: int64
-              - name: stateprovincecode
-                data_type: string
-              - name: countryregioncode
-                data_type: string
-              - name: isonlystateprovinceflag
-                data_type: boolean
-              - name: name
-                data_type: string
-              - name: territoryid
-                data_type: int64
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: person_stateprovince
+        columns:
+          - name: stateprovinceid
+            data_type: int64
+          - name: stateprovincecode
+            data_type: string
+          - name: countryregioncode
+            data_type: string
+          - name: isonlystateprovinceflag
+            data_type: boolean
+          - name: name
+            data_type: string
+          - name: territoryid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_location
-            columns:
-              - name: locationid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: costrate
-                data_type: float
-              - name: availability
-                data_type: float
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_location
+        columns:
+          - name: locationid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: costrate
+            data_type: float
+          - name: availability
+            data_type: float
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_product
-            columns:
-              - name: productid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: productnumber
-                data_type: string
-              - name: makeflag
-                data_type: boolean
-              - name: finishedgoodsflag
-                data_type: boolean
-              - name: color
-                data_type: string
-              - name: safetystocklevel
-                data_type: int64
-              - name: reorderpoint
-                data_type: int64
-              - name: standardcost
-                data_type: float
-              - name: listprice
-                data_type: float
-              - name: size
-                data_type: string
-              - name: sizeunitmeasurecode
-                data_type: string
-              - name: weightunitmeasurecode
-                data_type: string
-              - name: weight
-                data_type: float
-              - name: daystomanufacture
-                data_type: int64
-              - name: productline
-                data_type: string
-              - name: class
-                data_type: string
-              - name: style
-                data_type: string
-              - name: productsubcategoryid
-                data_type: int64
-              - name: productmodelid
-                data_type: int64
-              - name: sellstartdate
-                data_type: timestamp
-              - name: sellenddate
-                data_type: timestamp
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_product
+        columns:
+          - name: productid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: productnumber
+            data_type: string
+          - name: makeflag
+            data_type: boolean
+          - name: finishedgoodsflag
+            data_type: boolean
+          - name: color
+            data_type: string
+          - name: safetystocklevel
+            data_type: int64
+          - name: reorderpoint
+            data_type: int64
+          - name: standardcost
+            data_type: float
+          - name: listprice
+            data_type: float
+          - name: size
+            data_type: string
+          - name: sizeunitmeasurecode
+            data_type: string
+          - name: weightunitmeasurecode
+            data_type: string
+          - name: weight
+            data_type: float
+          - name: daystomanufacture
+            data_type: int64
+          - name: productline
+            data_type: string
+          - name: class
+            data_type: string
+          - name: style
+            data_type: string
+          - name: productsubcategoryid
+            data_type: int64
+          - name: productmodelid
+            data_type: int64
+          - name: sellstartdate
+            data_type: timestamp
+          - name: sellenddate
+            data_type: timestamp
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_productcategory
-            columns:
-              - name: productcategoryid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_productcategory
+        columns:
+          - name: productcategoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_productcosthistory
-            columns:
-              - name: productid
-                data_type: int64
-              - name: startdate
-                data_type: timestamp
-              - name: enddate
-                data_type: timestamp
-              - name: standardcost
-                data_type: float
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_productcosthistory
+        columns:
+          - name: productid
+            data_type: int64
+          - name: startdate
+            data_type: timestamp
+          - name: enddate
+            data_type: timestamp
+          - name: standardcost
+            data_type: float
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_productinventory
-            columns:
-              - name: productid
-                data_type: int64
-              - name: locationid
-                data_type: int64
-              - name: shelf
-                data_type: string
-              - name: bin
-                data_type: int64
-              - name: quantity
-                data_type: int64
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_productinventory
+        columns:
+          - name: productid
+            data_type: int64
+          - name: locationid
+            data_type: int64
+          - name: shelf
+            data_type: string
+          - name: bin
+            data_type: int64
+          - name: quantity
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: production_productsubcategory
-            columns:
-              - name: productsubcategoryid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: production_productsubcategory
+        columns:
+          - name: productsubcategoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: purchasing_purchaseorderdetail
-            columns:
-              - name: purchaseorderid
-                data_type: int64
-              - name: purchaseorderdetailid
-                data_type: int64
-              - name: duedate
-                data_type: timestamp
-              - name: orderqty
-                data_type: int64
-              - name: productid
-                data_type: int64
-              - name: unitprice
-                data_type: float
-              - name: receivedqty
-                data_type: float
-              - name: rejectedqty
-                data_type: float
-              - name: modifieddate
-                data_type: timestamp
+      - name: purchasing_purchaseorderdetail
+        columns:
+          - name: purchaseorderid
+            data_type: int64
+          - name: purchaseorderdetailid
+            data_type: int64
+          - name: duedate
+            data_type: timestamp
+          - name: orderqty
+            data_type: int64
+          - name: productid
+            data_type: int64
+          - name: unitprice
+            data_type: float
+          - name: receivedqty
+            data_type: float
+          - name: rejectedqty
+            data_type: float
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: purchasing_purchaseorderheader
-            columns:
-              - name: purchaseorderid
-                data_type: int64
-              - name: revisionnumber
-                data_type: int64
-              - name: status
-                data_type: int64
-              - name: employeeid
-                data_type: int64
-              - name: vendorid
-                data_type: int64
-              - name: shipmethodid
-                data_type: int64
-              - name: orderdate
-                data_type: timestamp
-              - name: shipdate
-                data_type: timestamp
-              - name: subtotal
-                data_type: float
-              - name: taxamt
-                data_type: float
-              - name: freight
-                data_type: float
-              - name: modifieddate
-                data_type: timestamp
+      - name: purchasing_purchaseorderheader
+        columns:
+          - name: purchaseorderid
+            data_type: int64
+          - name: revisionnumber
+            data_type: int64
+          - name: status
+            data_type: int64
+          - name: employeeid
+            data_type: int64
+          - name: vendorid
+            data_type: int64
+          - name: shipmethodid
+            data_type: int64
+          - name: orderdate
+            data_type: timestamp
+          - name: shipdate
+            data_type: timestamp
+          - name: subtotal
+            data_type: float
+          - name: taxamt
+            data_type: float
+          - name: freight
+            data_type: float
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: purchasing_vendor
-            columns:
-              - name: businessentityid
-                data_type: int64
-              - name: accountnumber
-                data_type: string
-              - name: name
-                data_type: string
-              - name: creditrating
-                data_type: int64
-              - name: preferredvendorstatus
-                data_type: boolean
-              - name: activeflag
-                data_type: boolean
-              - name: modifieddate
-                data_type: timestamp
+      - name: purchasing_vendor
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: accountnumber
+            data_type: string
+          - name: name
+            data_type: string
+          - name: creditrating
+            data_type: int64
+          - name: preferredvendorstatus
+            data_type: boolean
+          - name: activeflag
+            data_type: boolean
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_creditcard
-            columns:
-              - name: creditcardid
-                data_type: int64
-              - name: cardtype
-                data_type: string
-              - name: cardnumber
-                data_type: int64
-              - name: expmonth
-                data_type: int64
-              - name: expyear
-                data_type: int64
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_creditcard
+        columns:
+          - name: creditcardid
+            data_type: int64
+          - name: cardtype
+            data_type: string
+          - name: cardnumber
+            data_type: int64
+          - name: expmonth
+            data_type: int64
+          - name: expyear
+            data_type: int64
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_customer
-            columns:
-              - name: customerid
-                data_type: int64
-              - name: personid
-                data_type: int64
-              - name: storeid
-                data_type: int64
-              - name: territoryid
-                data_type: int64
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_customer
+        columns:
+          - name: customerid
+            data_type: int64
+          - name: personid
+            data_type: int64
+          - name: storeid
+            data_type: int64
+          - name: territoryid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_salesorderdetail
-            columns:
-              - name: salesorderid
-                data_type: int64
-              - name: salesorderdetailid
-                data_type: int64
-              - name: carriertrackingnumber
-                data_type: string
-              - name: orderqty
-                data_type: int64
-              - name: productid
-                data_type: int64
-              - name: specialofferid
-                data_type: int64
-              - name: unitprice
-                data_type: float
-              - name: unitpricediscount
-                data_type: float
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_salesorderdetail
+        columns:
+          - name: salesorderid
+            data_type: int64
+          - name: salesorderdetailid
+            data_type: int64
+          - name: carriertrackingnumber
+            data_type: string
+          - name: orderqty
+            data_type: int64
+          - name: productid
+            data_type: int64
+          - name: specialofferid
+            data_type: int64
+          - name: unitprice
+            data_type: float
+          - name: unitpricediscount
+            data_type: float
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_salesorderheader
-            columns:
-              - name: salesorderid
-                data_type: int64
-              - name: revisionnumber
-                data_type: int64
-              - name: orderdate
-                data_type: timestamp
-              - name: duedate
-                data_type: timestamp
-              - name: shipdate
-                data_type: timestamp
-              - name: status
-                data_type: int64
-              - name: onlineorderflag
-                data_type: boolean
-              - name: accountnumber
-                data_type: string
-              - name: customerid
-                data_type: int64
-              - name: salespersonid
-                data_type: int64
-              - name: territoryid
-                data_type: int64
-              - name: billtoaddressid
-                data_type: int64
-              - name: shiptoaddressid
-                data_type: int64
-              - name: shipmethodid
-                data_type: int64
-              - name: creditcardid
-                data_type: int64
-              - name: creditcardapprovalcode
-                data_type: string
-              - name: subtotal
-                data_type: float
-              - name: taxamt
-                data_type: float
-              - name: freight
-                data_type: float
-              - name: totaldue
-                data_type: float
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_salesorderheader
+        columns:
+          - name: salesorderid
+            data_type: int64
+          - name: revisionnumber
+            data_type: int64
+          - name: orderdate
+            data_type: timestamp
+          - name: duedate
+            data_type: timestamp
+          - name: shipdate
+            data_type: timestamp
+          - name: status
+            data_type: int64
+          - name: onlineorderflag
+            data_type: boolean
+          - name: accountnumber
+            data_type: string
+          - name: customerid
+            data_type: int64
+          - name: salespersonid
+            data_type: int64
+          - name: territoryid
+            data_type: int64
+          - name: billtoaddressid
+            data_type: int64
+          - name: shiptoaddressid
+            data_type: int64
+          - name: shipmethodid
+            data_type: int64
+          - name: creditcardid
+            data_type: int64
+          - name: creditcardapprovalcode
+            data_type: string
+          - name: subtotal
+            data_type: float
+          - name: taxamt
+            data_type: float
+          - name: freight
+            data_type: float
+          - name: totaldue
+            data_type: float
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_salesorderheadersalesreason
-            columns:
-              - name: salesorderid
-                data_type: int64
-              - name: salesreasonid
-                data_type: int64
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_salesorderheadersalesreason
+        columns:
+          - name: salesorderid
+            data_type: int64
+          - name: salesreasonid
+            data_type: int64
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_salesperson
-            columns:
-              - name: businessentityid
-                data_type: int64
-              - name: territoryid
-                data_type: int64
-              - name: salesquota
-                data_type: int64
-              - name: bonus
-                data_type: int64
-              - name: commissionpct
-                data_type: float
-              - name: salesytd
-                data_type: float
-              - name: saleslastyear
-                data_type: float
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_salesperson
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: territoryid
+            data_type: int64
+          - name: salesquota
+            data_type: int64
+          - name: bonus
+            data_type: int64
+          - name: commissionpct
+            data_type: float
+          - name: salesytd
+            data_type: float
+          - name: saleslastyear
+            data_type: float
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
 
-          - name: sales_salesreason
-            columns:
-              - name: salesorderid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: reasontype
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
-                
-          - name: sales_salesterritory
-            columns:
-              - name: territoryid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: countryregioncode
-                data_type: string
-              - name: group
-                data_type: string
-              - name: salesytd
-                data_type: float
-              - name: saleslastyear
-                data_type: float
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp     
+      - name: sales_salesreason
+        columns:
+          - name: salesorderid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: reasontype
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp
+            
+      - name: sales_salesterritory
+        columns:
+          - name: territoryid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: countryregioncode
+            data_type: string
+          - name: group
+            data_type: string
+          - name: salesytd
+            data_type: float
+          - name: saleslastyear
+            data_type: float
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp     
 
-          - name: sales_store
-            columns:
-              - name: businessentityid
-                data_type: int64
-              - name: name
-                data_type: string
-              - name: salespersonid
-                data_type: int64
-              - name: rowguid
-                data_type: string
-              - name: modifieddate
-                data_type: timestamp
+      - name: sales_store
+        columns:
+          - name: businessentityid
+            data_type: int64
+          - name: name
+            data_type: string
+          - name: salespersonid
+            data_type: int64
+          - name: rowguid
+            data_type: string
+          - name: modifieddate
+            data_type: timestamp

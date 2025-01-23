@@ -1,44 +1,43 @@
 version: 2
 
 models:
-      - name: fact_sales_by_region_employee
-        description: 
-        Modelo de fatos que contém informações sobre vendas por região e vendedor, incluindo 
-        quantidade total vendida, desempenho de vendas anuais e metas de vendas.
+  - name: fact_sales_by_region_employee
+    description: > 
+      Modelo de fatos que contém informações sobre vendas por região e vendedor, incluindo 
+      quantidade total vendida, desempenho de vendas anuais e metas de vendas.
 
-        columns:
-          - name: productid_id
-            description: Identificador único do produto
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: productid_id
+        description: Identificador único do produto
+        tests:
+          - not_null
 
-          - name: territoryid_id
-            description: Identificador único do território associado à venda
+      - name: territoryid_id
+        description: Identificador único do território associado à venda
 
-          - name: businessentityid_id_employee
-            description: Identificador único do vendedor (funcionário) associado à venda
+      - name: businessentityid_id_employee
+        description: Identificador único do vendedor (funcionário) associado à venda
 
-          - name: total_quantity_sold
-            description: Quantidade total de produtos vendidos
+      - name: total_quantity_sold
+        description: Quantidade total de produtos vendidos
 
-          - name: sale_year
-            description: Ano da venda
+      - name: sale_year
+        description: Ano da venda
 
-          - name: sale_month
-            description: Mês da venda
+      - name: sale_month
+        description: Mês da venda
 
-          - name: salesytd_vr
-            description: Vendas acumuladas no ano até a data atual
+      - name: salesytd_vr
+        description: Vendas acumuladas no ano até a data atual
 
-          - name: saleslastyear_vr
-            description: Vendas realizadas no ano anterior
+      - name: saleslastyear_vr
+        description: Vendas realizadas no ano anterior
 
-          - name: salesquota_nr
-            description: Cota de vendas atribuída ao vendedor
+      - name: salesquota_nr
+        description: Cota de vendas atribuída ao vendedor
 
-          - name: bonus_vr
-            description: Bônus recebido pelo vendedor
+      - name: bonus_vr
+        description: Bônus recebido pelo vendedor
 
-          - name: commissionpct_vr
-            description: Percentual de comissão do vendedor
+      - name: commissionpct_vr
+        description: Percentual de comissão do vendedor

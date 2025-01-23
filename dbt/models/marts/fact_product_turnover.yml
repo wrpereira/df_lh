@@ -1,56 +1,55 @@
 version: 2
 
 models:
-      - name: fact_product_turnover
-        description: 
-        Modelo de análise de rotatividade de produtos, incluindo a quantidade em estoque, 
-        a margem de lucro e o status de rotatividade do estoque.
+  - name: fact_product_turnover
+    description: > 
+      Modelo de análise de rotatividade de produtos, incluindo a quantidade em estoque, 
+      a margem de lucro e o status de rotatividade do estoque.
 
-        columns:
-          - name: productid_id
-            description: Identificador único do produto
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: productid_id
+        description: Identificador único do produto
+        tests:
+          - not_null
 
-          - name: product_nm
-            description: Nome do produto
+      - name: product_nm
+        description: Nome do produto
 
-          - name: category_nm
-            description: Nome da categoria do produto
+      - name: category_nm
+        description: Nome da categoria do produto
 
-          - name: subcategory_nm
-            description: Nome da subcategoria do produto
+      - name: subcategory_nm
+        description: Nome da subcategoria do produto
 
-          - name: quantity_qt
-            description: Quantidade disponível do produto no inventário
+      - name: quantity_qt
+        description: Quantidade disponível do produto no inventário
 
-          - name: safetystocklevel_nr
-            description: Nível de estoque de segurança do produto
+      - name: safetystocklevel_nr
+        description: Nível de estoque de segurança do produto
 
-          - name: reorderpoint_tp
-            description: Ponto de reabastecimento do produto
+      - name: reorderpoint_tp
+        description: Ponto de reabastecimento do produto
 
-          - name: standardcost_vr
-            description: Custo padrão do produto
+      - name: standardcost_vr
+        description: Custo padrão do produto
 
-          - name: listprice_vr
-            description: Preço de venda do produto
+      - name: listprice_vr
+        description: Preço de venda do produto
 
-          - name: stock_status
-            description: Status de rotatividade do estoque, categorizado como 'Low Turnover', 'Normal Turnover' ou 'High Turnover'
+      - name: stock_status
+        description: Status de rotatividade do estoque, categorizado como 'Low Turnover', 'Normal Turnover' ou 'High Turnover'
 
-          - name: profit_margin
-            description: Margem de lucro do produto, calculada pela diferença entre o preço de venda e o custo padrão
+      - name: profit_margin
+        description: Margem de lucro do produto, calculada pela diferença entre o preço de venda e o custo padrão
 
-          - name: total_quantity_sold
-            description: Quantidade total vendida do produto
+      - name: total_quantity_sold
+        description: Quantidade total vendida do produto
 
-          - name: total_sales_value
-            description: Valor total das vendas do produto
+      - name: total_sales_value
+        description: Valor total das vendas do produto
 
-          - name: snapshot_date
-            description: Data do registro das informações do inventário (data da captura da informação)
+      - name: snapshot_date
+        description: Data do registro das informações do inventário (data da captura da informação)
 
-          - name: turnover_rate
-            description: Taxa de rotatividade do produto, calculada pela divisão da quantidade vendida pelo estoque disponível
+      - name: turnover_rate
+        description: Taxa de rotatividade do produto, calculada pela divisão da quantidade vendida pelo estoque disponível

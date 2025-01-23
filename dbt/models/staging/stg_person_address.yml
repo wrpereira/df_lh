@@ -1,36 +1,36 @@
 version: 2
 
 models:
-      - name: stg_person_address
-        description: 
-        Modelo contendo informações de endereço de clientes, funcionários e fornecedores, entre outros.                  
+  - name: stg_person_address
+    description: > 
+      Modelo contendo informações de endereço de clientes, funcionários e fornecedores, entre outros.                  
 
-        columns:
-          - name: addressid_id
-            description: Identificador único do endereço
-            tests:
-              - unique
-              - not_null
+    columns:
+      - name: addressid_id
+        description: Identificador único do endereço
+        tests:
+          - unique
+          - not_null
 
-          - name: addressline1_desc
-            description: Primeira linha do endereço
+      - name: addressline1_desc
+        description: Primeira linha do endereço
 
-          - name: city_nm
-            description: Cidade do endereço
-            tests:
-              - not_null 
+      - name: city_nm
+        description: Cidade do endereço
+        tests:
+          - not_null 
 
-          - name: stateprovinceid_id
-            description: Identificador da província ou estado
-            
-          - name: postalcode_cd
-            description: Código postal do endereço    
+      - name: stateprovinceid_id
+        description: Identificador da província ou estado
+        
+      - name: postalcode_cd
+        description: Código postal do endereço    
 
-          - name: rowguid_desc
-            description: Identificador global exclusivo do endereço
+      - name: rowguid_desc
+        description: Identificador global exclusivo do endereço
 
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do endereço
-            tests:
-              - not_null  
-              
+      - name: modifieddate_dt
+        description: Data da última modificação dos dados do endereço
+        tests:
+          - not_null  
+          

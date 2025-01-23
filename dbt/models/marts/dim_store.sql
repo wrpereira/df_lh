@@ -6,7 +6,7 @@ with
             territoryid_id
             , territory_nm
             , countryregioncode_cd
-            , group_tp as territory_group_tp
+            , territory_group_tp
             , modifieddate_dt
         from {{ ref('stg_sales_salesterritory') }}
     )
@@ -42,7 +42,7 @@ with
             , sales_customer.territoryid_id
             , coalesce(sales_salesterritory.territory_nm, 'NO DATA') as territory_nm
             , coalesce(sales_salesterritory.countryregioncode_cd, 'NO DATA') as country_region_code_cd
-            , coalesce(sales_salesterritory.territory_group_tp, 'NO DATA') as territory_group_tps
+            , coalesce(sales_salesterritory.territory_group_tp, 'NO DATA') as territory_group_tp
         from sales_store
         left join sales_customer
             on sales_store.store_id = sales_customer.storeid_id

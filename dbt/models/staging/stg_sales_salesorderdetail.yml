@@ -1,47 +1,47 @@
 version: 2
 
 models:
-      - name: stg_sales_orderdetail
-        description: 
-        Modelo contendo informações de produtos individuais associados a um pedido de venda
+  - name: stg_sales_orderdetail
+    description: > 
+      Modelo contendo informações de produtos individuais associados a um pedido de venda
+    
+    columns:
+      - name: salesorderid_id
+        description: Identificador do pedido de venda
+        tests:
+          - not_null
+
+      - name: salesorderdetailid_id
+        description: Identificador do detalhe do pedido de venda
+        tests:
+          - unique
+          - not_null              
+
+      - name: carriertrackingnumber_cd
+        description: Número de rastreamento do transportador
+      
+      - name: orderqty_qt
+        description: Quantidade do produto no pedido
         
-        columns:
-          - name: salesorderid_id
-            description: Identificador do pedido de venda
-            tests:
-              - not_null
+      - name: productid_id
+        description: Identificador do produto no pedido
+        tests:
+          - not_null        
 
-          - name: salesorderdetailid_id
-            description: Identificador do detalhe do pedido de venda
-            tests:
-              - unique
-              - not_null              
+      - name: specialofferid_id
+        description: Identificador da oferta especial no pedido
 
-          - name: carriertrackingnumber_cd
-            description: Número de rastreamento do transportador
+      - name: unitprice_vr
+        description: Preço unitário do produto no pedido
+
+      - name: unitpricediscount_vr
+        description: Desconto aplicado no preço unitário do produto
+        
+      - name: rowguid_desc
+        description: Identificador global único (GUID) do item do pedido
+      
+      - name: modifieddate_dt
+        description: Data da última modificação dos dados do item do pedido
+        tests:
+          - not_null  
           
-          - name: orderqty_qt
-            description: Quantidade do produto no pedido
-            
-          - name: productid_id
-            description: Identificador do produto no pedido
-            tests:
-              - not_null        
-
-          - name: specialofferid_id
-            description: Identificador da oferta especial no pedido
-
-          - name: unitprice_vr
-            description: Preço unitário do produto no pedido
-
-          - name: unitpricediscount_vr
-            description: Desconto aplicado no preço unitário do produto
-            
-          - name: rowguid_desc
-            description: Identificador global único (GUID) do item do pedido
-          
-          - name: modifieddate_dt
-            description: Data da última modificação dos dados do item do pedido
-            tests:
-              - not_null  
-              

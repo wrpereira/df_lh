@@ -1,20 +1,20 @@
 version: 2
 
 models:
+  - name: payment_method
+    description: > 
+      Modelo que contém informações de pagamento associadas aos pedidos de venda, incluindo 
+      identificadores de pedido, cartão de crédito e método de pagamento.
+
+    columns:
+      - name: salesorderid_id
+        description: Identificador único do pedido de venda
+        tests:
+          - unique
+          - not_null
+
+      - name: creditcardid_id
+        description: Identificador único do cartão de crédito associado ao pedido
+
       - name: payment_method
-        description: 
-        Modelo que contém informações de pagamento associadas aos pedidos de venda, incluindo 
-        identificadores de pedido, cartão de crédito e método de pagamento.
-
-        columns:
-          - name: salesorderid_id
-            description: Identificador único do pedido de venda
-            tests:
-              - unique
-              - not_null
-
-          - name: creditcardid_id
-            description: Identificador único do cartão de crédito associado ao pedido
-
-          - name: payment_method
-            description: Método de pagamento utilizado para realizar a compra
+        description: Método de pagamento utilizado para realizar a compra
