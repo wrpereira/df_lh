@@ -102,7 +102,7 @@ with
         from production_productcategory
     )
 
-    , efficiency_analysis as (
+    , fact_efficient_purchase as (
         select
             product_info.productid_id
             , product_info.product_nm
@@ -142,4 +142,4 @@ with
     )
 
 select *
-from efficiency_analysis
+from fact_efficient_purchase

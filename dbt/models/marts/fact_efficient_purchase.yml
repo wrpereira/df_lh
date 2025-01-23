@@ -1,0 +1,53 @@
+version: 2
+
+models:
+      - name: fact_efficient_purchase
+        description: 
+        Tabela de análise de compras eficientes, incluindo dados sobre fornecedores, produtos e tempos
+        de processamento e entrega.
+
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: product_nm
+            description: Nome do produto
+
+          - name: category_nm
+            description: Nome da categoria do produto
+
+          - name: subcategory_nm
+            description: Nome da subcategoria do produto
+
+          - name: vendorid_id
+            description: Identificador único do fornecedor
+
+          - name: vendor_name_nm
+            description: Nome do fornecedor
+
+          - name: purchaseorderid_id
+            description: Identificador único do pedido de compra
+
+          - name: orderdate_dt
+            description: Data do pedido de compra
+
+          - name: shipdate_dt
+            description: Data de envio do pedido de compra
+
+          - name: duedate_dt
+            description: Data de vencimento do pedido de compra
+
+          - name: processing_time_days
+            description: Tempo de processamento do pedido, calculado pela diferença em dias entre a data de envio e a data do pedido
+
+          - name: delivery_delay_days
+            description: Número de dias de atraso na entrega, calculado pela diferença entre a data de envio e a data de vencimento, se houver atraso
+
+          - name: total_quantity
+            description: Quantidade total do produto no pedido
+
+          - name: total_cost
+            description: Custo total do pedido de compra

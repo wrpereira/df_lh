@@ -1,0 +1,38 @@
+version: 2
+
+models:
+      - name: fact_inventory
+        description: 
+        Tabela de inventário de produtos, com informações sobre a quantidade disponível, custo padrão,
+        preço de venda e localização no estoque.
+
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: product_nm
+            description: Nome do produto
+
+          - name: productnumber_cd
+            description: Código do produto
+
+          - name: standardcost_vr
+            description: Custo padrão do produto
+
+          - name: listprice_vr
+            description: Preço de venda do produto
+
+          - name: locationid_id
+            description: Identificador único da localização do produto no estoque
+
+          - name: shelf_desc
+            description: Descrição da prateleira onde o produto está armazenado
+
+          - name: bin_desc
+            description: Descrição do compartimento ou seção onde o produto está armazenado
+
+          - name: total_quantity
+            description: Quantidade total do produto disponível no estoque

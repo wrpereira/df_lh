@@ -22,7 +22,7 @@ with
             , sales_salesorderheader.territoryid_id
     )
 
-    , ticket_by_store as (
+    , fact_average_ticket_store as (
         select
             businessentityid_id
             , store_nm
@@ -41,4 +41,4 @@ select
     , total_orders
     , total_revenue_store
     , average_ticket_store
-from ticket_by_store
+from fact_average_ticket_store

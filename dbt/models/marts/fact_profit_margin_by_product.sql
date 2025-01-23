@@ -27,7 +27,7 @@ with
         from {{ ref('stg_production_product') }} as production_product
     )
 
-    , profit_calculation as (
+    , fact_profit_margin_by_product as (
         select
             sales_salesorderdetail.productid_id
             , production_product.product_nm
@@ -52,4 +52,4 @@ with
     )
 
 select *
-from profit_calculation
+from fact_profit_margin_by_product

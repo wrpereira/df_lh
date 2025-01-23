@@ -25,7 +25,7 @@ with
         from {{ ref('stg_sales_salesorderdetail') }}
     )
 
-    , final_fact_sales as (
+    , fact_average_ticket_sales as (
         select
             sales_salesorderheader.salesorderid_id
             , sales_salesorderheader.customerid_id
@@ -36,6 +36,7 @@ with
             , sum(sales_salesorderdetail.orderqty_qt) as total_quantity
             , sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
             , round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
+            , sum(total_sales_value) / count(distinct salesorderid_id) as average_ticket_sales
         from sales_salesorderheader
         join sales_salesorderdetail
             on sales_salesorderheader.salesorderid_id = sales_salesorderdetail.salesorderid_id
@@ -48,11 +49,5 @@ with
             , sales_salesorderheader.creditcardid_id
     )
 
-    , ticket_medio as (
-        select
-            sum(total_sales_value) / count(distinct salesorderid_id) as average_ticket
-        from final_fact_sales
-    )
-
 select *
-from ticket_medio
+from fact_average_ticket_sales

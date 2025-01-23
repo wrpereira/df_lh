@@ -1,0 +1,23 @@
+version: 2
+
+models:
+      - name: fact_average_ticket_customer
+        description: 
+        Tabela de fatos que contém informações sobre o ticket médio por cliente, incluindo 
+        o total de pedidos e receita gerada por cliente.
+
+        columns:
+          - name: customerid_id
+            description: Identificador único do cliente
+            tests:
+              - unique
+              - not_null
+
+          - name: total_orders
+            description: Total de pedidos realizados pelo cliente
+
+          - name: total_revenue_customer
+            description: Receita total gerada pelo cliente
+
+          - name: average_ticket_customer
+            description: Ticket médio do cliente, calculado pela soma da receita dividida pelo número de pedidos

@@ -46,7 +46,7 @@ with
             , sale_month
     )
 
-    , sales_with_person as (
+    , fact_sales_by_region_employee as (
         select
             historical_sales.productid_id
             , historical_sales.territoryid_id
@@ -65,4 +65,4 @@ with
     )
 
 select *
-from sales_with_person
+from fact_sales_by_region_employee

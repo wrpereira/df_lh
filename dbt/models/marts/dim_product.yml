@@ -1,0 +1,32 @@
+version: 2
+
+models:
+      - name: dim_product
+        description: 
+        Tabela que contém informações detalhadas sobre os produtos, incluindo categoria, 
+        subcategoria, cor, tamanho e preço de venda.
+
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: product_nm
+            description: Nome do produto
+
+          - name: category_nm
+            description: Nome da categoria do produto
+
+          - name: subcategory_nm
+            description: Nome da subcategoria do produto
+
+          - name: color_tp
+            description: Cor do produto
+
+          - name: size_tp
+            description: Tamanho do produto
+
+          - name: listprice_vr
+            description: Preço de venda do produto

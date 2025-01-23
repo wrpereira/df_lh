@@ -1,0 +1,26 @@
+version: 2
+
+models:
+      - name: dim_customer
+        description: 
+        Tabela com as informações detalhadas dos clientes, incluindo identificadores, 
+        nome completo, e dados relacionados ao território e promoção de e-mail.
+
+        columns:
+          - name: customerid_id
+            description: Identificador único do cliente
+            tests:
+              - unique
+              - not_null
+
+          - name: fullname_nm
+            description: Nome completo do cliente
+
+          - name: personid_id
+            description: Identificador único da pessoa associada ao cliente
+
+          - name: territoryid_id
+            description: Identificador do território associado ao cliente
+
+          - name: emailpromotion_desc
+            description: Indicação sobre a promoção de e-mail do cliente

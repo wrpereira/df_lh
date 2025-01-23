@@ -27,7 +27,7 @@ with
             on production_productsubcategory.productcategoryid_id = production_productcategory.productcategoryid_id
     )
 
-    , category_and_subcategory_average_tickets as (
+    , fact_average_ticket_categ_subcateg as (
         select
             stg_sales_salesorderdetail.productid_id
             , product_category_details.category_name
@@ -51,7 +51,7 @@ select
     , total_orders
     , total_revenue
     , average_ticket
-from category_and_subcategory_average_tickets
+from fact_average_ticket_categ_subcateg
 order by
     category_name
     , subcategory_name

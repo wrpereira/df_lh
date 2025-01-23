@@ -37,7 +37,7 @@ with
             on production_product.productid_id = product_inventory.productid_id
     )
 
-    , final_fact_inventory as (
+    , fact_inventory as (
         select
             joined_data.productid_id
             , joined_data.product_nm
@@ -61,4 +61,4 @@ with
     )
 
 select *
-from final_fact_inventory
+from fact_inventory

@@ -42,7 +42,7 @@ with
             , sales_salesterritory.countryregioncode_cd
     )
 
-    , final_sales_analysis as (
+    , fact_sales_potencial_analysis as (
         select
             sales_with_territory.territoryid_id
             , sales_with_territory.territory_nm
@@ -59,4 +59,4 @@ with
     )
 
 select * 
-from final_sales_analysis
+from fact_sales_potencial_analysis

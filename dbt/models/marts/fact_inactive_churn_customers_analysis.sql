@@ -20,7 +20,7 @@ with
             , dim_customer.fullname_nm
     )
 
-    , inactivity_analysis as (
+    , fact_inactive_churn_customers_analysis as (
         select
             last_purchase.customerid_id
             , last_purchase.fullname_nm
@@ -50,4 +50,4 @@ with
     )
 
 select *
-from inactivity_analysis
+from fact_inactive_churn_customers_analysis

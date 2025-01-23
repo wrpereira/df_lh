@@ -1,0 +1,29 @@
+version: 2
+
+models:
+      - name: fact_product_inventory_impact
+        description: 
+        Tabela de impacto de inventário dos produtos, contendo informações sobre quantidade de pedidos,
+        recebimentos, rejeições e estoque disponível.
+
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: total_ordered_quantity
+            description: Quantidade total de produtos solicitados nos pedidos
+
+          - name: total_received_quantity
+            description: Quantidade total de produtos recebidos nos pedidos
+
+          - name: total_rejected_quantity
+            description: Quantidade total de produtos rejeitados nos pedidos
+
+          - name: total_inventory_quantity
+            description: Quantidade total de produtos disponíveis no inventário
+
+          - name: inventory_coverage
+            description: Cobertura de inventário, categorizada como 'Sufficient' (suficiente), 'Insufficient' (insuficiente) ou 'Unknown' (desconhecido), com base na comparação entre a quantidade de estoque e a quantidade solicitada

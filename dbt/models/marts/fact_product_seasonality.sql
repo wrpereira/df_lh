@@ -12,7 +12,7 @@ with
             , sales_salesorderdetail.productid_id
     )
 
-    , seasonality_analysis as (
+    , fact_product_seasonality as (
         select
             concat(
                 cast(extract(year from historical_sales.orderdate_dt) as string), '-',
@@ -32,6 +32,6 @@ with
     )
 
 select *
-from seasonality_analysis
+from fact_product_seasonality
 order by 
     year_month

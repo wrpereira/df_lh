@@ -1,0 +1,29 @@
+version: 2
+
+models:
+      - name: dim_store
+        description: 
+        Tabela que contém informações sobre as lojas e seus territórios, incluindo 
+        dados de identificação da loja e região associada.
+
+        columns:
+          - name: store_id
+            description: Identificador único da loja
+            tests:
+              - unique
+              - not_null
+
+          - name: store_nm
+            description: Nome da loja
+
+          - name: territoryid_id
+            description: Identificador do território associado à loja
+
+          - name: territory_nm
+            description: Nome do território
+
+          - name: country_region_code_cd
+            description: Código da região ou país do território
+
+          - name: territory_group_tp
+            description: Grupo do território

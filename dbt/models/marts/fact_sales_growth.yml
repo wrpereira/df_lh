@@ -1,0 +1,38 @@
+version: 2
+
+models:
+      - name: daily_monthly_growth
+        description: 
+        Tabela de crescimento de vendas diário e mensal, contendo informações sobre vendas totais, 
+        vendas do período anterior e taxas de crescimento.
+
+        columns:
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: orderdate_dt
+            description: Data do pedido
+
+          - name: year_nr
+            description: Ano do pedido
+
+          - name: month_nr
+            description: Mês do pedido
+
+          - name: total_sales
+            description: Total de vendas realizadas no período
+
+          - name: previous_day_sales
+            description: Vendas realizadas no dia anterior (para análise de crescimento diário)
+
+          - name: previous_month_sales
+            description: Vendas realizadas no mês anterior (para análise de crescimento mensal)
+
+          - name: growth_rate
+            description: Taxa de crescimento das vendas, calculada com base no período anterior
+
+          - name: growth_type
+            description: Tipo de crescimento (ex.: positivo, negativo)

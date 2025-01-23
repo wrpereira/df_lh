@@ -19,7 +19,7 @@ with
         from {{ ref('stg_person_person') }}
     )
 
-    , final_dim_customer as (
+    , dim_customer as (
         select 
             sales_customer.customerid_id
             , person_person.fullname_nm
@@ -34,4 +34,4 @@ with
     )
 
 select *
-from final_dim_customer
+from dim_customer

@@ -30,7 +30,7 @@ with
             , total_revenue_per_order
     )
 
-    , ticket_by_territory as (
+    , fact_average_ticket_territory as (
         select
             territoryid_id
             , count(order_id) as total_orders_territory
@@ -46,11 +46,11 @@ select
     , count(ticket_by_order.order_id) as total_orders
     , round(sum(ticket_by_order.total_revenue_per_order), 2) as total_revenue
     , {{ calculate_average_ticket('sum(ticket_by_order.total_revenue_per_order)', 'count(ticket_by_order.order_id)') }} as average_ticket
-    , round(sum(ticket_by_territory.total_orders_territory), 2) as total_orders_territory
-    , round(sum(ticket_by_territory.total_revenue_territory), 2) as total_revenue_territory
-    , {{ calculate_average_ticket('sum(ticket_by_territory.total_revenue_territory)', 'sum(ticket_by_territory.total_orders_territory)') }} as average_ticket_territory
+    , round(sum(fact_average_ticket_territory.total_orders_territory), 2) as total_orders_territory
+    , round(sum(fact_average_ticket_territory.total_revenue_territory), 2) as total_revenue_territory
+    , {{ calculate_average_ticket('sum(fact_average_ticket_territory.total_revenue_territory)', 'sum(fact_average_ticket_territory.total_orders_territory)') }} as average_ticket_territory
 from ticket_by_order
-left join ticket_by_territory 
-    on ticket_by_order.territoryid_id = ticket_by_territory.territoryid_id
+left join fact_average_ticket_territory 
+    on ticket_by_order.territoryid_id = fact_average_ticket_territory.territoryid_id
 group by
     ticket_by_order.territoryid_id

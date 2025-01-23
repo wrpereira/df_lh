@@ -1,0 +1,32 @@
+version: 2
+
+models:
+      - name: fact_product_forecast
+        description: 
+        Tabela de previsão de vendas por produto e loja, incluindo quantidade projetada, preço médio e
+        valor projetado de vendas.
+
+        columns:
+          - name: store_id
+            description: Identificador único da loja
+            tests:
+              - unique
+              - not_null
+
+          - name: productid_id
+            description: Identificador único do produto
+            tests:
+              - unique
+              - not_null
+
+          - name: forecast_date
+            description: Data de previsão para o produto e loja
+
+          - name: forecast_quantity
+            description: Quantidade projetada de vendas do produto para a loja, baseada nas vendas passadas
+
+          - name: avg_unit_price
+            description: Preço médio projetado do produto, baseado no histórico de preços
+
+          - name: forecast_sales_value
+            description: Valor projetado de vendas, calculado pela multiplicação da quantidade projetada pelo preço médio projetado

@@ -1,5 +1,5 @@
 with 
-    product_inventory as (
+    fact_product_turnover as (
         select
             production_productinventory.productid_id
             , production_product.product_nm
@@ -45,4 +45,4 @@ with
 select
     *
     , round(total_quantity_sold / nullif(quantity_qt, 0), 2) as turnover_rate 
-from product_inventory
+from fact_product_turnover

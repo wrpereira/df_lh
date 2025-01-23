@@ -20,7 +20,7 @@ with
             , sales_salesperson.territoryid_id
     )
 
-    , ticket_by_salesperson as (
+    , fact_average_ticket_employee as (
         select
             salesperson_id
             , count(salesorderid_id) as total_orders
@@ -36,4 +36,4 @@ select
     , total_orders
     , total_revenue_salesperson
     , average_ticket_salesperson
-from ticket_by_salesperson
+from fact_average_ticket_employee

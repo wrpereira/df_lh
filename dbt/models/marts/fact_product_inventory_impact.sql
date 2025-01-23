@@ -21,7 +21,7 @@ with
         from {{ ref('stg_production_productinventory') }} as production_productinventory
     )
 
-    , product_inventory_impact as (
+    , fact_product_inventory_impact as (
         select
             purchasing_purchaseorderdetail.productid_id
             , sum(purchasing_purchaseorderdetail.total_order_qty) as total_ordered_quantity
@@ -41,4 +41,4 @@ with
     )
 
 select *
-from product_inventory_impact
+from fact_product_inventory_impact

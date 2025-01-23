@@ -1,0 +1,29 @@
+version: 2
+
+models:
+      - name: dim_employee
+        description: 
+        Tabela de dimensão que contém informações detalhadas sobre os funcionários, 
+        incluindo dados pessoais, cargo e datas de nascimento e contratação.
+
+        columns:
+          - name: businessentityid_id
+            description: Identificador único do funcionário
+            tests:
+              - unique
+              - not_null
+
+          - name: fullname_nm
+            description: Nome completo do funcionário
+
+          - name: gender_tp
+            description: Gênero do funcionário
+
+          - name: jobtitle_tp
+            description: Cargo do funcionário
+
+          - name: birthdate_dt
+            description: Data de nascimento do funcionário
+
+          - name: hiredate_dt
+            description: Data de contratação do funcionário

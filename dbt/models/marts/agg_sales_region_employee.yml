@@ -1,0 +1,39 @@
+version: 2
+
+models:
+      - name: agg_sales_region_employee
+        description: 
+        Tabela agregada que registra os detalhes dos pedidos de venda, incluindo território, 
+        vendedores, identificadores, produtos, clientes, e métricas de vendas como 
+        quantidade, valor total do pedido e tempo de entrega.
+
+        columns:
+          - name: businessentityid_id_employee
+            description: Identificador único do funcionário (ref stg_humanresources_employee)
+            tests:
+              - unique
+              - not_null
+
+          - name: employee_full_name
+            description: Nome completo do funcionário
+
+          - name: territoryid_id
+            description: Identificador do território do vendedor
+            tests:
+              - unique
+              - not_null
+
+          - name: territory_nm
+            description: Nome do território de vendas
+
+          - name: countryregioncode_cd
+            description: Código da região ou país do território
+
+          - name: total_quantity
+            description: Total de itens vendidos
+
+          - name: total_sales_value
+            description: Valor total das vendas
+
+          - name: total_order_value
+            description: Valor total do pedido, incluindo subtotal, impostos e frete

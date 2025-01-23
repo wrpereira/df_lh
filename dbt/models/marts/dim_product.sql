@@ -27,7 +27,7 @@ with
         from {{ ref('stg_production_productcategory') }}
     )
 
-    , final_dim_product as (
+    , dim_product as (
         select
             production_product.productid_id
             , production_product.product_nm
@@ -44,4 +44,4 @@ with
     )
 
 select *
-from final_dim_product
+from dim_product

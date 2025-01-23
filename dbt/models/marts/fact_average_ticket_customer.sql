@@ -24,7 +24,7 @@ with
             , sales_customer.territoryid_id
     )
 
-    , ticket_by_customer as (
+    , fact_average_ticket_customer as (
         select
             customerid_id
             , count(salesorderid_id) as total_orders
@@ -40,4 +40,4 @@ select
     , total_orders
     , total_revenue_customer
     , average_ticket_customer
-from ticket_by_customer
+from fact_average_ticket_customer

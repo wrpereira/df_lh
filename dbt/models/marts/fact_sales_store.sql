@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 with 
-    sales_per_store as (
+    fact_sales_store as (
         select
             sales_orderheader.salesorderid_id
             , sales_store.businessentityid_id as store_id        
@@ -23,4 +23,4 @@ with
     )
 
 select *
-from sales_per_store
+from fact_sales_store

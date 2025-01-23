@@ -20,7 +20,7 @@ with
         from {{ ref('stg_humanresources_employee') }}
     )
 
-    , final_dim_employee as (
+    , dim_employee as (
         select
             person_person.businessentityid_id
             , person_person.fullname_nm
@@ -34,4 +34,4 @@ with
     )
 
 select *
-from final_dim_employee
+from dim_employee

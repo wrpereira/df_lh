@@ -41,7 +41,7 @@ with
         from unnest(generate_date_array(current_date, date_add(current_date, interval 3 month), interval 1 month)) as date
     )
 
-    , product_forecast as (
+    , fact_product_forecast as (
         select
             historical_sales.store_id
             , historical_sales.productid_id
@@ -55,4 +55,4 @@ with
     )
 
 select *
-from product_forecast
+from fact_product_forecast

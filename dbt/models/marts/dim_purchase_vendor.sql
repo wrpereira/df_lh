@@ -20,7 +20,7 @@ with
         from {{ ref('stg_purchasing_purchaseorderheader') }}
     )
 
-    , vendor_spending as (
+    , purchase_vendor as (
         select
             purchasing_purchaseorderheader.vendorid_id as vendor_id
             , purchasing_vendor.vendor_name_nm
@@ -35,4 +35,4 @@ with
     )
 
 select *
-from vendor_spending
+from purchase_vendor
