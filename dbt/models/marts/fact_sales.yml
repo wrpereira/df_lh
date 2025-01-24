@@ -86,8 +86,8 @@ models:
       - name: total_sales_value
         description: Valor total das vendas
 
-      - name: total_order_value
-        description: Valor total do pedido, incluindo subtotal, impostos e frete
+      - name: onlineorderflag_fl
+        description: Flag indicando se o pedido foi feito online
 
       - name: orderdate_dt
         description: Data em que o pedido foi realizado

@@ -27,3 +27,13 @@ models:
 
       - name: hiredate_dt
         description: Data de contratação do funcionário
+
+      - name: vacationhours_nr
+        description: Número de horas de férias do funcionário
+
+      - name: sickleavehours_nr
+        description: Número de horas de licença médica do funcionário
+
+      - name: currentflag_fl
+        description: Flag indicando se o funcionário está ativo
+        

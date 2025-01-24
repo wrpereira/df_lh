@@ -7,6 +7,7 @@ with
             , customerid_id
             , creditcardid_id
             , territoryid_id
+            , onlineorderflag_fl
             , cast(orderdate_dt as date) as orderdate_dt
             , cast(shipdate_dt as date) as shipdate_dt
             , cast(duedate_dt as date) as duedate_dt             
@@ -116,6 +117,7 @@ with
             , sum(sales_salesorderdetail.orderqty_qt) as total_quantity
             , sum(sales_salesorderdetail.unitprice_vr * sales_salesorderdetail.orderqty_qt) as total_sales_value
             , round(sum(sales_salesorderheader.subtotal_vr + sales_salesorderheader.taxamt_vr + sales_salesorderheader.freight_vr), 2) as total_order_value
+            , sales_salesorderheader.onlineorderflag_fl
             , sales_salesorderheader.orderdate_dt
             , sales_salesorderheader.shipdate_dt
             , sales_salesorderheader.duedate_dt            
@@ -160,6 +162,7 @@ with
             , sales_salesreason.salesreasonid_id
             , sales_salesreason.reason_desc
             , sales_salesreason.reasontype_tp
+            , sales_salesorderheader.onlineorderflag_fl
             , sales_salesorderdetail.orderqty_qt
             , sales_salesorderdetail.unitprice_vr    
             , sales_salesorderheader.orderdate_dt

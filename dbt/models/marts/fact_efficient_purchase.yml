@@ -46,7 +46,7 @@ models:
         description: Número de dias de atraso na entrega, calculado pela diferença entre a data de envio e a data de vencimento, se houver atraso
 
       - name: total_quantity
-        description: Quantidade total do produto no pedido
+        description: Quantidade total de produtos no pedido
 
       - name: total_cost
         description: Custo total do pedido de compra

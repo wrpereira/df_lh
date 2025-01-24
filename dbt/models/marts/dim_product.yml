@@ -22,6 +22,14 @@ models:
       - name: subcategory_nm
         description: Nome da subcategoria do produto
 
+      - name: daystomanufacture_nr
+        description: Dias necessários para fabricar o produto
+
+      - name: productline_tp
+        description: Linha de produtos
+      
+      - name: class_tp
+        description: Classe do produto
       - name: color_tp
         description: Cor do produto
 
@@ -30,3 +38,9 @@ models:
 
       - name: listprice_vr
         description: Preço de venda do produto
+        
+      - name: sellstartdate_dt
+        description: Data de início das vendas do produto
+      
+      - name: sellenddate_dt
+        description: Data de término das vendas do produto   

@@ -5,10 +5,15 @@ with
         select
             productid_id
             , product_nm
+            , daystomanufacture_nr
+            , productline_tp
+            , class_tp
             , color_tp
             , listprice_vr
             , size_tp
             , productsubcategoryid_id
+            , sellstartdate_dt
+            , sellenddate_dt
         from {{ ref('stg_production_product') }}
     )
 
@@ -33,9 +38,14 @@ with
             , production_product.product_nm
             , coalesce(production_productcategory.category_nm, 'NO CATEGORY') as category_nm
             , coalesce(production_productsubcategory.subcategory_nm, 'NO SUBCATEGORY') as subcategory_nm                     
+            , daystomanufacture_nr
+            , productline_tp
+            , class_tp
             , production_product.color_tp
             , production_product.size_tp
             , production_product.listprice_vr
+            , sellstartdate_dt
+            , sellenddate_dt            
         from production_product
         left join production_productsubcategory
             on production_product.productsubcategoryid_id = production_productsubcategory.productsubcategoryid_id
