@@ -36,4 +36,7 @@ models:
 
       - name: currentflag_fl
         description: Flag indicando se o funcionário está ativo
+
+      - name: maritalstatus_st
+        description: Status marital do funcionário
         

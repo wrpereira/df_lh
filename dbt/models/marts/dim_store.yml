@@ -7,7 +7,7 @@ models:
       dados de identificação da loja e região associada.
 
     columns:
-      - name: store_id
+      - name: businessentityid_id_store
         description: Identificador único da loja
 
       - name: store_nm
@@ -21,7 +21,4 @@ models:
 
       - name: country_region_code_cd
         description: Código da região ou país do território
-
-      - name: territory_group_tp
-        description: Grupo do território
         

@@ -15,6 +15,7 @@ with
             businessentityid_id
             , jobtitle_tp
             , birthdate_dt
+            , marital_st
             , hiredate_dt
             , gender_tp
             , vacationhours_nr
@@ -33,7 +34,8 @@ with
             , humanresources_employee.hiredate_dt
             , humanresources_employee.vacationhours_nr
             , humanresources_employee.sickleavehours_nr  
-            , humanresources_employee.currentflag_fl          
+            , humanresources_employee.currentflag_fl   
+            , humanresources_employee.marital_st       
         from humanresources_employee
         left join person_person
             on humanresources_employee.businessentityid_id = person_person.businessentityid_id

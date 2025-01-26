@@ -29,7 +29,8 @@ models:
         description: Linha de produtos
       
       - name: class_tp
-        description: Classe do produto
+        description: Classe do produto, sendo H=High (Alta) = premium; M=Medium (Média) = preço médio de mercado e L=Low(Baixa) = opção econômica | barata 
+
       - name: color_tp
         description: Cor do produto
 

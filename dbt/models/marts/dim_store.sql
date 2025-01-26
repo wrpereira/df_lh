@@ -21,7 +21,7 @@ with
 
     , sales_store as (
         select
-            businessentityid_id as store_id
+            businessentityid_id as businessentityid_id_store
             , store_nm
             , salespersonid_id
         from {{ ref('stg_sales_store') }}
@@ -37,17 +37,22 @@ with
 
     , dim_store as (
         select
-            sales_store.store_id
+            sales_store.businessentityid_id_store
             , sales_store.store_nm
             , sales_customer.territoryid_id
             , coalesce(sales_salesterritory.territory_nm, 'NO DATA') as territory_nm
             , coalesce(sales_salesterritory.countryregioncode_cd, 'NO DATA') as country_region_code_cd
-            , coalesce(sales_salesterritory.territory_group_tp, 'NO DATA') as territory_group_tp
         from sales_store
         left join sales_customer
-            on sales_store.store_id = sales_customer.storeid_id
+            on sales_store.businessentityid_id_store = sales_customer.storeid_id
         left join sales_salesterritory
             on sales_customer.territoryid_id = sales_salesterritory.territoryid_id
+        group by 
+            sales_store.businessentityid_id_store
+            , sales_store.store_nm
+            , sales_customer.territoryid_id
+            , sales_salesterritory.territory_nm
+            , sales_salesterritory.countryregioncode_cd
     )
 
 select *
