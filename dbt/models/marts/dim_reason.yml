@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_reason
+    description: > 
+      Modelo que contém informações sobre razões/motivos pelos quais os clientes optaram em comprar.
+
+    columns:   
+      - name: salesreasonid_id_sr 
+        description: Identificador único do motivo da venda (ref stg_sales_salesorderheadersalesreason)
+
+      - name: salesreasonid_id
+        description: Identificador único do pedido de venda associado ao motivo
+
+      - name: reason_desc
+        description: Descrição do motivo da venda
+
+      - name: reasontype_tp
+        description: 'Tipo do motivo da venda (ex.: marketing, preço, etc.)'
