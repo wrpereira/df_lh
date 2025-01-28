@@ -30,18 +30,6 @@ default_args = {
     'retries': 1,
 }
 
-# === DAG ===
-# with DAG(
-#     dag_id="dag_meltano_postgres_csv_bigquery",
-#     default_args=default_args,
-#     description="Pipeline Meltano: Postgres -> CSV -> BigQuery",
-#     # schedule_interval='0 */3 * * *',  # Executa a cada 3 horas    
-#     start_date=fuso_horario.datetime(2025, 1, 4, 0, 0),
-#     end_date=fuso_horario.datetime(2025, 1, 6, 23, 59),
-#     catchup=False,
-#     max_active_runs=2,
-# ) as dag:
-
 # DAG
 with DAG(
     dag_id="dag_meltano_postgres_csv_bigquery",

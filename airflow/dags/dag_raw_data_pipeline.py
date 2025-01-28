@@ -3,12 +3,18 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.papermill.operators.papermill import PapermillOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from airflow.operators.bash import BashOperator
+from airflow.operators.dummy_operator import DummyOperator
 from airflow.sensors.time_delta import TimeDeltaSensor
-from datetime import datetime, timedelta
-from google.cloud import bigquery
 from google.oauth2 import service_account
+from google.cloud import bigquery
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
+
+# Função para verificar se o arquivo do notebook existe
+def check_notebook_exists(schema, table):
+    input_nb = f"/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/{schema}_{table}.ipynb"
+    return os.path.exists(input_nb)
 
 # Carregar variáveis do arquivo .env
 load_dotenv("/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/.env")
@@ -19,28 +25,28 @@ credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_
 client = bigquery.Client(credentials=credentials, project=os.getenv("BIGQUERY_PROJECT"), location="us-central1")
 
 TABLES_TO_PROCESS = ["humanresources-employee"
-                    ,"person-address"
-                    ,"person-businessentity"
-                    ,"person-person"
-                    ,"person-stateprovince"
-                    ,"production-location"        
-                    ,"production-product"
-                    ,"production-productcategory"
-                    ,"production-productcosthistory"   
-                    ,"production-productinventory"
-                    ,"production-productsubcategory"
-                    ,"sales-creditcard"
-                    ,"sales-customer"
-                    ,"sales-salesorderdetail"
-                    ,"sales-salesorderheader"  
-                    ,"sales-salesorderheadersalesreason"
-                    ,"sales-salesperson" 
-                    ,"sales-salesreason"  
-                    ,"sales-salesterritory"
-                    ,"sales-store"
-                    ,"purchasing-purchaseorderdetail"
-                    ,"purchasing-purchaseorderHeader"
-                    ,"purchasing-vendor"]
+                    , "person-address"
+                    , "person-businessentity"
+                    , "person-person"
+                    , "person-stateprovince"
+                    , "production-location"        
+                    , "production-product"
+                    , "production-productcategory"
+                    , "production-productcosthistory"   
+                    , "production-productinventory"
+                    , "production-productsubcategory"
+                    , "sales-creditcard"
+                    , "sales-customer"
+                    , "sales-salesorderdetail"
+                    , "sales-salesorderheader"  
+                    , "sales-salesorderheadersalesreason"
+                    , "sales-salesperson" 
+                    , "sales-salesreason"  
+                    , "sales-salesterritory"
+                    , "sales-store"
+                    , "purchasing-purchaseorderdetail"
+                    , "purchasing-purchaseorderHeader"
+                    , "purchasing-vendor"]
 
 # Default arguments
 default_args = {
@@ -70,7 +76,7 @@ with DAG(
         conf={},
     )
 
-    # Esperar 1 minutos com TimeDeltaSensor
+    # Esperar 1 minuto com TimeDeltaSensor
     wait_for_1_minutes_task = TimeDeltaSensor(
         task_id="wait_for_1_minutes",
         delta=timedelta(minutes=1),
@@ -79,22 +85,31 @@ with DAG(
     for schema_table in TABLES_TO_PROCESS:
         schema, table = schema_table.split("-")
 
-        input_nb = f"/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/{schema}_{table}.ipynb"
-        output_nb = f"/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/{schema}_{table}_output.ipynb"
+        # Verificar se o notebook existe
+        notebook_exists = check_notebook_exists(schema, table)
 
-        # Executar notebook com Papermill
-        notebook_task = PapermillOperator(
-            task_id=f"notebook_{schema}_{table}",
-            input_nb=input_nb,
-            output_nb=output_nb,
-            parameters={
-                'credentials_path': CREDENTIALS_PATH,
-                'input_table': f"{os.getenv('BIGQUERY_PROJECT')}.{os.getenv('BIGQUERY_DATASET')}.{schema}_{table}",
-                'output_table': f"{os.getenv('RAW_DATA_CLEANED_PROJECT')}.{os.getenv('RAW_DATA_CLEANED_DATASET')}.{schema}_{table}",
-            },
-        )
+        # Se o notebook existir, usar PapermillOperator
+        if notebook_exists:
+            input_nb = f"/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/{schema}_{table}.ipynb"
+            output_nb = f"/mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/airflow/jupyter/{schema}_{table}_output.ipynb"
+            
+            notebook_task = PapermillOperator(
+                task_id=f"notebook_{schema}_{table}",
+                input_nb=input_nb,
+                output_nb=output_nb,
+                parameters={
+                    'credentials_path': CREDENTIALS_PATH,
+                    'input_table': f"{os.getenv('BIGQUERY_PROJECT')}.{os.getenv('BIGQUERY_DATASET')}.{schema}_{table}",
+                    'output_table': f"{os.getenv('RAW_DATA_CLEANED_PROJECT')}.{os.getenv('RAW_DATA_CLEANED_DATASET')}.{schema}_{table}",
+                },
+            )
+        else:
+            # Se o notebook não existir, usar DummyOperator para pular a tarefa
+            notebook_task = DummyOperator(
+                task_id=f"dummy_notebook_{schema}_{table}",
+            )
 
-        # Esperar 1 minutos com TimeDeltaSensor
+        # Esperar 1 minuto com TimeDeltaSensor
         wait_1_task = TimeDeltaSensor(
             task_id=f"wait_1_minutes_{schema}_{table}",
             delta=timedelta(minutes=5),
@@ -107,10 +122,9 @@ with DAG(
             source /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_env/bin/activate && \
             cd /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt && \
             dbt clean --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles && \
-            dbt run --select staging.stg_{schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt_profiles
+            dbt run --select staging.stg_{schema}_{table} --profiles-dir /mnt/c/Users/wrpen/OneDrive/Desktop/df_lh/dbt
             """,
         )
         
         # Configurar dependências
         trigger_meltano >> wait_for_1_minutes_task >> notebook_task >> wait_1_task >> dbt_task
-   
